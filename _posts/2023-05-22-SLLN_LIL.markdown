@@ -1,0 +1,320 @@
+---
+layout: post
+title:  "The Law Of The Iterated Logarithm Expained And Visualised"
+date:   2023-05-22 11:14:45 +0200
+categories: math, python
+toc: true
+---
+In the first two sections of this post you will learn what the law of the iterated logarithm (in the following LIL) means.
+In the second section you will learn how to write a simple Python program to visualize LIL and then how to optimize the program using Numba.
+You can find the Jupyter notebook with the code [here](https://github.com/jd11111/probability/blob/main/SLLN_LIL.ipynb) on my Github.
+
+# The Strong Law Of Large Numbers And The Law Of The Iterated Logarithm
+This section will adress what the LIL says and what it means for pratical purposes.
+First some notation: 
+$$X$$ will denote a sequence of identically and independantly distributed real valued random variables with finite mean $$\mu$$ and variance $$\sigma^2$$.
+The $$n$$-sample mean $$\bar{X}_n $$ of $$X$$ is defined by $$\bar{X}_n =  n^{-1} \sum_{i=1}^n X_i $$.
+
+The SLLN states that $$\bar{X}_n $$ converges to $$\mu$$ almost surely (from now on a.s.) as $$ n \to \infty$$.
+
+But it does not tell us how fast $$\bar{X}_n $$ converges to $$\mu$$.
+This is where the LIL comes in.
+Define a sequence of real numbers $$l$$ by 
+\\[l_n=\sigma \sqrt{2/n \log ( \log ( n))} \quad \text{for} \ n > e \\]
+Note that $$\lim_{n \to \infty } l_n =0$$.
+Then the LIL says that
+\begin{equation}
+\tag{1}
+    \limsup_{n \to \infty} l_n^{-1} |\bar{X}_n - \mu|= 1 \quad \text{a.s.}
+\end{equation}
+Unravelling the definition this means that the following is true for $$\forall \varepsilon >0$$:
+\begin{equation}
+    | \bar{X}_n - \mu| < (1 + \varepsilon )l_n \quad \text{a.s.}
+\end{equation}
+for all but finitely many $$n$$ and 
+\begin{equation}
+   (1 - \varepsilon ) l_n < | \bar{X}_n - \mu| \quad \text{a.s.}
+\end{equation}
+for infinitely many $$n$$.
+Using the [big-$$\mathcal{O}$$ notation](https://en.wikipedia.org/wiki/Big_O_notation#Formal_definition) the LIL is therefore equivalent to saying that $$|\bar{X}_n - \mu| = \mathcal{O}(l_n)$$ a.s. as $$n \to \infty$$ with any bounding constant $$>1$$, but not with any bounding constant $$<1$$.
+So the LIL gives us an upper bound for the speed of convergence in the SLLN for large $$n$$.
+Furthermore the LIL also tells us that
+\begin{equation}
+ \lim x_n^{-1} l_n^{-1} |\bar{X}_n - \mu| = 0  \quad \text{a.s.}
+\end{equation}
+for any sequence of positive real numbers $$x$$ that converges to $$\infty$$ (follows from the rules of the product of $$\limsup$$'s).
+In other words using the [little-$$o$$ notation](https://en.wikipedia.org/wiki/Big_O_notation#Little-o_notation) $$\bar{X}_n - \mu = o(x_n l_n) $$ a.s. as $$n \to \infty$$.
+# Visualising The Law Of The Iterated Logarithm
+We can numerically visualize the relations discussed in the preceding section by generating $$X_1( \omega), X_2 (\omega) , \dots , X_N (\omega)$$ for multiple outcomes $$\{ \omega_1, \dots, \omega_M \} $$ and then plotting both $$l_n$$ and $$\bar{X}_n(\omega) -\mu$$ for all $$n \in \{1 , \dots , N\}$$ and $$\omega \in \{ \omega_1, \dots, \omega_M \} $$.
+The sequence $$(\bar{X}_1(\omega) -\mu , \dots ,\bar{X}_N(\omega) -\mu)$$ ($$\omega$$ fixed) is called a path in the following.
+
+This has been done for a standard normal distribution (mean 0, variance 1) with 800 paths to produce the following figure:
+
+![paths](/assets/iterlog.png)
+
+A logarithmic scale is used on the horizontal axis, while a 10-th root scale is used on the vertical axis.
+Each colored line is the path for one outcome.
+The dash-dotted line visualizes that $$|\bar{X}_n - \mu| = \mathcal{O}(l_n)$$ a.s. and the solid line that $$|\bar{X}_n - \mu| = o(x_n l_n)$$ a.s. with $$x_n = n^{0.2}$$. Also note how slow the sample mean really converges, even after using $$10^9$$ samples there are still deviations in the order of $$10^4$$ from the real mean.
+
+# Writing Python Code To Visualize The Law Of The Iterated Logarithm
+This section will tell you how to write a python program to visualise the LIL as discussed in the preceding section and how to optimize it.
+## Basic Code
+We will start with a simple python program.
+The libary ``numpy`` will be used to do the heavy lifting, while ``matplotlib`` will be used for plotting:
+
+
+```python
+import numpy as np 
+from matplotlib import pyplot as plt
+```
+
+The following function computes the values of ``M`` paths for a standard normal distribution (mean zero and variance 1) and returns their values for the $$n$$ in ``ns``.
+
+
+```python
+def generate_paths_basic(M,ns):
+    """returns an array containing the values of M different paths at the values of n in ns"""
+    rng = np.random.Generator(np.random.SFC64()) #nitialize RNG
+    rand = rng.normal(size=(M,ns[-1])) #generate normal distributed data
+    paths = np.cumsum(rand,axis=1) #calculate the partial sums from n=1 to n=ns[-1]
+    return paths[:,ns-1] #only return the partial sums for those values of n in ns
+```
+
+We dont want to display the paths for all values of $$n$$. A logarithmic scale is a good idea:
+
+
+```python
+X= np.logspace(1,6,base=10,num=1000) #create array of numbers between 10**1 and 10**6 that are equally  that are evenly spaced on a log scale for plotting of the iterated logarithm
+ns = np.unique(np.round(X).astype(np.int64)) #create array of integers between 10**1 and 10**6 that are equally spaced on a log scale for plotting of the paths
+```
+
+Lets generate 80 paths
+
+
+```python
+paths = generate_paths_basic(80,ns) 
+```
+
+and define the sequence $$l_n$$ to compare the paths with:
+
+
+```python
+def iterlog(x):
+    if x<=np.e:
+        return 0.0
+    else:
+        return np.sqrt(2/x*np.log(np.log(x)))
+
+iterlog = np.vectorize(iterlog) #to make sure the function is employed element-wise on arrays
+```
+
+Finally we can visualize the results:
+
+
+```python
+fig, ax = plt.subplots()
+
+ax.plot(X,iterlog(X),color="black",lw =1,zorder=5,label=r"$\sqrt{2  /n \log ( \log (n))}$") #plot the iterated logarithm
+for path in paths:
+    ax.plot(ns,np.abs(path/ns),lw=1) #plot the path
+
+ax.set_xlabel("Number of samples $n$")
+ax.set_ylabel(r"Deviation from mean $|\bar{X}_n |$")
+ax.set_xscale("log")
+ax.set_xlim(ns[0],ns[-1])
+ax.set_ylim(0,1)
+plt.legend()
+plt.title("SLLN and LIL")
+plt.show()
+```
+
+
+    
+![png](/assets/SLLN_LIL_files/SLLN_LIL_12_0.png)
+    
+
+
+## Optimizing The Code Using Numba
+
+This section tells you how to optimize the above code to deal with large numbers of samples.
+In the process you will learn to write fast python code that leverages parallel computation with numba.
+So lets get into it:
+While the above code is very simple and executes relatively fast it has a big problem if we want to calculate the paths for even larger $$n$$:
+It uses way too much ram.
+This is because the function ``generate_paths_basic`` creates two huge arrays to store the random data and the partial sums in.
+Of course we dont really need to generate all random data at once and store it in an array.
+We also dont need to store all values of the paths.
+Instead we only need to store the values of the paths that we want to display and we can generate random numbers as we are using them.
+So lets optimize the code with the goal not to waste ram. While we are at it we can also add multi-threading.
+To facilitate this we will be using the ``numba`` and the ``threading `` module.
+
+
+```python
+import numpy as np 
+from matplotlib import pyplot as plt 
+import numba as nb 
+import threading
+```
+
+The following function will be used to calculate the path differences between values of $$n$$ that we are interested in.
+
+
+```python
+@nb.jit(nopython=True,fastmath=True,nogil=True)
+def partial_sum(rng,n):
+    """take an instance rng of the np.random.Generator() class and sum n normally distributed samples drawn from rng"""
+    var=0
+    for i in range(n):
+        var+=rng.normal()
+    return var
+```
+
+We are using the ``@nb.jit`` decorator to tell ``numba`` to treat the function to make it fast.
+We pass an instance of the ``np.random.Generator()`` class to use it within the numba'd function (this only works because there is explicit support for this in numba).
+This function has the advantage of not saving intermediate results and not creating large arrays (unlike using numpy would).
+The usage of numba is critical, because the same code using vanilla python would run very slow and would be restricted from multi-threading by the python GIL.
+We can use the ``partial_sum`` function to define a function that calculates the values of the paths at those $$n$$ in ``ns``:
+
+
+```python
+@nb.jit(nopython=True,fastmath=True,nogil=True)
+def generate_paths(paths,rng,ns,diffs):
+    """takes an array paths and writes the relevant path values in it for paths.shape[0] different paths. Uses random samples from rng."""
+    for j in range(paths.shape[0]):
+        paths[j,0]=partial_sum(rng,ns[0])
+        for ind,val in enumerate(diffs):
+            paths[j,ind+1] = partial_sum(rng,val)+paths[j,ind]
+```
+
+and use it to do multi-threading:
+
+
+```python
+def generate_paths_mt(M,threadnr,ns):
+    """generate M paths (M is expected to be an integer multiple of threadnr) using threadnr different threads returning an array containing the values of the paths for those n in ns"""
+    paths = np.empty(shape=(M,len(ns))) #array to save the values of the paths
+    diffs = np.diff(ns) #array of differences in ns i.e. diffs[i] = ns[i+1]-ns[i]
+    chunk_len = paths.shape[0]//threadnr #number of paths each thread calculates 
+    chunks = [paths[i*chunk_len:(i+1)*chunk_len,:] for i in range(threadnr)] #one slice of the paths array for each thread to execute generate_paths on
+    rngs = [np.random.Generator(np.random.SFC64()) for i in range(threadnr)] # one rng for each thread
+    threads = [threading.Thread(target=generate_paths,args=([chunks[i],rngs[i],ns,diffs])) for i in range(threadnr)] #create the threads
+    for thread in threads:
+        thread.start()#start the thread
+    for thread in threads:
+        thread.join()#wait for the thread to finish
+    return paths
+```
+
+There are two things worthy of notice here: Firstly the RNG that we are using is not thread-safe, therefore every thread must have their own RNG.
+Secondly this form of multi-threading only speeds up computation because we call functions that haven been numba'd with the ``nogil=True``option circumventing the Python GIL.
+
+Lets use this function to generate 80 paths with a large number of samples:
+
+
+```python
+X= np.logspace(1,8,base=10,num=1000) #create array of equally spaced numbers on log scale for plotting of the iterated logarithm
+ns = np.unique(np.round(X).astype(np.int64)) #create array of equally spaced integers on log scale for plotting of the paths
+```
+
+
+```python
+paths = generate_paths_mt(80,8,ns)
+```
+
+To visualise the data we proceed as before (the function ``iterlog`` is defined as in the preceding section).
+The only changes are to add a 10-th root scale for better visibility of the data and to add some fancy ticks and tick labels.
+
+
+```python
+fig, ax = plt.subplots()
+
+ax.plot(X,iterlog(X),color="black",lw =2,ls="--",zorder=5,label=r"$ \sigma \sqrt{2  /n \log ( \log (n))}$") #plot the iterated logarithm
+
+for p in paths:
+    ax.plot(ns,np.abs(p/ns),lw=1) #plot the path
+
+ax.set_xlabel("Number of samples $n$")
+ax.set_ylabel(r"Deviation from mean $|\bar{X}_n - \mu|$")
+ax.set_xscale("log")
+ax.set_xlim(ns[0],ns[-1])
+
+def f(x):
+    return x**(1/10)
+
+def g(x):
+    return x**10
+
+ax.set_yscale("function", functions=(f, g))
+ax.set_ylim(10**-4,10**0)
+ax.set_yticks([ 10**(-1*i) for i in range(5)])
+ax.set_yticks([(i+1)*10**(-1*j) for j in [1,2,3,4] for i in range(9) ],minor=True)
+ax.set_yticklabels(["$10^{}$".format("{"+str(-1*i)+"}") for i in range(5)])
+
+plt.legend()
+plt.title("SLLN and LIL")
+plt.show()
+```
+
+
+    
+![png](/assets/SLLN_LIL_files/SLLN_LIL_27_0.png)
+    
+
+
+## Performance Analysis
+
+It is interesting to compare the performance of the two functions in a like for like scenario:
+
+
+```python
+threadnr = 8
+M = 10*threadnr #number of paths to calculate (expected to be integer multiple of the thread number)
+```
+
+
+```python
+X= np.logspace(1,6,base=10,num=1000) #create array of equally spaced numbers on log scale for plotting of the iterated logarithm
+ns = np.unique(np.round(X).astype(np.int64)) #create array of equally spaced integers on log scale for plotting of the paths
+```
+
+First up a single thread vs single thread test:
+
+
+```python
+%timeit paths = generate_paths_mt(M,1,ns) #using 1 thread to compare
+```
+
+    723 ms ± 19 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+
+
+
+```python
+%timeit paths = generate_paths_basic(M,ns)
+```
+
+    1.67 s ± 54.8 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+
+
+The optimized code is more than two times faster than the basic code!
+Now lets use the maximum of 8 threads on my 4C/8T system:
+
+
+```python
+%timeit paths = generate_paths_mt(M,8,ns) #using all 8 available threads (4C/8T)
+```
+
+    191 ms ± 8.81 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+
+
+As expected almost four times faster than with 1 thread! 
+We can also test with 4 threads (so no hyperthreading is in use):
+
+
+```python
+%timeit paths = generate_paths_mt(M,4,ns) #using 4 available threads (one per core) (4C/8T)
+```
+
+    220 ms ± 3.8 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+
+
+Around 15 percent slower than with hyperthreading.
