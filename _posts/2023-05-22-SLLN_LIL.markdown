@@ -3,7 +3,6 @@ layout: post
 title:  "The Law Of The Iterated Logarithm Expained And Visualised"
 date:   2023-05-22 11:14:45 +0200
 categories: math, python
-toc: true
 ---
 In the first two sections of this post you will learn what the law of the iterated logarithm (in the following LIL) means.
 In the second section you will learn how to write a simple Python program to visualize LIL and then how to optimize the program using Numba.
