@@ -4,14 +4,21 @@ title:  "The Law Of The Iterated Logarithm Expained And Visualised"
 date:   2023-05-22 11:14:45 +0200
 categories:
 ---
+- [The Law Of The Iterated Logarithm](#the-law-of-the-iterated-logarithm)
+- [Visualizing The Law Of The Iterated Logarithm In Python](#visualizing-the-law-of-the-iterated-logarithm-in-python)
+    - [Basic Code](#basic-code)
+    - [Optimizing The Code Using Numba](#optimizing-the-code-using-numba)
+    - [Performance Analysis](#performance-analysis)
+
 In the first part of this post you will learn what the law of the iterated logarithm (in the following LIL) means.
 In the second part you will learn how to write a simple Python program to visualize the LIL and then how to optimize the program using Numba.
 You can find the Jupyter notebook with the code [here](https://github.com/jd11111/probability/blob/main/SLLN_LIL.ipynb) on my Github.
 
-# The Strong Law Of Large Numbers And The Law Of The Iterated Logarithm
+## The Law Of The Iterated Logarithm
+
 This section will adress what the LIL says and what it means for pratical purposes.
 First some notation: 
-$$X$$ will denote a sequence of identically and independantly distributed real valued random variables with finite mean $$\mu$$ and variance $$\sigma^2$$.
+$X$ will denote a sequence of identically and independantly distributed real valued random variables with finite mean $$\mu$$ and variance $$\sigma^2$$.
 The $$n$$-sample mean $$\bar{X}_n $$ of $$X$$ is defined by $$\bar{X}_n =  n^{-1} \sum_{i=1}^n X_i $$.
 
 The SLLN states that $$\bar{X}_n $$ converges to $$\mu$$ almost surely (from now on a.s.) as $$ n \to \infty$$.
@@ -43,10 +50,9 @@ Furthermore the LIL also tells us that
 \end{equation}
 for any sequence of positive real numbers $$x$$ that converges to $$\infty$$ (follows from the rules of the product of $$\limsup$$'s).
 In other words using the [little-$$o$$ notation](https://en.wikipedia.org/wiki/Big_O_notation#Little-o_notation) $$\bar{X}_n - \mu = o(x_n l_n) $$ a.s. as $$n \to \infty$$.
-# Visualising The Law Of The Iterated Logarithm
+
 We can numerically visualize the relations discussed in the preceding section by generating $$X_1( \omega), X_2 (\omega) , \dots , X_N (\omega)$$ for multiple outcomes $$\{ \omega_1, \dots, \omega_M \} $$ and then plotting both $$l_n$$ and $$\bar{X}_n(\omega) -\mu$$ for all $$n \in \{1 , \dots , N\}$$ and $$\omega \in \{ \omega_1, \dots, \omega_M \} $$.
 The sequence $$(\bar{X}_1(\omega) -\mu , \dots ,\bar{X}_N(\omega) -\mu)$$ ($$\omega$$ fixed) is called a path in the following.
-
 This has been done for a standard normal distribution (mean 0, variance 1) with 800 paths to produce the following figure:
 
 ![paths](/assets/iterlog.png)
@@ -55,9 +61,9 @@ A logarithmic scale is used on the horizontal axis, while a 10-th root scale is 
 Each colored line is the path for one outcome.
 The dash-dotted line visualizes that $$|\bar{X}_n - \mu| = \mathcal{O}(l_n)$$ a.s. and the solid line that $$|\bar{X}_n - \mu| = o(x_n l_n)$$ a.s. with $$x_n = n^{0.2}$$. Also note how slow the sample mean really converges, even after using $$10^9$$ samples there are still deviations in the order of $$10^4$$ from the real mean.
 
-# Writing Python Code To Visualize The Law Of The Iterated Logarithm
+## Visualizing The Law Of The Iterated Logarithm In Python
 This section will tell you how to write a python program to visualise the LIL as discussed in the preceding section and how to optimize it.
-## Basic Code
+# Basic Code
 We will start with a simple python program.
 The libary ``numpy`` will be used to do the heavy lifting, while ``matplotlib`` will be used for plotting:
 
@@ -133,7 +139,7 @@ plt.show()
     
 
 
-## Optimizing The Code Using Numba
+# Optimizing The Code Using Numba
 
 This section tells you how to optimize the above code to deal with large numbers of samples.
 In the process you will learn to write fast python code that leverages parallel computation with numba.
@@ -260,7 +266,7 @@ plt.show()
     
 
 
-## Performance Analysis
+# Performance Analysis
 
 It is interesting to compare the performance of the two functions in a like for like scenario:
 
