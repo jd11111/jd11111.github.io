@@ -18,10 +18,10 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Physics, Maths and Code with Jannik
+title: Physics, Maths and Code with Jannik Daun
 email: jannik.daun@proton.me
 description: >- # this means to ignore newlines until "baseurl:"
-  Blog about mathematics and physics
+  Blog about mathematics, physics and code by Jannik Daun
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: 
