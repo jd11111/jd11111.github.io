@@ -242,8 +242,8 @@ The coefficient matrix of the sum is obtained like this:
 
 
 ```python
-sum = T(a,b)+S(a,b)
-sum
+expr= T(a,b)+S(a,b)
+expr
 ```
 
 
@@ -255,7 +255,7 @@ $$\displaystyle S{}^{ab} + T{}^{ab}$$
 
 
 ```python
-sum.replace_with_arrays(repl) #the coffiecient matrix of the sum 
+sum.replace_with_arrays(repl) #the coefficient matrix of the sum 
 ```
 
 
@@ -326,8 +326,8 @@ The coefficient matrix of a contraction can be obtained as well:
 
 
 ```python
-contract = T(a,b)*S(-b,c) #lower the first slot of S^{bc} and then contract T^{ab}S_b^c
-contract
+expr = T(a,b)*S(-b,c) #lower the first slot of S^{bc} and then contract T^{ab}S_b^c
+expr
 ```
 
 
@@ -339,7 +339,7 @@ $$\displaystyle T{}^{aV_{0}}S{}_{V_{0}}{}^{c}$$
 
 
 ```python
-contract.replace_with_arrays(repl) #The coefficient matrix of the contraction defined above
+expr.replace_with_arrays(repl) #The coefficient matrix of the contraction defined above
 ```
 
 
@@ -349,7 +349,7 @@ $$\displaystyle \left[\begin{matrix}-4 & 17\\-28 & 49\end{matrix}\right]$$
 
 
 
-W obtain the coefficient matrix of a rearranged tensor as follows:
+We obtain the coefficient matrix of a rearranged tensor as follows:
 
 
 ```python
@@ -365,7 +365,7 @@ $$\displaystyle \left[\begin{matrix}1 & 2\\5 & 6\end{matrix}\right]$$
 
 
 ```python
-T(b,a).replace_with_arrays(repl) #The coefficient matrix of T^{ba} note that it is the tranpose of the coefficient matrix of T^{ab}
+T(b,a).replace_with_arrays(repl) #The coefficient matrix of T^{ba}, it is the tranpose of the coefficient matrix of T^{ab}
 ```
 
 
@@ -377,8 +377,8 @@ $$\displaystyle \left[\begin{matrix}1 & 5\\2 & 6\end{matrix}\right]$$
 
 ## Symmetries Of Tensors And Canonicalization
 
-Lastly we consider the canonicalization of tensors and symmetry.
-Canonicalization of a tensor expression means to bring every term in the expression into canonical form, meaning that the index labels are in alphabetic order.
+In this section we consider the canonicalization of tensors and symmetry.
+Canonicalization of a tensor expression means to bring every individual term in the expression into canonical form, meaning that the index labels are in alphabetic order.
 
 Canonicalization can simplify an expression greatly, because symmetries of the individual terms can be exploited. For details on Canonicalization see [here](https://arxiv.org/pdf/1702.08114.pdf).
 I wil show two examples of this.
@@ -453,13 +453,13 @@ $$\displaystyle 2Sy{}^{ab}$$
 
 
 
-More complicated symmetries can also be implemented. For example the symmetries of the Riemann curvature tensor
+More complicated symmetries can also be implemented. For example the symmetries of the Riemann curvature tensor:
 
 
 ```python
 riesym = TensorSymmetry.riemann()
 R = TensorHead('R', [V,V,V,V], riesym) #define a tensor wie riemann curvature symmetries
-Ric = TensorHead('Ric', [V,V]) #define a tensor wie riemann curvature symmetries
+Ric = TensorHead('Ric', [V,V]) 
 ```
 
 
