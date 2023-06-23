@@ -26,6 +26,7 @@ The notation $V_{a\ \ \ d}^{\ bc}$ is used for the tensor product $V^*  \otimes 
 A tensor in $V_{a\ \ \ d}^{\ bc}$ is for example denoted as $T\mathstrut_{a}\mathstrut^{bc}\mathstrut_d$.
 
 ### Contractions
+
 The contraction of the first and second factor applied to $T\mathstrut_{a}\mathstrut^{bc}\mathstrut_d$ is denoted by $T_{a\ \ \ d}^{\ ac} \in V^c_{\ \ d}$.
 
 ### Product Of Tensors
@@ -37,9 +38,9 @@ It is important that the letters in the indices of the two factors are different
 
 ### Type Changing
 
- If $V$ is naturally isomorphic to its dual space  (for example if $V$ is a Hilbert space), then we can identify $V$ and $V^{*}$ and therefore change the type (the factors of $V$ and $V^{*}$) of a tensor at will. We indicate this by changing the latin index from upper to lower or vice versa.
+ If $V$ is naturally isomorphic to its dual space  (for example if $V$ is a Hilbert space), then we can identify $V$ and $ V^* $ and therefore change the type of the factors of $V$ and $V^* $  in a tensor product at will. We indicate this by changing the latin index from upper to lower or vice versa.
  
- So for example $T\mathstrut_{ab}\mathstrut^{c}\mathstrut_d \in V\mathstrut_{ab}\mathstrut^{c}\mathstrut_d$ is the result of changing the type from $V$ to $V^*$ in the second factor of the tensor $T_{a\ \ \ d}^{\ bc}$.
+ So for example $T\mathstrut_{ab}\mathstrut^{c}\mathstrut_d \in V\mathstrut_{ab}\mathstrut^{c}\mathstrut_d $ is the tensor corresponding to $T_{a\ \ \ d}^{\ bc}$ after the second factor in the tensor product has been changed from $V$ to $V^*$.
 
 ### Rearranging Factors
 
