@@ -10,6 +10,7 @@ The following topics are covered:
 
 - [The Abstract Index Notation](#the-abstract-index-notation)
 - [Tensors in Sympy](#tensors-in-sympy)
+    - [Basic Tensor Operations](#basic-tensor-operations)
     - [Coefficient Matrices Of Tensor Expressions](#coefficient-matrices-of-tensor-expressions)
     - [Symmetries Of Tensors And Canonicalization](#symmetries-of-tensors-and-canonicalization)
     - [Symmetrization Of Tensors In Sympy](#symmetrization-of-tensors-in-sympy)
@@ -122,7 +123,7 @@ $\displaystyle T{}^{ab}$
 
 $\displaystyle 5T{}^{ab}$
 
-
+## Basic Tensor Operations
 
 The four basic operations product, sum, contraction and rearrangement are implemented as follows:
 
@@ -232,7 +233,7 @@ T(a,b).replace_with_arrays(repl) #the coefficient matrix of T^{ab}
 
 
 
-$\displaystyle \left[\begin{matrix}1 & 2\\5 & 6\end{matrix}\right]$
+$\displaystyle \left[\begin{matrix}1 & 2 \\ 5 & 6\end{matrix}\right]$
 
 
 
@@ -278,7 +279,7 @@ T(a,-b).replace_with_arrays(repl) #here the metric is used to lower the index b
 
 
 
-$\displaystyle \left[\begin{matrix}-1 & 2\\-5 & 6\end{matrix}\right]$
+$\displaystyle \left[\begin{matrix}-1 & 2 \\-5 & 6\end{matrix}\right]$
 
 
 

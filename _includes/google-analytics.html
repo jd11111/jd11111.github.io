@@ -3,9 +3,20 @@
 <script>
   MathJax = {
     tex: {
-      inlineMath: [['$', '$'], ['\\(', '\\)']]
+      packages: ['base'],
+      packages: {'[+]': ['ams','mathtools']},
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [             // start/end delimiter pairs for display math
+      ['$$', '$$'],
+      ['\\[', '\\]']],
+    processEscapes: false,      // use \$ to produce a literal dollar sign
+    processEnvironments: true, // process \begin{xxx}...\end{xxx} outside math mode
+    processRefs: true,         // process \ref{...} outside of math mode
+    formatError:               // function called when TeX syntax errors occur
+        (jax, err) => jax.formatError(err)
     }
   };
+  
   </script>
 <script>
   window.dataLayer = window.dataLayer || [];
