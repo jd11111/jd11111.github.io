@@ -51,7 +51,7 @@ Furthermore the LIL also tells us that
 for any sequence of positive real numbers $$x$$ that converges to $$\infty$$ (follows from the rules of the product of $$\limsup$$'s).
 In other words using the [little-$$o$$ notation](https://en.wikipedia.org/wiki/Big_O_notation#Little-o_notation) $$\bar{X}_n - \mu = o(x_n l_n) $$ a.s. as $$n \to \infty$$.
 
-We can numerically visualize the relations discussed in the preceding section by generating $$X_1( \omega), X_2 (\omega) , \dots , X_N (\omega)$$ for multiple outcomes $$\{ \omega_1, \dots, \omega_M \} $$ and then plotting both $$l_n$$ and $$\bar{X}_n(\omega) -\mu$$ for all $$n \in \{1 , \dots , N\}$$ and $$\omega \in \{ \omega_1, \dots, \omega_M \} $$.
+We can numerically visualize these relations by generating $$X_1( \omega), X_2 (\omega) , \dots , X_N (\omega)$$ for multiple outcomes $$\{ \omega_1, \dots, \omega_M \} $$ and then plotting both $$l_n$$ and $$\bar{X}_n(\omega) -\mu$$ for all $$n \in \{1 , \dots , N\}$$ and $$\omega \in \{ \omega_1, \dots, \omega_M \} $$.
 The sequence $$(\bar{X}_1(\omega) -\mu , \dots ,\bar{X}_N(\omega) -\mu)$$ ($$\omega$$ fixed) is called a path in the following.
 This has been done for a standard normal distribution (mean 0, variance 1) with 800 paths to produce the following figure:
 
