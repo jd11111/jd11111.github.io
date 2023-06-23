@@ -37,7 +37,7 @@ It is important that the letters in the indices of the two factors are different
 
 ### Type Changing
 
- If $V$ is naturally isomorphic to its dual space  (for example if $V$ is a Hilbert space), then we can identify $V$ and $V^*$ and therefore change the type (the factors of $V$ and $V^*$) of a tensor at will. We indicate this by changing the latin index from upper to lower or vice versa.
+ If $V$ is naturally isomorphic to its dual space  (for example if $V$ is a Hilbert space), then we can identify $V$ and $V^{*}$ and therefore change the type (the factors of $V$ and $V^{*}$) of a tensor at will. We indicate this by changing the latin index from upper to lower or vice versa.
  
  So for example $T\mathstrut_{ab}\mathstrut^{c}\mathstrut_d \in V\mathstrut_{ab}\mathstrut^{c}\mathstrut_d$ is the result of changing the type from $V$ to $V^*$ in the second factor of the tensor $T_{a\ \ \ d}^{\ bc}$.
 
@@ -47,9 +47,9 @@ We can also rearrange the factors of the original tensor product in any order an
  
  For example if we switch the first and the last factor in $V_{a\ \ \ d}^{\ bc}$ we denote the result by $V_{d \ \ \ a}^{\ bc}$ and the tensor in $V_{d \ \ \ a}^{\ bc}$ that corresponds to $T\mathstrut_{ab}\mathstrut^{c}\mathstrut_d $ is denoted by $T\mathstrut_{db}\mathstrut^{c}\mathstrut_a $.
 
- ### (Anti-) Symmetrizing Of Tensors
+ ### Symmetrizing Of Tensors
 
-Lastly we can symmetrizise a tensor.
+Lastly we can (anti) symmetrize a tensor.
 For example we denote the symmetrization of the second and third factor of $T\mathstrut_{a}\mathstrut^{bc}\mathstrut_d$ by $T\mathstrut_{a}\mathstrut^{(bc)}\mathstrut_d$. The anti-symmetrization of the same factors is denotes as $T\mathstrut_{a}\mathstrut^{[bc]}\mathstrut_d$.
 If we want to exclude some factors between indices we use two vertical bars surrounding the excluded factors. So for example $T\mathstrut^{[a|b|c]}\mathstrut_d$ is the anti-symmetrization of the first and third factor (excluding the second) of $T\mathstrut^{abc}\mathstrut_d$.
 
@@ -135,7 +135,7 @@ T(a,b)*S(c,-d) #the product of the two tensors
 
 
 
-$\displaystyle T{}^{ab}S{}^{c}{}_{d}$
+$$\displaystyle T{}^{ab}S{}^{c}{}_{d}$$
 
 
 
@@ -147,7 +147,7 @@ T(a,b)+S(a,b) #the sum of two tensors
 
 
 
-$\displaystyle S{}^{ab} + T{}^{ab}$
+$$\displaystyle S{}^{ab} + T{}^{ab}$$
 
 
 
@@ -159,7 +159,7 @@ T(a,b)*S(-b,c) # the contraction of the two tensors (dummy index used for the co
 
 
 
-$\displaystyle T{}^{aV_{0}}S{}_{V_{0}}{}^{c}$
+$$\displaystyle T{}^{aV_{0}}S{}_{V_{0}}{}^{c}$$
 
 
 
@@ -171,7 +171,7 @@ T(b,a) #rearrange T^{ab} to T^{ba}
 
 
 
-$\displaystyle T{}^{ba}$
+$$\displaystyle T{}^{ba}$$
 
 
 
@@ -186,7 +186,7 @@ expr
 
 
 
-$\displaystyle S{}^{ab} + T{}^{ab}$
+$$\displaystyle S{}^{ab} + T{}^{ab}$$
 
 
 
@@ -198,7 +198,7 @@ expr._replace_indices({a:b, b:a}) #supply a dictionary of replacements (these ca
 
 
 
-$\displaystyle S{}^{ba} + T{}^{ba}$
+$$\displaystyle S{}^{ba} + T{}^{ba}$$
 
 
 
@@ -212,7 +212,7 @@ expr._replace_indices({a:-a, b:b}) #lower the first index
 
 
 
-$\displaystyle S{}_{a}{}^{b} + T{}_{a}{}^{b}$
+$$\displaystyle S{}_{a}{}^{b} + T{}_{a}{}^{b}$$
 
 
 
@@ -233,7 +233,7 @@ T(a,b).replace_with_arrays(repl) #the coefficient matrix of T^{ab}
 
 
 
-$\displaystyle \left[\begin{matrix}1 & 2 \\ 5 & 6\end{matrix}\right]$
+$$\displaystyle \left[\begin{matrix}1 & 2 \\ 5 & 6\end{matrix}\right]$$
 
 
 
@@ -248,7 +248,7 @@ sum
 
 
 
-$\displaystyle S{}^{ab} + T{}^{ab}$
+$$\displaystyle S{}^{ab} + T{}^{ab}$$
 
 
 
@@ -260,7 +260,7 @@ sum.replace_with_arrays(repl) #the coffiecient matrix of the sum
 
 
 
-$\displaystyle \left[\begin{matrix}9 & 3\\7 & 15\end{matrix}\right]$
+$$\displaystyle \left[\begin{matrix}9 & 3\\7 & 15\end{matrix}\right]$$
 
 
 
@@ -279,7 +279,7 @@ T(a,-b).replace_with_arrays(repl) #here the metric is used to lower the index b
 
 
 
-$\displaystyle \left[\begin{matrix}-1 & 2 \\-5 & 6\end{matrix}\right]$
+$$\displaystyle \left[\begin{matrix}-1 & 2 \\-5 & 6\end{matrix}\right]$$
 
 
 
@@ -305,19 +305,19 @@ expr
 
 
 
-$\displaystyle E{}^{c}F{}^{d}$
+$$\displaystyle E{}^{c}F{}^{d}$$
 
 
 
 
 ```python
-expr.replace_with_arrays(repl) #this is the component representation of $E^c F^d$
+expr.replace_with_arrays(repl) #this is the component representation of $$E^c F^d$$
 ```
 
 
 
 
-$\displaystyle \left[\begin{matrix}5 & 6\\10 & 12\end{matrix}\right]$
+$$\displaystyle \left[\begin{matrix}5 & 6\\10 & 12\end{matrix}\right]$$
 
 
 
@@ -332,7 +332,7 @@ contract
 
 
 
-$\displaystyle T{}^{aV_{0}}S{}_{V_{0}}{}^{c}$
+$$\displaystyle T{}^{aV_{0}}S{}_{V_{0}}{}^{c}$$
 
 
 
@@ -344,7 +344,7 @@ contract.replace_with_arrays(repl) #The coefficient matrix of the contraction de
 
 
 
-$\displaystyle \left[\begin{matrix}-4 & 17\\-28 & 49\end{matrix}\right]$
+$$\displaystyle \left[\begin{matrix}-4 & 17\\-28 & 49\end{matrix}\right]$$
 
 
 
@@ -358,7 +358,7 @@ T(a,b).replace_with_arrays(repl) #The coefficient matrix of T^{ab}
 
 
 
-$\displaystyle \left[\begin{matrix}1 & 2\\5 & 6\end{matrix}\right]$
+$$\displaystyle \left[\begin{matrix}1 & 2\\5 & 6\end{matrix}\right]$$
 
 
 
@@ -370,7 +370,7 @@ T(b,a).replace_with_arrays(repl) #The coefficient matrix of T^{ba} note that it 
 
 
 
-$\displaystyle \left[\begin{matrix}1 & 5\\2 & 6\end{matrix}\right]$
+$$\displaystyle \left[\begin{matrix}1 & 5\\2 & 6\end{matrix}\right]$$
 
 
 
@@ -407,7 +407,7 @@ expr #the expression is not in canonical form and the anti symmetry has not been
 
 
 
-$\displaystyle A{}^{ab} + A{}^{ba}$
+$$\displaystyle A{}^{ab} + A{}^{ba}$$
 
 
 
@@ -421,7 +421,7 @@ expr.canon_bp() #put the expression into canonical form (its zero because A is a
 
 
 
-$\displaystyle 0$
+$$\displaystyle 0$$
 
 
 
@@ -436,7 +436,7 @@ expr
 
 
 
-$\displaystyle Sy{}^{ab} + Sy{}^{ba}$
+$$\displaystyle Sy{}^{ab} + Sy{}^{ba}$$
 
 
 
@@ -448,7 +448,7 @@ expr.canon_bp() #put the expression into canonical form (its 2 Sy^{ab} because S
 
 
 
-$\displaystyle 2Sy{}^{ab}$
+$$\displaystyle 2Sy{}^{ab}$$
 
 
 
@@ -470,7 +470,7 @@ expr
 
 
 
-$\displaystyle -R{}^{cdab} + 3R{}^{abcd} + R{}^{abdc} + R{}^{bacd}$
+$$\displaystyle -R{}^{cdab} + 3R{}^{abcd} + R{}^{abdc} + R{}^{bacd}$$
 
 
 
@@ -482,7 +482,7 @@ expr.canon_bp() #uses the symmetries of the riemann tensor to simplify
 
 
 
-$\displaystyle 0$
+$$\displaystyle 0$$
 
 
 
@@ -499,7 +499,7 @@ expr.canon_bp() #the algebraic bianchi identity is not simplified (this should b
 
 
 
-$\displaystyle -R{}^{acbd} + R{}^{abcd} + R{}^{adbc}$
+$$\displaystyle -R{}^{acbd} + R{}^{abcd} + R{}^{adbc}$$
 
 
 
@@ -516,7 +516,7 @@ riemann_cyclic(expr) #this is a special function that can rewrite the riemann te
 
 
 
-$\displaystyle 0$
+$$\displaystyle 0$$
 
 
 
@@ -535,7 +535,7 @@ Ric
 
 
 
-$\displaystyle R{}_{V_{0}}{}^{aV_{0}b}$
+$$\displaystyle R{}_{V_{0}}{}^{aV_{0}b}$$
 
 
 
@@ -552,7 +552,7 @@ expr
 
 
 
-$\displaystyle R{}_{V_{0}}{}^{aV_{0}b} + R{}_{V_{0}}{}^{bV_{0}a}$
+$$\displaystyle R{}_{V_{0}}{}^{aV_{0}b} + R{}_{V_{0}}{}^{bV_{0}a}$$
 
 
 
@@ -564,7 +564,7 @@ expr.canon_bp() #ric is symmetric
 
 
 
-$\displaystyle 2R{}^{aV_{0}b}{}_{V_{0}}$
+$$\displaystyle 2R{}^{aV_{0}b}{}_{V_{0}}$$
 
 
 
@@ -606,37 +606,37 @@ J = TensorHead("J",index_types =[V,V,V])
 
 
 ```python
-symmetrizer(K(a,b,c),[a,b,c]) #Symmetrize all indices, this is $K^{(abc)}$
+symmetrizer(K(a,b,c),[a,b,c]) #Symmetrize all indices, this is K^{(abc)}
 ```
 
 
 
 
-$\displaystyle \left(\frac{1}{6}\right)\left(K{}^{abc} + K{}^{acb} + K{}^{bac} + K{}^{bca} + K{}^{cab} + K{}^{cba}\right)$
+$$\displaystyle \left(\frac{1}{6}\right)\left(K{}^{abc} + K{}^{acb} + K{}^{bac} + K{}^{bca} + K{}^{cab} + K{}^{cba}\right)$$
 
 
 
 
 ```python
-symmetrizer(K(a,b,c),[a,b,c],anti=True)#anti-symmetrize all indices, this is $K^{[abc]}$
+symmetrizer(K(a,b,c),[a,b,c],anti=True)#anti-symmetrize all indices, this is K^{[abc]}
 ```
 
 
 
 
-$\displaystyle \left(\frac{1}{6}\right)\left(K{}^{abc} + K{}^{bca} + K{}^{cab} + \left(-1\right)K{}^{acb} + \left(-1\right)K{}^{bac} + \left(-1\right)K{}^{cba}\right)$
+$$\displaystyle \left(\frac{1}{6}\right)\left(K{}^{abc} + K{}^{bca} + K{}^{cab} + \left(-1\right)K{}^{acb} + \left(-1\right)K{}^{bac} + \left(-1\right)K{}^{cba}\right)$$
 
 
 
 
 ```python
-symmetrizer(K(a,b,c),[a,c])#symmetrize only the first and second factor, this is $K^{(a|b|c)}$
+symmetrizer(K(a,b,c),[a,c])#symmetrize only the first and second factor, this is K^{(a|b|c)}
 ```
 
 
 
 
-$\displaystyle \left(\frac{1}{2}\right)\left(K{}^{abc} + K{}^{cba}\right)$
+$$\displaystyle \left(\frac{1}{2}\right)\left(K{}^{abc} + K{}^{cba}\right)$$
 
 
 
@@ -655,7 +655,7 @@ symmetrizer(expr,[a,b,c])
 
 
 
-$\displaystyle \left(\frac{1}{6}\right)\left(J{}^{abc} + J{}^{acb} + J{}^{bac} + J{}^{bca} + J{}^{cab} + J{}^{cba} + K{}^{abc} + K{}^{acb} + K{}^{bac} + K{}^{bca} + K{}^{cab} + K{}^{cba}\right)$
+$$ \frac{1}{6}\left( J{}^{abc} + J{}^{acb} + J{}^{bac} + J{}^{bca} + J{}^{cab} + J{}^{cba} + K{}^{abc} + K{}^{acb} + K{}^{bac} + K{}^{bca} + K{}^{cab} + K{}^{cba}\right) $$ 
 
 
 
@@ -672,6 +672,6 @@ symmetrizer(expr,[a,d])
 
 
 
-$\displaystyle \left(\frac{1}{2}\right)\left(K{}^{abV_{0}}J{}_{V_{0}}{}^{de} + K{}^{dbV_{0}}J{}_{V_{0}}{}^{ae}\right)$
+$$ \left(\frac{1}{2}\right)\left(K{}^{abV_{0}}J{}_{V_{0}}{}^{de} + K{}^{dbV_{0}}J{}_{V_{0}}{}^{ae}\right)$$
 
 
