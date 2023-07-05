@@ -1,11 +1,9 @@
 ---
 layout: post
-title:  "Riemannian Manifolds"
+title:  "Curvature and Derivative On Riemannian Manifolds With Sympy Tensor"
 date:   2023-06-23 11:14:45 +0200
 categories:
 ---
-
-
 In this post i will show you how to use the [Sympy Tensor](https://docs.sympy.org/latest/modules/tensor/index.html) module to calculate the covariant derivative of an arbitrary tensor field on a Riemannian manifold.
 I also show how to calculate the Christoffel symbols and the different curvature quantities (Riemann tensor, Ricci tensor, scalar curvature). If you want to learn more about the Sympy Tensor module, i also wrote a post describing its features [here](https://jd11111.github.io/2023/06/23/SympyTensor.html).
 
@@ -477,4 +475,5 @@ S.replace_with_arrays(repl)
 
 
 $$\displaystyle \frac{2}{r^{2}}$$
+
 
