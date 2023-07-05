@@ -48,7 +48,7 @@ We can also rearrange the factors of the original tensor product in any order an
  
  For example if we switch the first and the last factor in $V_{a\ \ \ d}^{\ bc}$ we denote the result by $V_{d \ \ \ a}^{\ bc}$ and the tensor in $V_{d \ \ \ a}^{\ bc}$ that corresponds to $T\mathstrut_{ab}\mathstrut^{c}\mathstrut_d $ is denoted by $T\mathstrut_{db}\mathstrut^{c}\mathstrut_a $.
 
- ### Symmetrizing Of Tensors
+### Symmetrizing Of Tensors
 
 Lastly we can (anti) symmetrize a tensor.
 For example we denote the symmetrization of the second and third factor of $T\mathstrut_{a}\mathstrut^{bc}\mathstrut_d$ by $T\mathstrut_{a}\mathstrut^{(bc)}\mathstrut_d$. The anti-symmetrization of the same factors is denotes as $T\mathstrut_{a}\mathstrut^{[bc]}\mathstrut_d$.
