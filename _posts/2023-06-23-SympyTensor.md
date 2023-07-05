@@ -255,7 +255,7 @@ $$\displaystyle S{}^{ab} + T{}^{ab}$$
 
 
 ```python
-sum.replace_with_arrays(repl) #the coefficient matrix of the sum 
+expr.replace_with_arrays(repl) #the coefficient matrix of the sum 
 ```
 
 
