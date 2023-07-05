@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Curvature and Derivative On Riemannian Manifolds With Sympy Tensor"
-date:   2023-06-23 11:14:45 +0200
+date:   2023-07-11 11:14:45 +0200
 categories:
 ---
 In this post i will show you how to use the [Sympy Tensor](https://docs.sympy.org/latest/modules/tensor/index.html) module to calculate the covariant derivative of an arbitrary tensor field on a Riemannian manifold.
