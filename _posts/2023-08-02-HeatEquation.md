@@ -125,7 +125,7 @@ plt.legend()
 
 
     
-![](../assets/heatfiles/pic.png)
+![](/assets/heatfiles/pic.png)
     
 
 
@@ -185,7 +185,7 @@ HTML(ani.to_html5_video())
 ```
 
 <video width="640" height="480" controls autoplay loop>
- <source type="video/mp4" src="../assets/heatfiles/anim1.mp4">
+ <source type="video/mp4" src="/assets/heatfiles/anim1.mp4">
  </video>
 
 # Numerical Time Derivative 
@@ -243,7 +243,7 @@ ani = FuncAnimation(fig, update, frames=range(0,1000,10), blit=True)
 HTML(ani.to_html5_video())
 ```
 <video width="640" height="480" controls autoplay loop>
- <source type="video/mp4" src="../assets/heatfiles/anim2.mp4">
+ <source type="video/mp4" src="/assets/heatfiles/anim2.mp4">
  </video>
 
 
@@ -295,7 +295,7 @@ ani = FuncAnimation(fig, update, frames=T, blit=True)
 HTML(ani.to_html5_video())
 ```
 <video width="640" height="480" controls autoplay loop>
- <source type="video/mp4" src="../assets/heatfiles/anim3.mp4">
+ <source type="video/mp4" src="/assets/heatfiles/anim3.mp4">
  </video>
 
 To verify the validity of the solution the same technique as before can be used:
@@ -331,5 +331,5 @@ HTML(ani.to_html5_video())
 ```
 
 <video width="640" height="480" controls autoplay loop>
- <source type="video/mp4" src="../assets/heatfiles/anim4.mp4">
+ <source type="video/mp4" src="/assets/heatfiles/anim4.mp4">
  </video>
