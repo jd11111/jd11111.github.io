@@ -25,8 +25,9 @@ $T( x) = \sum_{n=0}^\infty T_n x^n$ (for small $x$). Denote $T := T(0) = T_0$.
 
 The goal of perturbation theory is to find formula for the eigenvalues (and eigenvectors, but that is not considered here) of $T(x)$ as a function of $x$ that is related to the coefficients $T_n$ and other easy to find quantities.
 
-\[ Test \]
-
+\begin{equation}
+\int
+\end{equation}
 # Expansion Of The Perturbed Resolvent
 Define the resolvent (for $z$ none of the eigenvalues of $T(x)$) by:
 $$ R(z,x) = (T(x) -zI)^{-1} $$
@@ -220,8 +221,8 @@ Now $ T_r(x) = x \tilde{T} (x) $ and therefore $\tilde{\lambda}(x)$ is an eigenv
 
 
 Since $\tilde{T} (x) $ is given by a perturbation series we can apply perturbation theory to it. 
-Let $\tilde{\lambda}_1$ be an eigenvalue of $\tilde{T}_1$ with one dimensional eigenspace. Then we can apply non degenerate perturbation theory.
-Assume further that $T_1$ is self-adjoint so $\tilde{T}_1 = P T_1 P $ is as well. Let $e_1, \dots, e_m$ be the an orthonormal basis of $\operatorname{ran}P$ which consists of eigenvectors to eigenvalue $\tilde{\lambda}_1, \dots,  \tilde{\lambda}_m$ of $\tilde{T}_1$. Then this basis can be extended to a orthonormal basis $e_1, \dots e_m, e_{m+1}, \dots , e_n$ of $\mathcal{H}$ of eigenvectors of $T$ to eigenvalue $\lambda_1 ,\dots, \lambda_n$, where $\lambda_1 = \cdots = \lambda_m = \lambda$. 
+Let $ \tilde{\lambda}_1 $ be an eigenvalue of $ \tilde{T}_1 $ with one dimensional eigenspace. Then we can apply non degenerate perturbation theory.
+Assume further that $ T_1 $ is self-adjoint so $ \tilde{T}_1 = P T_1 P $ is as well. Let $e_1, \dots, e_m $ be the an orthonormal basis of $\operatorname{ran}P$ which consists of eigenvectors to eigenvalue $\tilde{\lambda}_1, \dots,  \tilde{\lambda}_m$ of $\tilde{T}_1$. Then this basis can be extended to a orthonormal basis $e_1, \dots e_m, e_{m+1}, \dots , e_n$ of $\mathcal{H}$ of eigenvectors of $T$ to eigenvalue $\lambda_1 ,\dots, \lambda_n$, where $\lambda_1 = \cdots = \lambda_m = \lambda$. 
 
 Let $\tilde{P}$ be the projection onto the eigenspace of $\tilde{T}_1$ to eigenvalue $\tilde{\lambda}_1$
 then 
