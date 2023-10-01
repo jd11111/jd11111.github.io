@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Numerical Solution Of The 1D Heat Equation Using A Spectral Method"
+title:  "Introduction To Perturbation Theory"
 date:   2023-10-01 15:14:45 +0200
 categories:
 ---
@@ -25,11 +25,11 @@ $T( x) = \sum_{n=0}^\infty T_n x^n$ (for small $x$). Denote $T := T(0) = T_0$.
 
 The goal of perturbation theory is to find formula for the eigenvalues (and eigenvectors, but that is not considered here) of $T(x)$ as a function of $x$ that is related to the coefficients $T_n$ and other easy to find quantities.
 
+\[ Test \]
+
 # Expansion Of The Perturbed Resolvent
 Define the resolvent (for $z$ none of the eigenvalues of $T(x)$) by:
-$$
-R(z,x) = (T(x) -zI)^{-1}
-$$
+$$ R(z,x) = (T(x) -zI)^{-1} $$
 and set $R(z) = R(z,0)$.
 Let $A(x) = T(x) -T$.
 Then we have
