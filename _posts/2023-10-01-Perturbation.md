@@ -53,9 +53,10 @@ $$
 with
 $$
 \begin{equation}
-R_n(z) = \sum_{p=1}^n  (-1 )^p \sum_{\substack{j_1, \dots , j_p \in \mathbb{N}^*,} \\{ j_1+ \cdots + j_p = n}}  R(z) T_{j_1} R(z) T_{j_2} R(z) \cdots R(z) T_{j_p} R(z).
+R_n(z) = \sum_{p=1}^n  (-1 )^p \sum  R(z) T_{j_1} R(z) T_{j_2} R(z) \cdots R(z) T_{j_p} R(z),
 \end{equation}
 $$
+where the second sum is over all $ j_1, \dots , j_p \in \mathbb{N}^* $ so that  $j_1+ \cdots + j_p = n$.
 So for example $R_1(z) = -R(z) T_1 R(z)$.
 
 It can also be shown similarly, that $R(x,z)$ is a bi-analytic map (on appropriatly chosen domains).
@@ -95,17 +96,15 @@ The eigenvectors of $T(x)$ to the eigenvalues that have split from $\lambda$ (an
 $$
 \begin{equation}
 T_r(x) :=  (T(x) - \lambda I ) P(x).
-\end{equation}$$
-
+\end{equation}
+$$
 Now
 $$
-\begin{equation}
-\begin{align*}
+\begin{align}
 T_r(x) &= - \frac{1}{2\pi i } \int_\Gamma (T(x) - z I +zI - \lambda I)  R(z,x) dz \\
 &=  - \frac{1}{2\pi i }\int_\Gamma I + (z - \lambda )R (z,x) dz 
  = - \frac{1}{2\pi i }\int_\Gamma (z- \lambda) R(z,x) dz
-\end{align*}
-\end{equation}
+\end{align}
 $$
 and upon inserting the series expansion for $R(z,x)$ and then the series expansion for $R(z)$ and integrating term by term we receive an expansion
 $$
@@ -118,10 +117,11 @@ Among all the terms that have the power $x^n$ we
 only need to find the coefficients that have the power $(z-\lambda)^{-1}$ in the integrand (using the residue theorem to evaluate the integral). Therefore:
 $$
 \begin{equation}
- \tilde{T}_n= - \sum_{p=1}^n  (-1 )^p \sum_{j_1, \dots , j_p \in \mathbb{N}^* :  j_1+ \cdots + j_p = n , \ k_1, \dots , k_{p+1} \in \mathbb{Z}:  k_i \geq -m+1 \forall i , \  k_1 + \cdots + k_{p+1} = p-1}  S_{k_1} T_{j_1} S_{k_2} T_{j_2} S_{k_3} \cdots S_{k_p}T_{j_p} S_{k_{p+1}}
+ \tilde{T}_n= - \sum_{p=1}^n  (-1 )^p \sum S_{k_1} T_{j_1} S_{k_2} T_{j_2} S_{k_3} \cdots S_{k_p}T_{j_p} S_{k_{p+1}},
  \end{equation}
 $$
-where the condition on the $j_i$ ensures that we have the right power of $x$ and the condition on the $k_i$ that the summand had (before evaluating the integral) a (total) factor of $(z-\lambda)^{-1}$ in the integrand.
+where the second sum is over all $ j_1, \dots , j_p \in \mathbb{N}^* $ so that $ j_1+ \cdots + j_p = n $ and $ k_1, \dots , k_{p+1} \in \mathbb{Z}$ so that $ k_i \geq -m+1 \forall i $ and  $   k_1 + \cdots + k_{p+1} = p-1 $.
+The condition on the $j_i$ ensures that we have the right power of $x$ and the condition on the $k_i$ that the summand had (before evaluating the integral) a (total) factor of $(z-\lambda)^{-1}$ in the integrand.
 
 
 From now on assume that the Jordan block of $\lambda$ is diagonal ($D=0$) so only the summands with all the $k_i\geq 0$ contribute. Then explicitly:
@@ -269,7 +269,7 @@ The unperturbed operator here is $\tilde{T}_1$.
 Now $ T_r(x) = x \tilde{T} (x) $ and therefore $\tilde{\lambda}(x)$ is an eigenvalue of $\tilde{T} (x) $ if and only if $ x \tilde{\lambda}(x)$ is an eigenvalue of $T_r(x)$.
 
 
-Since $\tilde{T} (x) $ is given by a perturbation series we can apply perturbation theory to it. Let $ \tilde{\lambda}_{1}$ be an eigenvalue of $ \tilde{T}_1 $ with one dimensional eigenspace. Then we can apply non degenerate perturbation theory.
+Since $\tilde{T} (x) $ is given by a perturbation series we can apply perturbation theory to it. Let $$\tilde{\lambda}_{1}$$ be an eigenvalue of $\tilde{T}_1 $ with one dimensional eigenspace. Then we can apply non degenerate perturbation theory.
 Assume further that $ T_1 $ is self-adjoint so $ \tilde{T}_1 = P T_1 P $ is as well. Let $e_1, \dots, e_m $ be the an orthonormal basis of $\operatorname{ran}P$ which consists of eigenvectors to eigenvalue $\tilde{\lambda}_1, \dots,  \tilde{\lambda}_m$ of $\tilde{T}_1 $. Then this basis can be extended to a orthonormal basis $e_1, \dots e_m, e_{m+1}, \dots , e_n$ of $\mathcal{H}$ of eigenvectors of $T$ to eigenvalue $\lambda_{1} ,\dots, \lambda_n $, where $ \lambda_{1} = \cdots = \lambda_m = \lambda$. 
 
 Let $\tilde{P}$ be the projection onto the eigenspace of $\tilde{T}_1$ to eigenvalue $\tilde{\lambda}_1$
@@ -280,7 +280,11 @@ $$
 \end{equation}
 $$
 And so applying the formula from the previous section (further assuming $T_2=0$ for simplicity)
-$$ \operatorname{trace} \tilde{P} \tilde{T}_2 \tilde{P} = - \langle e_1  , PT_1 S T_1 P e_1 \rangle =  \sum_{i=m+1}^n (\lambda - \lambda_i )^{-1} |\langle e_1, T_1e _i \rangle |^2 . $$
+$$ 
+\begin{equation}
+\operatorname{trace} \tilde{P} \tilde{T}_2 \tilde{P} = - \langle e_1  , PT_1 S T_1 P e_1 \rangle =  \sum_{i=m+1}^n (\lambda - \lambda_i )^{-1} |\langle e_1, T_1e _i \rangle |^2 . 
+\end{equation}
+$$
 And so there will be an eigenvalue $\lambda_1 (x)$ of $T(x)$ with
 $$
 \begin{equation}
