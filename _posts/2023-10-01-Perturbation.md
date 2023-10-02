@@ -270,7 +270,7 @@ Now $ T_r(x) = x \tilde{T} (x) $ and therefore $\tilde{\lambda}(x)$ is an eigenv
 
 
 Since $\tilde{T} (x) $ is given by a perturbation series we can apply perturbation theory to it. Let $$\tilde{\lambda}_{1}$$ be an eigenvalue of $$ \tilde{T}_{1} $$ with one dimensional eigenspace. Then we can apply non degenerate perturbation theory.
-Assume further that $T_{1}$ is self-adjoint so $\tilde{T}_{1} = PT_{1}P$ is as well. Let $e_{1}, \dots, e_m$ be the an orthonormal basis of $\operatorname{ran}P$ which consists of eigenvectors to eigenvalue $\tilde{\lambda}_{1}, \dots,  \tilde{\lambda}_m$ of $\tilde{T}_{1}$. Then this basis can be extended to a orthonormal basis $e_{1}, \dots e_m, e_{m+1}, \dots , e_n$ of $\mathcal{H}$ of eigenvectors of $T$ to eigenvalue $\lambda_{1} ,\dots, \lambda_n $, where $ \lambda_{1} = \cdots = \lambda_m = \lambda$. 
+Assume further that $T_{1}$ is self-adjoint so $$\tilde{T}_{1} = PT_{1}P$$ is as well. Let $e_{1}, \dots, e_m$ be the an orthonormal basis of $\operatorname{ran}P$ which consists of eigenvectors to eigenvalue $$\tilde{\lambda}_{1}, \dots,  \tilde{\lambda}_m$$ of $$\tilde{T}_{1}$$. Then this basis can be extended to a orthonormal basis $e_{1}, \dots e_m, e_{m+1}, \dots , e_n$ of $\mathcal{H}$ of eigenvectors of $T$ to eigenvalue $\lambda_{1} ,\dots, \lambda_n $, where $\lambda_{1} = \cdots = \lambda_m = \lambda$. 
 
 Let $\tilde{P}$ be the projection onto the eigenspace of $\tilde{T}_1$ to eigenvalue $\tilde{\lambda}_{1}$
 then 
