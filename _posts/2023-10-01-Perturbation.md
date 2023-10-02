@@ -25,7 +25,7 @@ $T( x) = \sum_{n=0}^\infty T_n x^n$ (for small $x$). Denote $T := T(0) = T_0$.
 
 The goal of perturbation theory is to find formula for the eigenvalues (and eigenvectors, but that is not considered here) of $T(x)$ as a function of $x$ that is related to the coefficients $T_n$ and other easy to find quantities.
 
-# Expansion Of The Perturbed Resolvent
+## Expansion Of The Perturbed Resolvent
 Define the resolvent (for $z$ none of the eigenvalues of $T(x)$) by:
 $$
 \begin{equation}
@@ -61,7 +61,7 @@ So for example $R_1(z) = -R(z) T_1 R(z)$.
 
 It can also be shown similarly, that $R(x,z)$ is a bi-analytic map (on appropriatly chosen domains).
 
-# Expansion Of The Unperturbed Resolvent
+## Expansion Of The Unperturbed Resolvent
 
 Fix an eigenvalue $\lambda$ of $T$.
 The laurent expansion of $R(z)$ at $\lambda$ is given by 
@@ -80,7 +80,7 @@ S= - \sum_{ i=1, \dots, N: \lambda_i \neq \lambda} (\lambda- \lambda_i)^{-1} P_i
 $$
 where $P_i$ is the projection onto the eigenspace of $\lambda_i$.
 
-# Expansion Of The Reduced Operator
+## Expansion Of The Reduced Operator
 
 Let
 $$ 
@@ -144,7 +144,7 @@ Clearly these terms get complicated quickly, but it is probably not too hard to 
 
 A similar series expansion can also be done for $P(x)$ directly, which can be used to find an expansion of the eigenvectors. 
 
-# Non-Degenerate Eigenvalue Expansion 
+## Non-Degenerate Eigenvalue Expansion 
 
 Now if the eigenspace of $T$ to eigenvalue $\lambda$ is one dimensional, then $P(x)$ is the projection onto the eigenspace to the perturbed eigenvalue $\lambda(x)$ of $T(x)$ that comes from $\lambda$ (no splitting). Therefore (the trace is the sum of all eigenvalues) 
 $$
@@ -171,7 +171,7 @@ $$
 
 If the considered eigenspace is not one dimensional, then the weighted (by the algebraic multiplicity) mean of the split eigenvalues of $T(x)$ can be obtained by dividing $\lambda(x)$ by the dimension of the eigenspace and adjusting the formula for $P$ and $S$. Furthermore if there is no splitting then the  eigenvalue is obtained directly.
 
-## Python Example 
+# Python Example 
 
 The following python code illustrates the derived formula for the eigenvalues:
 ```python
@@ -257,7 +257,7 @@ plt.show()
 
 
 
-# Degenerate Eigenvalue Expansion
+## Degenerate Eigenvalue Expansion
 
 If the eigenspace to eigenvalue $\lambda$ of $T$ is not one dimensional ($\lambda$ is called a degenerate eigenvalue) and the eigenvalue $\lambda$ splits, then we look at the perturbation series (which defines an analytic function)
 $$
@@ -293,7 +293,7 @@ $$
 $$
 If all the eigenvalues of $$\tilde{T}_1$$ have one dimensional eigenspace, then all the eigenvalues of $T(x)$ that have split from $\lambda$ are found in this way. If not, then the degenerate expansion can be applied again to the eigenvalues in those higher dimensional eigenspaces. 
 
-## Python Example
+# Python Example
 The following python jupyter notebook code illustrates the derived formula for the perturbed eigenvalues. Again a linear perturbation $T(x)= T_0 + T_1 x $ with self-adjoint $T_0$ and $T_1$ on a 3 dimensional Hilbert space is considered.
 
 Generate the matrix (wrt to the bespoke orthonormal basis) of $T_0$ with 2-fold degenerate eigenvalue $0.3$:
