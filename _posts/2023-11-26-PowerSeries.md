@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Introduction To Perturbation Theory"
+title:  "(Power)-Series In Banach Spaces And Algebras"
 date:   2023-11-26 11:13:45 +0200
 categories:
 ---
