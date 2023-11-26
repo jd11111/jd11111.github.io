@@ -16,17 +16,17 @@ The following topics are covered:
 
 # Series In Banach Spaces
 
-Let $X$ be a Banach space and let $(x_i)_{i \in \mathbb{N}}$ be a sequence in $X$.
-Define the sequence $(s_n)_{n \in \mathbb{N}}$ by
+Let $X$ be a Banach space and let $ (x_i)_{i \in \mathbb{N}} $ be a sequence in $X$.
+Define the sequence $ (s_n)_{n \in \mathbb{N}} $ by
 $$
 \begin{equation}
  s_n = \sum_{i=1}^n  x_i.
 \end{equation}
  $$
-If $(s_n)_{n \in \mathbb{N}}$ is convergent the limit is denoted by $\sum_{i=1}^\infty x_i$.
+If $ (s_n)_{n \in \mathbb{N}} $ is convergent the limit is denoted by $ \sum_{i=1}^\infty x_i $.
 
 **Proposition:**
-If $(s_n)_{n \in \mathbb{N}}$ converges, then $\lim_{i \to \infty} x_i =0$.
+If $ (s_n)_{n \in \mathbb{N}} $ converges, then $ \lim_{i \to \infty} x_i =0 $.
 
 **Proof:** 
 Let $\varepsilon >0$.
