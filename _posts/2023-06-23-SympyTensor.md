@@ -55,31 +55,31 @@ In an expression with the sum of two tensors we indicate that a summand has its 
 So for example 
 $$
 \begin{equation}
-S_{ab} - T_{ba} 
+S\_{ab} - T\_{ba} 
 \end{equation}
 $$
 denotes the difference of $T$ and $S$, where either $T$ or $S$ have the second and third factor exchanged.
-Note that the above expression does not define a unique tensor, because there is a certain ambiguity in the above expression: Since both $T_{ab} $ and $ T_{ba} $ denote $T$. So it is unclear if we substract the exchanged version of $T$ from $S$ or the other way around.
+Note that the above expression does not define a unique tensor, because there is a certain ambiguity in the above expression: Since both $T\_{ab} $ and $ T\_{ba} $ denote $T$. So it is unclear if we substract the exchanged version of $T$ from $S$ or the other way around.
 This ambiguity is resolved by specifying an ordered tuple of indices, that specifies the "reference" unpermuted tensor.
-So for example if this tuple is $(a,b)$, then $S_{ab} - T_{ba} $, $(a,b)$ means the tensor
+So for example if this tuple is $(a,b)$, then $S\_{ab} - T\_{ba} $, $(a,b)$ means the tensor
 $$
-(S_{\mu \nu}- T_{\nu \mu}) e^\mu \otimes e^\nu.
+(S\_{\mu \nu}- T\_{\nu \mu}) e^\mu \otimes e^\nu.
 $$
 whereas 
-$S_{ab} - T_{ba} $, $(b,a)$ means the tensor
+$S\_{ab} - T\_{ba} $, $(b,a)$ means the tensor
 $$
-(S_{\nu \mu}- T_{\mu \nu}) e^\mu \otimes e^\nu.
+(S\_{\nu \mu}- T\_{\mu \nu}) e^\mu \otimes e^\nu.
 $$
-When asigning such an expression as a new tensor, for example when defining a tensor $G_{ab}$ by
+When asigning such an expression as a new tensor, for example when defining a tensor $G\_{ab}$ by
 $$
-G_{ab}= S_{ab}- T_{ba},
+G\_{ab}= S\_{ab}- T\_{ba},
 $$
 then the tuple of indices for the expression on the right is implicitly assumed to be $(a,b)$ (the same as the latin indices of $G$). This is always the case and is very important to remember.
 
 ## Symmetrizing Of Tensors
 
 Lastly we can (anti) symmetrize a tensor.
-For example we denote the symmetrization of the second and third factor of $T\mathstrut_{a}\mathstrut^{bc}\mathstrut_d$ by $T\mathstrut_{a}\mathstrut^{(bc)}\mathstrut_d$. The anti-symmetrization of the same factors is denotes as $T\mathstrut_{a}\mathstrut^{[bc]}\mathstrut_d$.
+For example we denote the symmetrization of the second and third factor of $T\mathstrut\_{a}\mathstrut^{bc}\mathstrut_d$ by $T\mathstrut\_{a}\mathstrut^{(bc)}\mathstrut_d$. The anti-symmetrization of the same factors is denotes as $T\mathstrut\_{a}\mathstrut^{[bc]}\mathstrut_d$.
 If we want to exclude some factors between indices we use two vertical bars surrounding the excluded factors. So for example $T\mathstrut^{[a|b|c]}\mathstrut_d$ is the anti-symmetrization of the first and third factor (excluding the second) of $T\mathstrut^{abc}\mathstrut_d$.
 The same caveats as for factor rearrangement apply.
 ### Tensors in Sympy
@@ -126,7 +126,7 @@ T(a,-b) #this is a tensor with one upper and one lower index
 
 
 
-$\displaystyle T{}^{a}{}_{b}$
+$\displaystyle T{}^{a}{}\_{b}$
 
 
 
@@ -164,7 +164,7 @@ T(a,b)*S(c,-d) #the product of the two tensors
 
 
 
-$$\displaystyle T{}^{ab}S{}^{c}{}_{d}$$
+$$\displaystyle T{}^{ab}S{}^{c}{}\_{d}$$
 
 
 
@@ -188,7 +188,7 @@ T(a,b)*S(-b,c) # the contraction of the two tensors (dummy index used for the co
 
 
 
-$$\displaystyle T{}^{aV_{0}}S{}_{V_{0}}{}^{c}$$
+$$\displaystyle T{}^{aV\_{0}}S{}\_{V\_{0}}{}^{c}$$
 
 
 
@@ -241,7 +241,7 @@ expr._replace_indices({a:-a, b:b}) #lower the first index
 
 
 
-$$\displaystyle S{}_{a}{}^{b} + T{}_{a}{}^{b}$$
+$$\displaystyle S{}\_{a}{}^{b} + T{}\_{a}{}^{b}$$
 
 
 
@@ -262,7 +262,7 @@ T(a,b).replace_with_arrays(repl) #the coefficient matrix of T^{ab}
 
 
 
-$$\displaystyle \left[\begin{matrix}1 & 2 \\ 5 & 6\end{matrix}\right]$$
+$$\displaystyle \left[\begin{matrix}1 & 2 \\\\ 5 & 6\end{matrix}\right]$$
 
 
 
@@ -289,7 +289,7 @@ expr.replace_with_arrays(repl) #the coefficient matrix of the sum
 
 
 
-$$\displaystyle \left[\begin{matrix}9 & 3\\7 & 15\end{matrix}\right]$$
+$$\displaystyle \left[\begin{matrix}9 & 3\\\\7 & 15\end{matrix}\right]$$
 
 
 
@@ -308,7 +308,7 @@ T(a,-b).replace_with_arrays(repl) #here the metric is used to lower the index b
 
 
 
-$$\displaystyle \left[\begin{matrix}-1 & 2 \\-5 & 6\end{matrix}\right]$$
+$$\displaystyle \left[\begin{matrix}-1 & 2 \\\\-5 & 6\end{matrix}\right]$$
 
 
 
@@ -346,7 +346,7 @@ expr.replace_with_arrays(repl) #this is the component representation of $$E^c F^
 
 
 
-$$\displaystyle \left[\begin{matrix}5 & 6\\10 & 12\end{matrix}\right]$$
+$$\displaystyle \left[\begin{matrix}5 & 6\\\\10 & 12\end{matrix}\right]$$
 
 
 
@@ -361,7 +361,7 @@ expr
 
 
 
-$$\displaystyle T{}^{aV_{0}}S{}_{V_{0}}{}^{c}$$
+$$\displaystyle T{}^{aV\_{0}}S{}\_{V\_{0}}{}^{c}$$
 
 
 
@@ -373,7 +373,7 @@ expr.replace_with_arrays(repl) #The coefficient matrix of the contraction define
 
 
 
-$$\displaystyle \left[\begin{matrix}-4 & 17\\-28 & 49\end{matrix}\right]$$
+$$\displaystyle \left[\begin{matrix}-4 & 17\\\\-28 & 49\end{matrix}\right]$$
 
 
 
@@ -388,7 +388,7 @@ expr.replace_with_arrays(repl,indices=[a,b]) # the index tuple is chosen to be (
 
 
 
-$$\displaystyle \left[\begin{matrix}-7 & 0\\4 & -3\end{matrix}\right] $$
+$$\displaystyle \left[\begin{matrix}-7 & 0\\\\4 & -3\end{matrix}\right] $$
  
 
 
@@ -400,7 +400,7 @@ expr.replace_with_arrays(repl,indices=[b,a])# the index tuple is chosen to be (a
 
 
 
-$$\displaystyle \left[\begin{matrix}-7 & 4\\0 & -3\end{matrix}\right] $$
+$$\displaystyle \left[\begin{matrix}-7 & 4\\\\0 & -3\end{matrix}\right] $$
 
 
 
@@ -565,7 +565,7 @@ Ric
 
 
 
-$$\displaystyle R{}_{V_{0}}{}^{aV_{0}b}$$
+$$\displaystyle R{}\_{V\_{0}}{}^{aV\_{0}b}$$
 
 
 
@@ -582,7 +582,7 @@ expr
 
 
 
-$$\displaystyle R{}_{V_{0}}{}^{aV_{0}b} + R{}_{V_{0}}{}^{bV_{0}a}$$
+$$\displaystyle R{}\_{V\_{0}}{}^{aV\_{0}b} + R{}\_{V\_{0}}{}^{bV\_{0}a}$$
 
 
 
@@ -594,7 +594,7 @@ expr.canon_bp() #ric is symmetric
 
 
 
-$$\displaystyle 2R{}^{aV_{0}b}{}_{V_{0}}$$
+$$\displaystyle 2R{}^{aV\_{0}b}{}\_{V\_{0}}$$
 
 
 
@@ -702,6 +702,6 @@ symmetrizer(expr,[a,d])
 
 
 
-$$ \left(\frac{1}{2}\right)\left(K{}^{abV_{0}}J{}_{V_{0}}{}^{de} + K{}^{dbV_{0}}J{}_{V_{0}}{}^{ae}\right)$$
+$$ \left(\frac{1}{2}\right)\left(K{}^{abV\_{0}}J{}\_{V\_{0}}{}^{de} + K{}^{dbV\_{0}}J{}\_{V\_{0}}{}^{ae}\right)$$
 
 

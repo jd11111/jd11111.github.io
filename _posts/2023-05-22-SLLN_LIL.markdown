@@ -18,48 +18,60 @@ You can find the Jupyter notebook with the code [here](https://github.com/jd1111
 
 This section will adress what the LIL says and what it means for pratical purposes.
 First some notation: 
-$X$ will denote a sequence of identically and independantly distributed real valued random variables with finite mean $$\mu$$ and variance $$\sigma^2$$.
-The $$n$$-sample mean $$\bar{X}_n $$ of $$X$$ is defined by $$\bar{X}_n =  n^{-1} \sum_{i=1}^n X_i $$.
+$X$ will denote a sequence of identically and independantly distributed real valued random variables with finite mean $\mu$ and variance $\sigma^2$.
+The $n$-sample mean $\bar{X}_n $ of $X$ is defined by $\bar{X}_n =  n^{-1} \sum\_{i=1}^n X_i $.
 
-The SLLN states that $$\bar{X}_n $$ converges to $$\mu$$ almost surely (from now on a.s.) as $$ n \to \infty$$.
+The SLLN states that $\bar{X}_n $ converges to $\mu$ almost surely (from now on a.s.) as $ n \to \infty$.
 
-But it does not tell us how fast $$\bar{X}_n $$ converges to $$\mu$$.
+But it does not tell us how fast $\bar{X}_n $ converges to $\mu$.
 This is where the LIL comes in.
-Define a sequence of real numbers $$l$$ by 
-\\[l_n=\sigma \sqrt{2/n \log ( \log ( n))} \quad \text{for} \ n > e \\]
-Note that $$\lim_{n \to \infty } l_n =0$$.
+Define a sequence of real numbers $l$ by 
+$
+\begin{equation}
+l_n=\sigma \sqrt{2/n \log ( \log ( n))} \quad \text{for} \ n > e 
+\end{equation}
+$
+Note that $\lim\_{n \to \infty } l_n =0$.
 Then the LIL says that
+$$
 \begin{equation}
 \tag{1}
-    \limsup_{n \to \infty} l_n^{-1} |\bar{X}_n - \mu|= 1 \quad \text{a.s.}
+    \limsup\_{n \to \infty} l_n^{-1} |\bar{X}_n - \mu|= 1 \quad \text{a.s.}
 \end{equation}
-Unravelling the definition this means that the following is true for $$\forall \varepsilon >0$$:
+$$
+Unravelling the definition this means that the following is true for $\forall \varepsilon >0$:
+$$
 \begin{equation}
     | \bar{X}_n - \mu| < (1 + \varepsilon )l_n \quad \text{a.s.}
 \end{equation}
-for all but finitely many $$n$$ and 
+$$
+for all but finitely many $n$ and 
+$$
 \begin{equation}
    (1 - \varepsilon ) l_n < | \bar{X}_n - \mu| \quad \text{a.s.}
 \end{equation}
-for infinitely many $$n$$.
-Using the [big-$$\mathcal{O}$$ notation](https://en.wikipedia.org/wiki/Big_O_notation#Formal_definition) the LIL is therefore equivalent to saying that $$|\bar{X}_n - \mu| = \mathcal{O}(l_n)$$ a.s. as $$n \to \infty$$ with any bounding constant $$>1$$, but not with any bounding constant $$<1$$.
-So the LIL gives us an upper bound for the speed of convergence in the SLLN for large $$n$$.
+$$
+for infinitely many $n$.
+Using the [big-$\mathcal{O}$ notation](https://en.wikipedia.org/wiki/Big_O_notation#Formal_definition) the LIL is therefore equivalent to saying that $|\bar{X}_n - \mu| = \mathcal{O}(l_n)$ a.s. as $n \to \infty$ with any bounding constant $>1$, but not with any bounding constant $<1$.
+So the LIL gives us an upper bound for the speed of convergence in the SLLN for large $n$.
 Furthermore the LIL also tells us that
+$$
 \begin{equation}
  \lim x_n^{-1} l_n^{-1} |\bar{X}_n - \mu| = 0  \quad \text{a.s.}
 \end{equation}
-for any sequence of positive real numbers $$x$$ that converges to $$\infty$$ (follows from the rules of the product of $$\limsup$$'s).
-In other words using the [little-$$o$$ notation](https://en.wikipedia.org/wiki/Big_O_notation#Little-o_notation) $$\bar{X}_n - \mu = o(x_n l_n) $$ a.s. as $$n \to \infty$$.
+$$
+for any sequence of positive real numbers $x$ that converges to $\infty$ (follows from the rules of the product of $\limsup$'s).
+In other words using the [little-$o$ notation](https://en.wikipedia.org/wiki/Big_O_notation#Little-o_notation) $\bar{X}_n - \mu = o(x_n l_n) $ a.s. as $n \to \infty$.
 
-We can numerically visualize these relations by generating $$X_1( \omega), X_2 (\omega) , \dots , X_N (\omega)$$ for multiple outcomes $$\{ \omega_1, \dots, \omega_M \} $$ and then plotting both $$l_n$$ and $$\bar{X}_n(\omega) -\mu$$ for all $$n \in \{1 , \dots , N\}$$ and $$\omega \in \{ \omega_1, \dots, \omega_M \} $$.
-The sequence $$(\bar{X}_1(\omega) -\mu , \dots ,\bar{X}_N(\omega) -\mu)$$ ($$\omega$$ fixed) is called a path in the following.
+We can numerically visualize these relations by generating $X_1( \omega), X_2 (\omega) , \dots , X_N (\omega)$ for multiple outcomes $\{ \omega_1, \dots, \omega_M \} $ and then plotting both $l_n$ and $\bar{X}_n(\omega) -\mu$ for all $n \in \{1 , \dots , N\}$ and $\omega \in \{ \omega_1, \dots, \omega_M \} $.
+The sequence $(\bar{X}_1(\omega) -\mu , \dots ,\bar{X}_N(\omega) -\mu)$ ($\omega$ fixed) is called a path in the following.
 This has been done for a standard normal distribution (mean 0, variance 1) with 800 paths to produce the following figure:
 
 ![paths](/assets/iterlog.png)
 
 A logarithmic scale is used on the horizontal axis, while a 10-th root scale is used on the vertical axis.
 Each colored line is the path for one outcome.
-The dash-dotted line visualizes that $$|\bar{X}_n - \mu| = \mathcal{O}(l_n)$$ a.s. and the solid line that $$|\bar{X}_n - \mu| = o(x_n l_n)$$ a.s. with $$x_n = n^{0.2}$$. Also note how slow the sample mean really converges, even after using $$10^9$$ samples there are still deviations in the order of $$10^4$$ from the real mean.
+The dash-dotted line visualizes that $|\bar{X}_n - \mu| = \mathcal{O}(l_n)$ a.s. and the solid line that $|\bar{X}_n - \mu| = o(x_n l_n)$ a.s. with $x_n = n^{0.2}$. Also note how slow the sample mean really converges, even after using $10^9$ samples there are still deviations in the order of $10^4$ from the real mean.
 
 ## Visualizing The Law Of The Iterated Logarithm In Python
 This section will tell you how to write a python program to visualise the LIL as discussed in the preceding section and how to optimize it.
@@ -73,7 +85,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 ```
 
-The following function computes the values of ``M`` paths for a standard normal distribution (mean zero and variance 1) and returns their values for the $$n$$ in ``ns``.
+The following function computes the values of ``M`` paths for a standard normal distribution (mean zero and variance 1) and returns their values for the $n$ in ``ns``.
 
 
 ```python
@@ -85,7 +97,7 @@ def generate_paths_basic(M,ns):
     return paths[:,ns-1] #only return the partial sums for those values of n in ns
 ```
 
-We dont want to display the paths for all values of $$n$$. A logarithmic scale is a good idea:
+We dont want to display the paths for all values of $n$. A logarithmic scale is a good idea:
 
 
 ```python
@@ -100,7 +112,7 @@ Lets generate 80 paths
 paths = generate_paths_basic(80,ns) 
 ```
 
-and define the sequence $$l_n$$ to compare the paths with:
+and define the sequence $l_n$ to compare the paths with:
 
 
 ```python
@@ -144,7 +156,7 @@ plt.show()
 This section tells you how to optimize the above code to deal with large numbers of samples.
 In the process you will learn to write fast python code that leverages parallel computation with numba.
 So lets get into it:
-While the above code is very simple and executes relatively fast it has a big problem if we want to calculate the paths for even larger $$n$$:
+While the above code is very simple and executes relatively fast it has a big problem if we want to calculate the paths for even larger $n$:
 It uses way too much ram.
 This is because the function ``generate_paths_basic`` creates two huge arrays to store the random data and the partial sums in.
 Of course we dont really need to generate all random data at once and store it in an array.
@@ -161,7 +173,7 @@ import numba as nb
 import threading
 ```
 
-The following function will be used to calculate the path differences between values of $$n$$ that we are interested in.
+The following function will be used to calculate the path differences between values of $n$ that we are interested in.
 
 
 ```python
@@ -178,7 +190,7 @@ We are using the ``@nb.jit`` decorator to tell ``numba`` to treat the function t
 We pass an instance of the ``np.random.Generator()`` class to use it within the numba'd function (this only works because there is explicit support for this in numba).
 This function has the advantage of not saving intermediate results and not creating large arrays (unlike using numpy would).
 The usage of numba is critical, because the same code using vanilla python would run very slow and would be restricted from multi-threading by the python GIL.
-We can use the ``partial_sum`` function to define a function that calculates the values of the paths at those $$n$$ in ``ns``:
+We can use the ``partial_sum`` function to define a function that calculates the values of the paths at those $n$ in ``ns``:
 
 
 ```python

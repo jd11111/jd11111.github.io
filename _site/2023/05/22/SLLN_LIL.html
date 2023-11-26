@@ -86,43 +86,55 @@ You can find the Jupyter notebook with the code <a href="https://github.com/jd11
 <h2 id="the-law-of-the-iterated-logarithm">The Law Of The Iterated Logarithm</h2>
 <p>This section will adress what the LIL says and what it means for pratical purposes.
 First some notation:
-$X$ will denote a sequence of identically and independantly distributed real valued random variables with finite mean $$\mu$$ and variance $$\sigma^2$$.
-The $$n$$-sample mean $$\bar{X}_n $$ of $$X$$ is defined by $$\bar{X}<em>n =  n^{-1} \sum</em>{i=1}^n X_i $$.</p>
-<p>The SLLN states that $$\bar{X}_n $$ converges to $$\mu$$ almost surely (from now on a.s.) as $$ n \to \infty$$.</p>
-<p>But it does not tell us how fast $$\bar{X}<em>n $$ converges to $$\mu$$.
+$X$ will denote a sequence of identically and independantly distributed real valued random variables with finite mean $\mu$ and variance $\sigma^2$.
+The $n$-sample mean $\bar{X}_n $ of $X$ is defined by $\bar{X}_n =  n^{-1} \sum_{i=1}^n X_i $.</p>
+<p>The SLLN states that $\bar{X}_n $ converges to $\mu$ almost surely (from now on a.s.) as $ n \to \infty$.</p>
+<p>But it does not tell us how fast $\bar{X}_n $ converges to $\mu$.
 This is where the LIL comes in.
-Define a sequence of real numbers $$l$$ by
-\[l_n=\sigma \sqrt{2/n \log ( \log ( n))} \quad \text{for} \ n &gt; e \]
-Note that $$\lim</em>{n \to \infty } l_n =0$$.
+Define a sequence of real numbers $l$ by
+$
+\begin{equation}
+l_n=\sigma \sqrt{2/n \log ( \log ( n))} \quad \text{for} \ n &gt; e
+\end{equation}
+$
+Note that $\lim_{n \to \infty } l_n =0$.
 Then the LIL says that
+$$
 \begin{equation}
 \tag{1}
 \limsup_{n \to \infty} l_n^{-1} |\bar{X}_n - \mu|= 1 \quad \text{a.s.}
 \end{equation}
-Unravelling the definition this means that the following is true for $$\forall \varepsilon &gt;0$$:
+$$
+Unravelling the definition this means that the following is true for $\forall \varepsilon &gt;0$:
+$$
 \begin{equation}
 | \bar{X}_n - \mu| &lt; (1 + \varepsilon )l_n \quad \text{a.s.}
 \end{equation}
-for all but finitely many $$n$$ and
+$$
+for all but finitely many $n$ and
+$$
 \begin{equation}
 (1 - \varepsilon ) l_n &lt; | \bar{X}_n - \mu| \quad \text{a.s.}
 \end{equation}
-for infinitely many $$n$$.
-Using the <a href="https://en.wikipedia.org/wiki/Big_O_notation#Formal_definition">big-$$\mathcal{O}$$ notation</a> the LIL is therefore equivalent to saying that $$|\bar{X}_n - \mu| = \mathcal{O}(l_n)$$ a.s. as $$n \to \infty$$ with any bounding constant $$&gt;1$$, but not with any bounding constant $$&lt;1$$.
-So the LIL gives us an upper bound for the speed of convergence in the SLLN for large $$n$$.
+$$
+for infinitely many $n$.
+Using the <a href="https://en.wikipedia.org/wiki/Big_O_notation#Formal_definition">big-$\mathcal{O}$ notation</a> the LIL is therefore equivalent to saying that $|\bar{X}_n - \mu| = \mathcal{O}(l_n)$ a.s. as $n \to \infty$ with any bounding constant $&gt;1$, but not with any bounding constant $&lt;1$.
+So the LIL gives us an upper bound for the speed of convergence in the SLLN for large $n$.
 Furthermore the LIL also tells us that
+$$
 \begin{equation}
 \lim x_n^{-1} l_n^{-1} |\bar{X}_n - \mu| = 0  \quad \text{a.s.}
 \end{equation}
-for any sequence of positive real numbers $$x$$ that converges to $$\infty$$ (follows from the rules of the product of $$\limsup$$'s).
-In other words using the <a href="https://en.wikipedia.org/wiki/Big_O_notation#Little-o_notation">little-$$o$$ notation</a> $$\bar{X}_n - \mu = o(x_n l_n) $$ a.s. as $$n \to \infty$$.</p>
-<p>We can numerically visualize these relations by generating $$X_1( \omega), X_2 (\omega) , \dots , X_N (\omega)$$ for multiple outcomes $${ \omega_1, \dots, \omega_M } $$ and then plotting both $$l_n$$ and $$\bar{X}_n(\omega) -\mu$$ for all $$n \in {1 , \dots , N}$$ and $$\omega \in { \omega_1, \dots, \omega_M } $$.
-The sequence $$(\bar{X}_1(\omega) -\mu , \dots ,\bar{X}_N(\omega) -\mu)$$ ($$\omega$$ fixed) is called a path in the following.
+$$
+for any sequence of positive real numbers $x$ that converges to $\infty$ (follows from the rules of the product of $\limsup$'s).
+In other words using the <a href="https://en.wikipedia.org/wiki/Big_O_notation#Little-o_notation">little-$o$ notation</a> $\bar{X}_n - \mu = o(x_n l_n) $ a.s. as $n \to \infty$.</p>
+<p>We can numerically visualize these relations by generating $X_1( \omega), X_2 (\omega) , \dots , X_N (\omega)$ for multiple outcomes ${ \omega_1, \dots, \omega_M } $ and then plotting both $l_n$ and $\bar{X}_n(\omega) -\mu$ for all $n \in {1 , \dots , N}$ and $\omega \in { \omega_1, \dots, \omega_M } $.
+The sequence $(\bar{X}_1(\omega) -\mu , \dots ,\bar{X}_N(\omega) -\mu)$ ($\omega$ fixed) is called a path in the following.
 This has been done for a standard normal distribution (mean 0, variance 1) with 800 paths to produce the following figure:</p>
 <p><img src="/assets/iterlog.png" alt="paths" /></p>
 <p>A logarithmic scale is used on the horizontal axis, while a 10-th root scale is used on the vertical axis.
 Each colored line is the path for one outcome.
-The dash-dotted line visualizes that $$|\bar{X}_n - \mu| = \mathcal{O}(l_n)$$ a.s. and the solid line that $$|\bar{X}_n - \mu| = o(x_n l_n)$$ a.s. with $$x_n = n^{0.2}$$. Also note how slow the sample mean really converges, even after using $$10^9$$ samples there are still deviations in the order of $$10^4$$ from the real mean.</p>
+The dash-dotted line visualizes that $|\bar{X}_n - \mu| = \mathcal{O}(l_n)$ a.s. and the solid line that $|\bar{X}_n - \mu| = o(x_n l_n)$ a.s. with $x_n = n^{0.2}$. Also note how slow the sample mean really converges, even after using $10^9$ samples there are still deviations in the order of $10^4$ from the real mean.</p>
 <h2 id="visualizing-the-law-of-the-iterated-logarithm-in-python">Visualizing The Law Of The Iterated Logarithm In Python</h2>
 <p>This section will tell you how to write a python program to visualise the LIL as discussed in the preceding section and how to optimize it.</p>
 <h1 id="basic-code">Basic Code</h1>
@@ -131,7 +143,7 @@ The libary <code>numpy</code> will be used to do the heavy lifting, while <code>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span> 
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 </code></pre></div></div>
-<p>The following function computes the values of <code>M</code> paths for a standard normal distribution (mean zero and variance 1) and returns their values for the $$n$$ in <code>ns</code>.</p>
+<p>The following function computes the values of <code>M</code> paths for a standard normal distribution (mean zero and variance 1) and returns their values for the $n$ in <code>ns</code>.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">generate_paths_basic</span><span class="p">(</span><span class="n">M</span><span class="p">,</span><span class="n">ns</span><span class="p">):</span>
     <span class="s">"""returns an array containing the values of M different paths at the values of n in ns"""</span>
     <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">Generator</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">SFC64</span><span class="p">())</span> <span class="c1">#nitialize RNG
@@ -139,14 +151,14 @@ The libary <code>numpy</code> will be used to do the heavy lifting, while <code>
 </span>    <span class="n">paths</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">rand</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#calculate the partial sums from n=1 to n=ns[-1]
 </span>    <span class="k">return</span> <span class="n">paths</span><span class="p">[:,</span><span class="n">ns</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1">#only return the partial sums for those values of n in ns
 </span></code></pre></div></div>
-<p>We dont want to display the paths for all values of $$n$$. A logarithmic scale is a good idea:</p>
+<p>We dont want to display the paths for all values of $n$. A logarithmic scale is a good idea:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">X</span><span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">logspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="n">base</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">num</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span> <span class="c1">#create array of numbers between 10**1 and 10**6 that are equally  that are evenly spaced on a log scale for plotting of the iterated logarithm
 </span><span class="n">ns</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">unique</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nb">round</span><span class="p">(</span><span class="n">X</span><span class="p">).</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">int64</span><span class="p">))</span> <span class="c1">#create array of integers between 10**1 and 10**6 that are equally spaced on a log scale for plotting of the paths
 </span></code></pre></div></div>
 <p>Lets generate 80 paths</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">paths</span> <span class="o">=</span> <span class="n">generate_paths_basic</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span><span class="n">ns</span><span class="p">)</span> 
 </code></pre></div></div>
-<p>and define the sequence $$l_n$$ to compare the paths with:</p>
+<p>and define the sequence $l_n$ to compare the paths with:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">iterlog</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">x</span><span class="o">&lt;=</span><span class="n">np</span><span class="p">.</span><span class="n">e</span><span class="p">:</span>
         <span class="k">return</span> <span class="mf">0.0</span>
@@ -176,7 +188,7 @@ The libary <code>numpy</code> will be used to do the heavy lifting, while <code>
 <p>This section tells you how to optimize the above code to deal with large numbers of samples.
 In the process you will learn to write fast python code that leverages parallel computation with numba.
 So lets get into it:
-While the above code is very simple and executes relatively fast it has a big problem if we want to calculate the paths for even larger $$n$$:
+While the above code is very simple and executes relatively fast it has a big problem if we want to calculate the paths for even larger $n$:
 It uses way too much ram.
 This is because the function <code>generate_paths_basic</code> creates two huge arrays to store the random data and the partial sums in.
 Of course we dont really need to generate all random data at once and store it in an array.
@@ -189,7 +201,7 @@ To facilitate this we will be using the <code>numba</code> and the <code>threadi
 <span class="kn">import</span> <span class="nn">numba</span> <span class="k">as</span> <span class="n">nb</span> 
 <span class="kn">import</span> <span class="nn">threading</span>
 </code></pre></div></div>
-<p>The following function will be used to calculate the path differences between values of $$n$$ that we are interested in.</p>
+<p>The following function will be used to calculate the path differences between values of $n$ that we are interested in.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">nb</span><span class="p">.</span><span class="n">jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">fastmath</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">nogil</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">partial_sum</span><span class="p">(</span><span class="n">rng</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
     <span class="s">"""take an instance rng of the np.random.Generator() class and sum n normally distributed samples drawn from rng"""</span>
@@ -202,7 +214,7 @@ To facilitate this we will be using the <code>numba</code> and the <code>threadi
 We pass an instance of the <code>np.random.Generator()</code> class to use it within the numba'd function (this only works because there is explicit support for this in numba).
 This function has the advantage of not saving intermediate results and not creating large arrays (unlike using numpy would).
 The usage of numba is critical, because the same code using vanilla python would run very slow and would be restricted from multi-threading by the python GIL.
-We can use the <code>partial_sum</code> function to define a function that calculates the values of the paths at those $$n$$ in <code>ns</code>:</p>
+We can use the <code>partial_sum</code> function to define a function that calculates the values of the paths at those $n$ in <code>ns</code>:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">nb</span><span class="p">.</span><span class="n">jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">fastmath</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">nogil</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">generate_paths</span><span class="p">(</span><span class="n">paths</span><span class="p">,</span><span class="n">rng</span><span class="p">,</span><span class="n">ns</span><span class="p">,</span><span class="n">diffs</span><span class="p">):</span>
     <span class="s">"""takes an array paths and writes the relevant path values in it for paths.shape[0] different paths. Uses random samples from rng."""</span>

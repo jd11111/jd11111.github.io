@@ -25,8 +25,7 @@ $$
 If $ (s_n)\_{n \in \mathbb{N}} $ is convergent the limit is denoted by $ \sum\_{i=1}^\infty x_i $.
 
 **Proposition:** 
-
-<p> If $ (s_n)\_{n \in \mathbb{N}} $ converges, then $ \lim\_{i \to \infty} x_i =0 $. </p>
+If $ (s_n)\_{n \in \mathbb{N}} $ converges, then $ \lim\_{i \to \infty} x_i =0 $. 
 
 **Proof:** 
 Let $\varepsilon >0$.

@@ -170,7 +170,7 @@ The same caveats as for factor rearrangement apply.</p>
 <p>$$\displaystyle S{}^{ab} + T{}^{ab}$$</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">T</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="o">*</span><span class="n">S</span><span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)</span> <span class="c1"># the contraction of the two tensors (dummy index used for the contracted slots, since the output only has 2 slots (a,c))
 </span></code></pre></div></div>
-<p>$$\displaystyle T{}^{aV_{0}}S{}<em>{V</em>{0}}{}^{c}$$</p>
+<p>$$\displaystyle T{}^{aV_{0}}S{}_{V_{0}}{}^{c}$$</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">T</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="p">)</span> <span class="c1">#rearrange T^{ab} to T^{ba}
 </span></code></pre></div></div>
 <p>$$\displaystyle T{}^{ba}$$</p>
@@ -185,14 +185,14 @@ The same caveats as for factor rearrangement apply.</p>
 <p>We can also change the type of a tensor expression in the same way</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span><span class="p">.</span><span class="n">_replace_indices</span><span class="p">({</span><span class="n">a</span><span class="p">:</span><span class="o">-</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span><span class="n">b</span><span class="p">})</span> <span class="c1">#lower the first index
 </span></code></pre></div></div>
-<p>$$\displaystyle S{}<em>{a}{}^{b} + T{}</em>{a}{}^{b}$$</p>
+<p>$$\displaystyle S{}_{a}{}^{b} + T{}_{a}{}^{b}$$</p>
 <h2 id="coefficient-matrices-of-tensor-expressions">Coefficient Matrices Of Tensor Expressions</h2>
 <p>Often we not only want to manipulate symbolic tensor expressions, but we also want the coefficient matrix of the resulting tensors. We can set coefficient matrices and insert them into an expression. Note that the syntax is allways the same for any tensor expression.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">repl</span> <span class="o">=</span> <span class="p">{</span><span class="n">T</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="p">:</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]],</span> <span class="n">S</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">)</span> <span class="p">:</span> <span class="p">[[</span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">9</span><span class="p">]]}</span> <span class="c1">#assign a coefficient matrix to the tensors T(a,b) and S(c,d) representing them in some (common) basis
 </span></code></pre></div></div>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">T</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">).</span><span class="n">replace_with_arrays</span><span class="p">(</span><span class="n">repl</span><span class="p">)</span> <span class="c1">#the coefficient matrix of T^{ab}
 </span></code></pre></div></div>
-<p>$$\displaystyle \left[\begin{matrix}1 &amp; 2 \ 5 &amp; 6\end{matrix}\right]$$</p>
+<p>$$\displaystyle \left[\begin{matrix}1 &amp; 2 \\ 5 &amp; 6\end{matrix}\right]$$</p>
 <p>The coefficient matrix of the sum is obtained like this:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span><span class="o">=</span> <span class="n">T</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="o">+</span><span class="n">S</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
 <span class="n">expr</span>
@@ -200,13 +200,13 @@ The same caveats as for factor rearrangement apply.</p>
 <p>$$\displaystyle S{}^{ab} + T{}^{ab}$$</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span><span class="p">.</span><span class="n">replace_with_arrays</span><span class="p">(</span><span class="n">repl</span><span class="p">)</span> <span class="c1">#the coefficient matrix of the sum 
 </span></code></pre></div></div>
-<p>$$\displaystyle \left[\begin{matrix}9 &amp; 3\7 &amp; 15\end{matrix}\right]$$</p>
+<p>$$\displaystyle \left[\begin{matrix}9 &amp; 3\\7 &amp; 15\end{matrix}\right]$$</p>
 <p>To lower and increase indices the coefficient matrix of the metric must first be given:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">repl</span><span class="p">.</span><span class="n">update</span><span class="p">({</span><span class="n">V</span><span class="p">:</span> <span class="p">[[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]]})</span> <span class="c1">#this specifies the coefficient matrix of the metric to the same common basis
 </span></code></pre></div></div>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">T</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="o">-</span><span class="n">b</span><span class="p">).</span><span class="n">replace_with_arrays</span><span class="p">(</span><span class="n">repl</span><span class="p">)</span> <span class="c1">#here the metric is used to lower the index b
 </span></code></pre></div></div>
-<p>$$\displaystyle \left[\begin{matrix}-1 &amp; 2 \-5 &amp; 6\end{matrix}\right]$$</p>
+<p>$$\displaystyle \left[\begin{matrix}-1 &amp; 2 \\-5 &amp; 6\end{matrix}\right]$$</p>
 <p>The coefficient matrix of the tensor product of two tensors in the abstract index notation can be obtained as well:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">E</span> <span class="o">=</span> <span class="n">TensorHead</span><span class="p">(</span><span class="s">"E"</span><span class="p">,</span> <span class="p">[</span><span class="n">V</span><span class="p">])</span> <span class="c1">#define a base with one index
 </span><span class="n">F</span> <span class="o">=</span> <span class="n">TensorHead</span><span class="p">(</span><span class="s">"F"</span><span class="p">,</span> <span class="p">[</span><span class="n">V</span><span class="p">])</span> 
@@ -219,23 +219,23 @@ The same caveats as for factor rearrangement apply.</p>
 <p>$$\displaystyle E{}^{c}F{}^{d}$$</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span><span class="p">.</span><span class="n">replace_with_arrays</span><span class="p">(</span><span class="n">repl</span><span class="p">)</span> <span class="c1">#this is the component representation of $$E^c F^d$$
 </span></code></pre></div></div>
-<p>$$\displaystyle \left[\begin{matrix}5 &amp; 6\10 &amp; 12\end{matrix}\right]$$</p>
+<p>$$\displaystyle \left[\begin{matrix}5 &amp; 6\\10 &amp; 12\end{matrix}\right]$$</p>
 <p>The coefficient matrix of a contraction can be obtained as well:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span> <span class="o">=</span> <span class="n">T</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="o">*</span><span class="n">S</span><span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)</span> <span class="c1">#lower the first slot of S^{bc} and then contract T^{ab}S_b^c
 </span><span class="n">expr</span>
 </code></pre></div></div>
-<p>$$\displaystyle T{}^{aV_{0}}S{}<em>{V</em>{0}}{}^{c}$$</p>
+<p>$$\displaystyle T{}^{aV_{0}}S{}_{V_{0}}{}^{c}$$</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span><span class="p">.</span><span class="n">replace_with_arrays</span><span class="p">(</span><span class="n">repl</span><span class="p">)</span> <span class="c1">#The coefficient matrix of the contraction defined above
 </span></code></pre></div></div>
-<p>$$\displaystyle \left[\begin{matrix}-4 &amp; 17\-28 &amp; 49\end{matrix}\right]$$</p>
+<p>$$\displaystyle \left[\begin{matrix}-4 &amp; 17\\-28 &amp; 49\end{matrix}\right]$$</p>
 <p>We obtain the coefficient matrix of a tensor expression involving factor permutations as follows:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span> <span class="o">=</span> <span class="n">T</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="o">-</span> <span class="n">S</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="p">)</span>
 <span class="n">expr</span><span class="p">.</span><span class="n">replace_with_arrays</span><span class="p">(</span><span class="n">repl</span><span class="p">,</span><span class="n">indices</span><span class="o">=</span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">])</span> <span class="c1"># the index tuple is chosen to be (a,b)
 </span></code></pre></div></div>
-<p>$$\displaystyle \left[\begin{matrix}-7 &amp; 0\4 &amp; -3\end{matrix}\right] $$</p>
+<p>$$\displaystyle \left[\begin{matrix}-7 &amp; 0\\4 &amp; -3\end{matrix}\right] $$</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span><span class="p">.</span><span class="n">replace_with_arrays</span><span class="p">(</span><span class="n">repl</span><span class="p">,</span><span class="n">indices</span><span class="o">=</span><span class="p">[</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="p">])</span><span class="c1"># the index tuple is chosen to be (a,b)
 </span></code></pre></div></div>
-<p>$$\displaystyle \left[\begin{matrix}-7 &amp; 4\0 &amp; -3\end{matrix}\right] $$</p>
+<p>$$\displaystyle \left[\begin{matrix}-7 &amp; 4\\0 &amp; -3\end{matrix}\right] $$</p>
 <h2 id="symmetries-of-tensors-and-canonicalization">Symmetries Of Tensors And Canonicalization</h2>
 <p>In this section we consider the canonicalization of tensors and symmetry.
 Canonicalization of a tensor expression means to bring every individual term in the expression into canonical form, meaning that the index labels are in alphabetic order.</p>
@@ -294,15 +294,15 @@ To this end we define a (anti) symmetric tensor as follows:</p>
 </code></pre></div></div>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Ric</span>
 </code></pre></div></div>
-<p>$$\displaystyle R{}<em>{V</em>{0}}{}^{aV_{0}b}$$</p>
+<p>$$\displaystyle R{}_{V_{0}}{}^{aV_{0}b}$$</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span> <span class="o">=</span> <span class="n">Ric</span> <span class="o">+</span> <span class="n">Ric</span><span class="p">.</span><span class="n">_replace_indices</span><span class="p">({</span><span class="n">a</span><span class="p">:</span><span class="n">b</span><span class="p">,</span><span class="n">b</span><span class="p">:</span><span class="n">a</span><span class="p">})</span>
 </code></pre></div></div>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span>
 </code></pre></div></div>
-<p>$$\displaystyle R{}<em>{V</em>{0}}{}^{aV_{0}b} + R{}<em>{V</em>{0}}{}^{bV_{0}a}$$</p>
+<p>$$\displaystyle R{}_{V_{0}}{}^{aV_{0}b} + R{}_{V_{0}}{}^{bV_{0}a}$$</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span><span class="p">.</span><span class="n">canon_bp</span><span class="p">()</span> <span class="c1">#ric is symmetric 
 </span></code></pre></div></div>
-<p>$$\displaystyle 2R{}^{aV_{0}b}{}<em>{V</em>{0}}$$</p>
+<p>$$\displaystyle 2R{}^{aV_{0}b}{}_{V_{0}}$$</p>
 <h2 id="symmetrization-of-tensors-in-sympy">Symmetrization Of Tensors In Sympy</h2>
 <p>As i understand this is not implemented in the Tensor module of Sympy. But we can easily write a function that returns a symmetrization/anti-symmetrization as a tensor expression.
 I came up with the following code (use at your own risk: not extensively tested and also probably not that fast):</p>
@@ -347,7 +347,7 @@ I came up with the following code (use at your own risk: not extensively tested 
 </code></pre></div></div>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">symmetrizer</span><span class="p">(</span><span class="n">expr</span><span class="p">,[</span><span class="n">a</span><span class="p">,</span><span class="n">d</span><span class="p">])</span>
 </code></pre></div></div>
-<p>$$ \left(\frac{1}{2}\right)\left(K{}^{abV_{0}}J{}<em>{V</em>{0}}{}^{de} + K{}^{dbV_{0}}J{}<em>{V</em>{0}}{}^{ae}\right)$$</p>
+<p>$$ \left(\frac{1}{2}\right)\left(K{}^{abV_{0}}J{}_{V_{0}}{}^{de} + K{}^{dbV_{0}}J{}_{V_{0}}{}^{ae}\right)$$</p>
 
   </div><a class="u-url" href="/2023/06/23/SympyTensor.html" hidden></a>
 </article>

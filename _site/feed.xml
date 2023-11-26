@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-11-26T14:08:25+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jannik’s Blog</title><subtitle>Blog about mathematics, physics and code by Jannik Daun</subtitle><entry><title type="html">Power-Series In Banach Spaces And Algebras</title><link href="http://localhost:4000/2023/11/26/PowerSeries.html" rel="alternate" type="text/html" title="Power-Series In Banach Spaces And Algebras" /><published>2023-11-26T10:13:45+01:00</published><updated>2023-11-26T10:13:45+01:00</updated><id>http://localhost:4000/2023/11/26/PowerSeries</id><content type="html" xml:base="http://localhost:4000/2023/11/26/PowerSeries.html">&lt;p&gt;This post is a review of some important results on series and power series in Banach spaces and algebras.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-11-26T15:21:32+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jannik’s Blog</title><subtitle>Blog about mathematics, physics and code by Jannik Daun</subtitle><entry><title type="html">Power-Series In Banach Spaces And Algebras</title><link href="http://localhost:4000/2023/11/26/PowerSeries.html" rel="alternate" type="text/html" title="Power-Series In Banach Spaces And Algebras" /><published>2023-11-26T10:13:45+01:00</published><updated>2023-11-26T10:13:45+01:00</updated><id>http://localhost:4000/2023/11/26/PowerSeries</id><content type="html" xml:base="http://localhost:4000/2023/11/26/PowerSeries.html">&lt;p&gt;This post is a review of some important results on series and power series in Banach spaces and algebras.
 Some knowledge about Banach spaces / algebras is presumed.&lt;/p&gt;
 &lt;p&gt;The following topics are covered:&lt;/p&gt;
 &lt;ul&gt;
@@ -15,8 +15,8 @@ s_n = \sum_{i=1}^n  x_i.
 \end{equation}
 $$
 If $ (s_n)_{n \in \mathbb{N}} $ is convergent the limit is denoted by $ \sum_{i=1}^\infty x_i $.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Proposition:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt; If $ (s_n)\_{n \in \mathbb{N}} $ converges, then $ \lim\_{i \to \infty} x_i =0 $. &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Proposition:&lt;/strong&gt;
+If $ (s_n)_{n \in \mathbb{N}} $ converges, then $ \lim_{i \to \infty} x_i =0 $.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Proof:&lt;/strong&gt;
 Let $\varepsilon &amp;gt;0$.
 Since convergent sequences are Cauchy there is a $N \in \mathbb{N}$ so that
@@ -986,7 +986,7 @@ The same caveats as for factor rearrangement apply.&lt;/p&gt;
 &lt;p&gt;$$\displaystyle S{}^{ab} + T{}^{ab}$$&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# the contraction of the two tensors (dummy index used for the contracted slots, since the output only has 2 slots (a,c))
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;$$\displaystyle T{}^{aV_{0}}S{}&lt;em&gt;{V&lt;/em&gt;{0}}{}^{c}$$&lt;/p&gt;
+&lt;p&gt;$$\displaystyle T{}^{aV_{0}}S{}_{V_{0}}{}^{c}$$&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#rearrange T^{ab} to T^{ba}
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;$$\displaystyle T{}^{ba}$$&lt;/p&gt;
@@ -1001,14 +1001,14 @@ The same caveats as for factor rearrangement apply.&lt;/p&gt;
 &lt;p&gt;We can also change the type of a tensor expression in the same way&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;expr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_replace_indices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#lower the first index
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;$$\displaystyle S{}&lt;em&gt;{a}{}^{b} + T{}&lt;/em&gt;{a}{}^{b}$$&lt;/p&gt;
+&lt;p&gt;$$\displaystyle S{}_{a}{}^{b} + T{}_{a}{}^{b}$$&lt;/p&gt;
 &lt;h2 id=&quot;coefficient-matrices-of-tensor-expressions&quot;&gt;Coefficient Matrices Of Tensor Expressions&lt;/h2&gt;
 &lt;p&gt;Often we not only want to manipulate symbolic tensor expressions, but we also want the coefficient matrix of the resulting tensors. We can set coefficient matrices and insert them into an expression. Note that the syntax is allways the same for any tensor expression.&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;repl&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]}&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#assign a coefficient matrix to the tensors T(a,b) and S(c,d) representing them in some (common) basis
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace_with_arrays&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;repl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#the coefficient matrix of T^{ab}
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;$$\displaystyle \left[\begin{matrix}1 &amp;amp; 2 \ 5 &amp;amp; 6\end{matrix}\right]$$&lt;/p&gt;
+&lt;p&gt;$$\displaystyle \left[\begin{matrix}1 &amp;amp; 2 \\ 5 &amp;amp; 6\end{matrix}\right]$$&lt;/p&gt;
 &lt;p&gt;The coefficient matrix of the sum is obtained like this:&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;expr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;expr&lt;/span&gt;
@@ -1016,13 +1016,13 @@ The same caveats as for factor rearrangement apply.&lt;/p&gt;
 &lt;p&gt;$$\displaystyle S{}^{ab} + T{}^{ab}$$&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;expr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace_with_arrays&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;repl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#the coefficient matrix of the sum 
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;$$\displaystyle \left[\begin{matrix}9 &amp;amp; 3\7 &amp;amp; 15\end{matrix}\right]$$&lt;/p&gt;
+&lt;p&gt;$$\displaystyle \left[\begin{matrix}9 &amp;amp; 3\\7 &amp;amp; 15\end{matrix}\right]$$&lt;/p&gt;
 &lt;p&gt;To lower and increase indices the coefficient matrix of the metric must first be given:&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;repl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;V&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]})&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#this specifies the coefficient matrix of the metric to the same common basis
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace_with_arrays&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;repl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#here the metric is used to lower the index b
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;$$\displaystyle \left[\begin{matrix}-1 &amp;amp; 2 \-5 &amp;amp; 6\end{matrix}\right]$$&lt;/p&gt;
+&lt;p&gt;$$\displaystyle \left[\begin{matrix}-1 &amp;amp; 2 \\-5 &amp;amp; 6\end{matrix}\right]$$&lt;/p&gt;
 &lt;p&gt;The coefficient matrix of the tensor product of two tensors in the abstract index notation can be obtained as well:&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;E&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TensorHead&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;E&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;V&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#define a base with one index
 &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;F&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TensorHead&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;F&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;V&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; 
@@ -1035,23 +1035,23 @@ The same caveats as for factor rearrangement apply.&lt;/p&gt;
 &lt;p&gt;$$\displaystyle E{}^{c}F{}^{d}$$&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;expr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace_with_arrays&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;repl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#this is the component representation of $$E^c F^d$$
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;$$\displaystyle \left[\begin{matrix}5 &amp;amp; 6\10 &amp;amp; 12\end{matrix}\right]$$&lt;/p&gt;
+&lt;p&gt;$$\displaystyle \left[\begin{matrix}5 &amp;amp; 6\\10 &amp;amp; 12\end{matrix}\right]$$&lt;/p&gt;
 &lt;p&gt;The coefficient matrix of a contraction can be obtained as well:&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;expr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#lower the first slot of S^{bc} and then contract T^{ab}S_b^c
 &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;expr&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;$$\displaystyle T{}^{aV_{0}}S{}&lt;em&gt;{V&lt;/em&gt;{0}}{}^{c}$$&lt;/p&gt;
+&lt;p&gt;$$\displaystyle T{}^{aV_{0}}S{}_{V_{0}}{}^{c}$$&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;expr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace_with_arrays&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;repl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#The coefficient matrix of the contraction defined above
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;$$\displaystyle \left[\begin{matrix}-4 &amp;amp; 17\-28 &amp;amp; 49\end{matrix}\right]$$&lt;/p&gt;
+&lt;p&gt;$$\displaystyle \left[\begin{matrix}-4 &amp;amp; 17\\-28 &amp;amp; 49\end{matrix}\right]$$&lt;/p&gt;
 &lt;p&gt;We obtain the coefficient matrix of a tensor expression involving factor permutations as follows:&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;expr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;expr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace_with_arrays&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;repl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;indices&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# the index tuple is chosen to be (a,b)
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;$$\displaystyle \left[\begin{matrix}-7 &amp;amp; 0\4 &amp;amp; -3\end{matrix}\right] $$&lt;/p&gt;
+&lt;p&gt;$$\displaystyle \left[\begin{matrix}-7 &amp;amp; 0\\4 &amp;amp; -3\end{matrix}\right] $$&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;expr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace_with_arrays&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;repl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;indices&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# the index tuple is chosen to be (a,b)
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;$$\displaystyle \left[\begin{matrix}-7 &amp;amp; 4\0 &amp;amp; -3\end{matrix}\right] $$&lt;/p&gt;
+&lt;p&gt;$$\displaystyle \left[\begin{matrix}-7 &amp;amp; 4\\0 &amp;amp; -3\end{matrix}\right] $$&lt;/p&gt;
 &lt;h2 id=&quot;symmetries-of-tensors-and-canonicalization&quot;&gt;Symmetries Of Tensors And Canonicalization&lt;/h2&gt;
 &lt;p&gt;In this section we consider the canonicalization of tensors and symmetry.
 Canonicalization of a tensor expression means to bring every individual term in the expression into canonical form, meaning that the index labels are in alphabetic order.&lt;/p&gt;
@@ -1110,15 +1110,15 @@ To this end we define a (anti) symmetric tensor as follows:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Ric&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;$$\displaystyle R{}&lt;em&gt;{V&lt;/em&gt;{0}}{}^{aV_{0}b}$$&lt;/p&gt;
+&lt;p&gt;$$\displaystyle R{}_{V_{0}}{}^{aV_{0}b}$$&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;expr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Ric&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Ric&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_replace_indices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;expr&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;$$\displaystyle R{}&lt;em&gt;{V&lt;/em&gt;{0}}{}^{aV_{0}b} + R{}&lt;em&gt;{V&lt;/em&gt;{0}}{}^{bV_{0}a}$$&lt;/p&gt;
+&lt;p&gt;$$\displaystyle R{}_{V_{0}}{}^{aV_{0}b} + R{}_{V_{0}}{}^{bV_{0}a}$$&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;expr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;canon_bp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#ric is symmetric 
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;$$\displaystyle 2R{}^{aV_{0}b}{}&lt;em&gt;{V&lt;/em&gt;{0}}$$&lt;/p&gt;
+&lt;p&gt;$$\displaystyle 2R{}^{aV_{0}b}{}_{V_{0}}$$&lt;/p&gt;
 &lt;h2 id=&quot;symmetrization-of-tensors-in-sympy&quot;&gt;Symmetrization Of Tensors In Sympy&lt;/h2&gt;
 &lt;p&gt;As i understand this is not implemented in the Tensor module of Sympy. But we can easily write a function that returns a symmetrization/anti-symmetrization as a tensor expression.
 I came up with the following code (use at your own risk: not extensively tested and also probably not that fast):&lt;/p&gt;
@@ -1163,7 +1163,7 @@ I came up with the following code (use at your own risk: not extensively tested 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;symmetrizer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;expr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;$$ \left(\frac{1}{2}\right)\left(K{}^{abV_{0}}J{}&lt;em&gt;{V&lt;/em&gt;{0}}{}^{de} + K{}^{dbV_{0}}J{}&lt;em&gt;{V&lt;/em&gt;{0}}{}^{ae}\right)$$&lt;/p&gt;</content><author><name></name></author><summary type="html">In this post i will explain the abstract index notation for tensors and show how to use the basic features of the Sympy Tensor module, which is based on using the abstract index notation.</summary></entry><entry><title type="html">The Law Of The Iterated Logarithm Expained And Visualised</title><link href="http://localhost:4000/2023/05/22/SLLN_LIL.html" rel="alternate" type="text/html" title="The Law Of The Iterated Logarithm Expained And Visualised" /><published>2023-05-22T11:14:45+02:00</published><updated>2023-05-22T11:14:45+02:00</updated><id>http://localhost:4000/2023/05/22/SLLN_LIL</id><content type="html" xml:base="http://localhost:4000/2023/05/22/SLLN_LIL.html">&lt;ul&gt;
+&lt;p&gt;$$ \left(\frac{1}{2}\right)\left(K{}^{abV_{0}}J{}_{V_{0}}{}^{de} + K{}^{dbV_{0}}J{}_{V_{0}}{}^{ae}\right)$$&lt;/p&gt;</content><author><name></name></author><summary type="html">In this post i will explain the abstract index notation for tensors and show how to use the basic features of the Sympy Tensor module, which is based on using the abstract index notation.</summary></entry><entry><title type="html">The Law Of The Iterated Logarithm Expained And Visualised</title><link href="http://localhost:4000/2023/05/22/SLLN_LIL.html" rel="alternate" type="text/html" title="The Law Of The Iterated Logarithm Expained And Visualised" /><published>2023-05-22T11:14:45+02:00</published><updated>2023-05-22T11:14:45+02:00</updated><id>http://localhost:4000/2023/05/22/SLLN_LIL</id><content type="html" xml:base="http://localhost:4000/2023/05/22/SLLN_LIL.html">&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#the-law-of-the-iterated-logarithm&quot;&gt;The Law Of The Iterated Logarithm&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#visualizing-the-law-of-the-iterated-logarithm-in-python&quot;&gt;Visualizing The Law Of The Iterated Logarithm In Python&lt;/a&gt;
 &lt;ul&gt;
@@ -1179,43 +1179,55 @@ You can find the Jupyter notebook with the code &lt;a href=&quot;https://github.
 &lt;h2 id=&quot;the-law-of-the-iterated-logarithm&quot;&gt;The Law Of The Iterated Logarithm&lt;/h2&gt;
 &lt;p&gt;This section will adress what the LIL says and what it means for pratical purposes.
 First some notation:
-$X$ will denote a sequence of identically and independantly distributed real valued random variables with finite mean $$\mu$$ and variance $$\sigma^2$$.
-The $$n$$-sample mean $$\bar{X}_n $$ of $$X$$ is defined by $$\bar{X}&lt;em&gt;n =  n^{-1} \sum&lt;/em&gt;{i=1}^n X_i $$.&lt;/p&gt;
-&lt;p&gt;The SLLN states that $$\bar{X}_n $$ converges to $$\mu$$ almost surely (from now on a.s.) as $$ n \to \infty$$.&lt;/p&gt;
-&lt;p&gt;But it does not tell us how fast $$\bar{X}&lt;em&gt;n $$ converges to $$\mu$$.
+$X$ will denote a sequence of identically and independantly distributed real valued random variables with finite mean $\mu$ and variance $\sigma^2$.
+The $n$-sample mean $\bar{X}_n $ of $X$ is defined by $\bar{X}_n =  n^{-1} \sum_{i=1}^n X_i $.&lt;/p&gt;
+&lt;p&gt;The SLLN states that $\bar{X}_n $ converges to $\mu$ almost surely (from now on a.s.) as $ n \to \infty$.&lt;/p&gt;
+&lt;p&gt;But it does not tell us how fast $\bar{X}_n $ converges to $\mu$.
 This is where the LIL comes in.
-Define a sequence of real numbers $$l$$ by
-\[l_n=\sigma \sqrt{2/n \log ( \log ( n))} \quad \text{for} \ n &amp;gt; e \]
-Note that $$\lim&lt;/em&gt;{n \to \infty } l_n =0$$.
+Define a sequence of real numbers $l$ by
+$
+\begin{equation}
+l_n=\sigma \sqrt{2/n \log ( \log ( n))} \quad \text{for} \ n &amp;gt; e
+\end{equation}
+$
+Note that $\lim_{n \to \infty } l_n =0$.
 Then the LIL says that
+$$
 \begin{equation}
 \tag{1}
 \limsup_{n \to \infty} l_n^{-1} |\bar{X}_n - \mu|= 1 \quad \text{a.s.}
 \end{equation}
-Unravelling the definition this means that the following is true for $$\forall \varepsilon &amp;gt;0$$:
+$$
+Unravelling the definition this means that the following is true for $\forall \varepsilon &amp;gt;0$:
+$$
 \begin{equation}
 | \bar{X}_n - \mu| &amp;lt; (1 + \varepsilon )l_n \quad \text{a.s.}
 \end{equation}
-for all but finitely many $$n$$ and
+$$
+for all but finitely many $n$ and
+$$
 \begin{equation}
 (1 - \varepsilon ) l_n &amp;lt; | \bar{X}_n - \mu| \quad \text{a.s.}
 \end{equation}
-for infinitely many $$n$$.
-Using the &lt;a href=&quot;https://en.wikipedia.org/wiki/Big_O_notation#Formal_definition&quot;&gt;big-$$\mathcal{O}$$ notation&lt;/a&gt; the LIL is therefore equivalent to saying that $$|\bar{X}_n - \mu| = \mathcal{O}(l_n)$$ a.s. as $$n \to \infty$$ with any bounding constant $$&amp;gt;1$$, but not with any bounding constant $$&amp;lt;1$$.
-So the LIL gives us an upper bound for the speed of convergence in the SLLN for large $$n$$.
+$$
+for infinitely many $n$.
+Using the &lt;a href=&quot;https://en.wikipedia.org/wiki/Big_O_notation#Formal_definition&quot;&gt;big-$\mathcal{O}$ notation&lt;/a&gt; the LIL is therefore equivalent to saying that $|\bar{X}_n - \mu| = \mathcal{O}(l_n)$ a.s. as $n \to \infty$ with any bounding constant $&amp;gt;1$, but not with any bounding constant $&amp;lt;1$.
+So the LIL gives us an upper bound for the speed of convergence in the SLLN for large $n$.
 Furthermore the LIL also tells us that
+$$
 \begin{equation}
 \lim x_n^{-1} l_n^{-1} |\bar{X}_n - \mu| = 0  \quad \text{a.s.}
 \end{equation}
-for any sequence of positive real numbers $$x$$ that converges to $$\infty$$ (follows from the rules of the product of $$\limsup$$&apos;s).
-In other words using the &lt;a href=&quot;https://en.wikipedia.org/wiki/Big_O_notation#Little-o_notation&quot;&gt;little-$$o$$ notation&lt;/a&gt; $$\bar{X}_n - \mu = o(x_n l_n) $$ a.s. as $$n \to \infty$$.&lt;/p&gt;
-&lt;p&gt;We can numerically visualize these relations by generating $$X_1( \omega), X_2 (\omega) , \dots , X_N (\omega)$$ for multiple outcomes $${ \omega_1, \dots, \omega_M } $$ and then plotting both $$l_n$$ and $$\bar{X}_n(\omega) -\mu$$ for all $$n \in {1 , \dots , N}$$ and $$\omega \in { \omega_1, \dots, \omega_M } $$.
-The sequence $$(\bar{X}_1(\omega) -\mu , \dots ,\bar{X}_N(\omega) -\mu)$$ ($$\omega$$ fixed) is called a path in the following.
+$$
+for any sequence of positive real numbers $x$ that converges to $\infty$ (follows from the rules of the product of $\limsup$&apos;s).
+In other words using the &lt;a href=&quot;https://en.wikipedia.org/wiki/Big_O_notation#Little-o_notation&quot;&gt;little-$o$ notation&lt;/a&gt; $\bar{X}_n - \mu = o(x_n l_n) $ a.s. as $n \to \infty$.&lt;/p&gt;
+&lt;p&gt;We can numerically visualize these relations by generating $X_1( \omega), X_2 (\omega) , \dots , X_N (\omega)$ for multiple outcomes ${ \omega_1, \dots, \omega_M } $ and then plotting both $l_n$ and $\bar{X}_n(\omega) -\mu$ for all $n \in {1 , \dots , N}$ and $\omega \in { \omega_1, \dots, \omega_M } $.
+The sequence $(\bar{X}_1(\omega) -\mu , \dots ,\bar{X}_N(\omega) -\mu)$ ($\omega$ fixed) is called a path in the following.
 This has been done for a standard normal distribution (mean 0, variance 1) with 800 paths to produce the following figure:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/assets/iterlog.png&quot; alt=&quot;paths&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;A logarithmic scale is used on the horizontal axis, while a 10-th root scale is used on the vertical axis.
 Each colored line is the path for one outcome.
-The dash-dotted line visualizes that $$|\bar{X}_n - \mu| = \mathcal{O}(l_n)$$ a.s. and the solid line that $$|\bar{X}_n - \mu| = o(x_n l_n)$$ a.s. with $$x_n = n^{0.2}$$. Also note how slow the sample mean really converges, even after using $$10^9$$ samples there are still deviations in the order of $$10^4$$ from the real mean.&lt;/p&gt;
+The dash-dotted line visualizes that $|\bar{X}_n - \mu| = \mathcal{O}(l_n)$ a.s. and the solid line that $|\bar{X}_n - \mu| = o(x_n l_n)$ a.s. with $x_n = n^{0.2}$. Also note how slow the sample mean really converges, even after using $10^9$ samples there are still deviations in the order of $10^4$ from the real mean.&lt;/p&gt;
 &lt;h2 id=&quot;visualizing-the-law-of-the-iterated-logarithm-in-python&quot;&gt;Visualizing The Law Of The Iterated Logarithm In Python&lt;/h2&gt;
 &lt;p&gt;This section will tell you how to write a python program to visualise the LIL as discussed in the preceding section and how to optimize it.&lt;/p&gt;
 &lt;h1 id=&quot;basic-code&quot;&gt;Basic Code&lt;/h1&gt;
@@ -1224,7 +1236,7 @@ The libary &lt;code&gt;numpy&lt;/code&gt; will be used to do the heavy lifting, 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt; 
 &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;matplotlib&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pyplot&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;The following function computes the values of &lt;code&gt;M&lt;/code&gt; paths for a standard normal distribution (mean zero and variance 1) and returns their values for the $$n$$ in &lt;code&gt;ns&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The following function computes the values of &lt;code&gt;M&lt;/code&gt; paths for a standard normal distribution (mean zero and variance 1) and returns their values for the $n$ in &lt;code&gt;ns&lt;/code&gt;.&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;generate_paths_basic&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;M&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
     &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;returns an array containing the values of M different paths at the values of n in ns&quot;&quot;&quot;&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;rng&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Generator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SFC64&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#nitialize RNG
@@ -1232,14 +1244,14 @@ The libary &lt;code&gt;numpy&lt;/code&gt; will be used to do the heavy lifting, 
 &lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;paths&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cumsum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;axis&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#calculate the partial sums from n=1 to n=ns[-1]
 &lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;paths&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ns&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#only return the partial sums for those values of n in ns
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;We dont want to display the paths for all values of $$n$$. A logarithmic scale is a good idea:&lt;/p&gt;
+&lt;p&gt;We dont want to display the paths for all values of $n$. A logarithmic scale is a good idea:&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;logspace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#create array of numbers between 10**1 and 10**6 that are equally  that are evenly spaced on a log scale for plotting of the iterated logarithm
 &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ns&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;unique&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;round&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;astype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;int64&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#create array of integers between 10**1 and 10**6 that are equally spaced on a log scale for plotting of the paths
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;Lets generate 80 paths&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;paths&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;generate_paths_basic&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;80&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;and define the sequence $$l_n$$ to compare the paths with:&lt;/p&gt;
+&lt;p&gt;and define the sequence $l_n$ to compare the paths with:&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;iterlog&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;
@@ -1269,7 +1281,7 @@ The libary &lt;code&gt;numpy&lt;/code&gt; will be used to do the heavy lifting, 
 &lt;p&gt;This section tells you how to optimize the above code to deal with large numbers of samples.
 In the process you will learn to write fast python code that leverages parallel computation with numba.
 So lets get into it:
-While the above code is very simple and executes relatively fast it has a big problem if we want to calculate the paths for even larger $$n$$:
+While the above code is very simple and executes relatively fast it has a big problem if we want to calculate the paths for even larger $n$:
 It uses way too much ram.
 This is because the function &lt;code&gt;generate_paths_basic&lt;/code&gt; creates two huge arrays to store the random data and the partial sums in.
 Of course we dont really need to generate all random data at once and store it in an array.
@@ -1282,7 +1294,7 @@ To facilitate this we will be using the &lt;code&gt;numba&lt;/code&gt; and the &
 &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numba&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nb&lt;/span&gt; 
 &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;threading&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;The following function will be used to calculate the path differences between values of $$n$$ that we are interested in.&lt;/p&gt;
+&lt;p&gt;The following function will be used to calculate the path differences between values of $n$ that we are interested in.&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;jit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nopython&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fastmath&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nogil&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;partial_sum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rng&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
     &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;take an instance rng of the np.random.Generator() class and sum n normally distributed samples drawn from rng&quot;&quot;&quot;&lt;/span&gt;
@@ -1295,7 +1307,7 @@ To facilitate this we will be using the &lt;code&gt;numba&lt;/code&gt; and the &
 We pass an instance of the &lt;code&gt;np.random.Generator()&lt;/code&gt; class to use it within the numba&apos;d function (this only works because there is explicit support for this in numba).
 This function has the advantage of not saving intermediate results and not creating large arrays (unlike using numpy would).
 The usage of numba is critical, because the same code using vanilla python would run very slow and would be restricted from multi-threading by the python GIL.
-We can use the &lt;code&gt;partial_sum&lt;/code&gt; function to define a function that calculates the values of the paths at those $$n$$ in &lt;code&gt;ns&lt;/code&gt;:&lt;/p&gt;
+We can use the &lt;code&gt;partial_sum&lt;/code&gt; function to define a function that calculates the values of the paths at those $n$ in &lt;code&gt;ns&lt;/code&gt;:&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;jit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nopython&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fastmath&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nogil&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;generate_paths&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;paths&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rng&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;diffs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
     &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;takes an array paths and writes the relevant path values in it for paths.shape[0] different paths. Uses random samples from rng.&quot;&quot;&quot;&lt;/span&gt;
