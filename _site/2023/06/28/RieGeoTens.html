@@ -126,7 +126,7 @@ I also show how to calculate the Christoffel symbols and the different curvature
 </code></pre></div></div>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ch_syms</span>
 </code></pre></div></div>
-<p>$$\displaystyle \left(\frac{1}{2}\right)g{}^{cl_{0}}\left(\frac{\partial}{\partial {x{}^{a}}}{g{}<em>{bl</em>{0}}} + \frac{\partial}{\partial {x{}^{b}}}{g{}<em>{al</em>{0}}} + \left(-1\right)\frac{\partial}{\partial {x{}^{l_{0}}}}{g{}_{ab}}\right)$$</p>
+<p>$$\displaystyle \left(\frac{1}{2}\right)g{}^{cl_{0}}\left(\frac{\partial}{\partial {x{}^{a}}}{g{}_{bl_{0}}} + \frac{\partial}{\partial {x{}^{b}}}{g{}_{al_{0}}} + \left(-1\right)\frac{\partial}{\partial {x{}^{l_{0}}}}{g{}_{ab}}\right)$$</p>
 <h2 id="covariant-derivative">Covariant Derivative</h2>
 <p>Define the covariant derivative from the well known formula in terms of Christoffel symbols:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">cov_der</span><span class="p">(</span><span class="n">new_ind</span><span class="p">,</span><span class="n">expr</span><span class="p">):</span>
@@ -148,13 +148,13 @@ I also show how to calculate the Christoffel symbols and the different curvature
 </code></pre></div></div>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cov_der</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">E</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="o">-</span><span class="n">c</span><span class="p">))</span>
 </code></pre></div></div>
-<p>$$\displaystyle -\Gamma{}^{l_{0}}{}<em>{l</em>{1}c}E{}^{l_{1}b}{}<em>{l</em>{0}} + \Gamma{}^{b}{}<em>{l</em>{0}l_{1}}E{}^{l_{0}l_{1}}{}<em>{c} + \Gamma{}^{l</em>{0}}{}<em>{l</em>{0}l_{1}}E{}^{l_{1}b}{}<em>{c} + \frac{\partial}{\partial {x{}^{l</em>{0}}}}{E{}^{l_{0}b}{}_{c}}$$</p>
+<p>$$\displaystyle -\Gamma{}^{l_{0}}{}_{l_{1}c}E{}^{l_{1}b}{}_{l_{0}} + \Gamma{}^{b}{}_{l_{0}l_{1}}E{}^{l_{0}l_{1}}{}_{c} + \Gamma{}^{l_{0}}{}_{l_{0}l_{1}}E{}^{l_{1}b}{}_{c} + \frac{\partial}{\partial {x{}^{l_{0}}}}{E{}^{l_{0}b}{}_{c}}$$</p>
 <p>Divergence of a vector field:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">divA</span> <span class="o">=</span> <span class="n">cov_der</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
 </code></pre></div></div>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">divA</span>
 </code></pre></div></div>
-<p>$$\displaystyle \Gamma{}^{l_{0}}{}<em>{l</em>{0}l_{1}}A{}^{l_{1}} + \frac{\partial}{\partial {x{}^{l_{0}}}}{A{}^{l_{0}}}$$</p>
+<p>$$\displaystyle \Gamma{}^{l_{0}}{}_{l_{0}l_{1}}A{}^{l_{1}} + \frac{\partial}{\partial {x{}^{l_{0}}}}{A{}^{l_{0}}}$$</p>
 <h2 id="riemann-curvature">Riemann Curvature</h2>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">symmetrizer</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">indices</span><span class="p">,</span><span class="n">anti</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
     <span class="s">"""(Anti)-symmetrize the factors of a tensor (expression) t which are included in the indices list"""</span>
@@ -178,7 +178,7 @@ I also show how to calculate the Christoffel symbols and the different curvature
 </code></pre></div></div>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Rie</span>
 </code></pre></div></div>
-<p>$$\displaystyle -\Gamma{}^{l_{0}}{}<em>{cb}\Gamma{}^{d}{}</em>{al_{0}} - \left(\frac{\partial}{\partial {x{}^{a}}}{\Gamma{}^{d}{}<em>{bc}} + \left(-1\right)\frac{\partial}{\partial {x{}^{b}}}{\Gamma{}^{d}{}</em>{ac}}\right) + \Gamma{}^{l_{0}}{}<em>{ca}\Gamma{}^{d}{}</em>{bl_{0}}$$</p>
+<p>$$\displaystyle -\Gamma{}^{l_{0}}{}_{cb}\Gamma{}^{d}{}_{al_{0}} - \left(\frac{\partial}{\partial {x{}^{a}}}{\Gamma{}^{d}{}_{bc}} + \left(-1\right)\frac{\partial}{\partial {x{}^{b}}}{\Gamma{}^{d}{}_{ac}}\right) + \Gamma{}^{l_{0}}{}_{ca}\Gamma{}^{d}{}_{bl_{0}}$$</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Rie</span><span class="p">.</span><span class="n">free_indices</span>
 </code></pre></div></div>
 <pre><code>[d, -b, -c, -a]
@@ -198,11 +198,11 @@ I also show how to calculate the Christoffel symbols and the different curvature
 <p>The components $g_{\mu \nu}$ of the metric $g$ are:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">g</span><span class="p">(</span><span class="o">-</span><span class="n">e</span><span class="p">,</span><span class="o">-</span><span class="n">j</span><span class="p">).</span><span class="n">replace_with_arrays</span><span class="p">(</span><span class="n">repl</span><span class="p">)</span>
 </code></pre></div></div>
-<p>$$\displaystyle \left[\begin{matrix}r^{2} &amp; 0\0 &amp; r^{2} \sin^{2}{\left(\theta \right)}\end{matrix}\right]$$</p>
+<p>$$\displaystyle \left[\begin{matrix}r^{2} &amp; 0\\0 &amp; r^{2} \sin^{2}{\left(\theta \right)}\end{matrix}\right]$$</p>
 <h2 id="calculation-of-the-christoffel-symbols">Calculation of the Christoffel-Symbols</h2>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ch_syms</span>
 </code></pre></div></div>
-<p>$$\displaystyle \left(\frac{1}{2}\right)g{}^{cl_{0}}\left(\frac{\partial}{\partial {x{}^{a}}}{g{}<em>{bl</em>{0}}} + \frac{\partial}{\partial {x{}^{b}}}{g{}<em>{al</em>{0}}} + \left(-1\right)\frac{\partial}{\partial {x{}^{l_{0}}}}{g{}_{ab}}\right)$$</p>
+<p>$$\displaystyle \left(\frac{1}{2}\right)g{}^{cl_{0}}\left(\frac{\partial}{\partial {x{}^{a}}}{g{}_{bl_{0}}} + \frac{\partial}{\partial {x{}^{b}}}{g{}_{al_{0}}} + \left(-1\right)\frac{\partial}{\partial {x{}^{l_{0}}}}{g{}_{ab}}\right)$$</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">G_coord</span> <span class="o">=</span> <span class="n">ch_syms</span><span class="p">.</span><span class="n">replace_with_arrays</span><span class="p">(</span><span class="n">repl</span><span class="p">)</span>
 </code></pre></div></div>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">repl</span><span class="p">.</span><span class="n">update</span><span class="p">({</span><span class="n">G</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="o">-</span><span class="n">j</span><span class="p">,</span><span class="o">-</span><span class="n">h</span><span class="p">):</span> <span class="n">G_coord</span><span class="p">})</span>
@@ -210,7 +210,7 @@ I also show how to calculate the Christoffel symbols and the different curvature
 <p>The Christoffel Symbols $\Gamma^\mu_{\nu \rho}$ are:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">G</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="o">-</span><span class="n">a</span><span class="p">,</span><span class="o">-</span><span class="n">b</span><span class="p">).</span><span class="n">replace_with_arrays</span><span class="p">(</span><span class="n">repl</span><span class="p">)</span>
 </code></pre></div></div>
-<p>$$\displaystyle \left[\begin{matrix}\left[\begin{matrix}0 &amp; 0\0 &amp; - \sin{\left(\theta \right)} \cos{\left(\theta \right)}\end{matrix}\right] &amp; \left[\begin{matrix}0 &amp; \frac{\cos{\left(\theta \right)}}{\sin{\left(\theta \right)}}\\frac{\cos{\left(\theta \right)}}{\sin{\left(\theta \right)}} &amp; 0\end{matrix}\right]\end{matrix}\right]$$</p>
+<p>$$\displaystyle \left[\begin{matrix}\left[\begin{matrix}0 &amp; 0\\0 &amp; - \sin{\left(\theta \right)} \cos{\left(\theta \right)}\end{matrix}\right] &amp; \left[\begin{matrix}0 &amp; \frac{\cos{\left(\theta \right)}}{\sin{\left(\theta \right)}}\\\frac{\cos{\left(\theta \right)}}{\sin{\left(\theta \right)}} &amp; 0\end{matrix}\right]\end{matrix}\right]$$</p>
 <h2 id="differential-operators-in-spherical-coordinates">Differential Operators In Spherical Coordinates</h2>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df</span> <span class="o">=</span> <span class="n">TensorHead</span><span class="p">(</span><span class="s">"df"</span><span class="p">,[</span><span class="n">V</span><span class="p">])</span>
 </code></pre></div></div>
@@ -238,7 +238,7 @@ I also show how to calculate the Christoffel symbols and the different curvature
 <p>So that the vector field is $A^i = A^\theta \frac{\partial}{\partial \theta} + A^\varphi \frac{\partial}{\partial \varphi} $</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">divA</span>
 </code></pre></div></div>
-<p>$$\displaystyle \Gamma{}^{l_{0}}{}<em>{l</em>{0}l_{1}}A{}^{l_{1}} + \frac{\partial}{\partial {x{}^{l_{0}}}}{A{}^{l_{0}}}$$</p>
+<p>$$\displaystyle \Gamma{}^{l_{0}}{}_{l_{0}l_{1}}A{}^{l_{1}} + \frac{\partial}{\partial {x{}^{l_{0}}}}{A{}^{l_{0}}}$$</p>
 <p>The divergence $\mathrm{div}A$ is:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">divA</span><span class="p">.</span><span class="n">replace_with_arrays</span><span class="p">(</span><span class="n">repl</span><span class="p">)</span>
 </code></pre></div></div>
@@ -247,35 +247,35 @@ I also show how to calculate the Christoffel symbols and the different curvature
 <p>Riemann Curvature:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Rie</span>
 </code></pre></div></div>
-<p>$$\displaystyle -\Gamma{}^{l_{0}}{}<em>{cb}\Gamma{}^{d}{}</em>{al_{0}} - \left(\frac{\partial}{\partial {x{}^{a}}}{\Gamma{}^{d}{}<em>{bc}} + \left(-1\right)\frac{\partial}{\partial {x{}^{b}}}{\Gamma{}^{d}{}</em>{ac}}\right) + \Gamma{}^{l_{0}}{}<em>{ca}\Gamma{}^{d}{}</em>{bl_{0}}$$</p>
+<p>$$\displaystyle -\Gamma{}^{l_{0}}{}_{cb}\Gamma{}^{d}{}_{al_{0}} - \left(\frac{\partial}{\partial {x{}^{a}}}{\Gamma{}^{d}{}_{bc}} + \left(-1\right)\frac{\partial}{\partial {x{}^{b}}}{\Gamma{}^{d}{}_{ac}}\right) + \Gamma{}^{l_{0}}{}_{ca}\Gamma{}^{d}{}_{bl_{0}}$$</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Rie_coord</span> <span class="o">=</span> <span class="n">Rie</span><span class="p">.</span><span class="n">replace_with_arrays</span><span class="p">(</span><span class="n">repl</span><span class="p">,[</span><span class="o">-</span><span class="n">a</span><span class="p">,</span><span class="o">-</span><span class="n">b</span><span class="p">,</span><span class="o">-</span><span class="n">c</span><span class="p">,</span><span class="o">-</span><span class="n">d</span><span class="p">])</span>
 </code></pre></div></div>
 <p>The components $R_{\mu \nu \rho \sigma}$ of the Riemann curvature tensor are:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Rie_coord</span>
 </code></pre></div></div>
-<p>$$\displaystyle \left[\begin{matrix}\left[\begin{matrix}0 &amp; 0\0 &amp; 0\end{matrix}\right] &amp; \left[\begin{matrix}0 &amp; r^{2} \sin^{2}{\left(\theta \right)}\- r^{2} \sin^{2}{\left(\theta \right)} &amp; 0\end{matrix}\right]\\left[\begin{matrix}0 &amp; - r^{2} \sin^{2}{\left(\theta \right)}\r^{2} \sin^{2}{\left(\theta \right)} &amp; 0\end{matrix}\right] &amp; \left[\begin{matrix}0 &amp; 0\0 &amp; 0\end{matrix}\right]\end{matrix}\right]$$</p>
+<p>$$\displaystyle \left[\begin{matrix}\left[\begin{matrix}0 &amp; 0\\0 &amp; 0\end{matrix}\right] &amp; \left[\begin{matrix}0 &amp; r^{2} \sin^{2}{\left(\theta \right)}\\- r^{2} \sin^{2}{\left(\theta \right)} &amp; 0\end{matrix}\right]\\\left[\begin{matrix}0 &amp; - r^{2} \sin^{2}{\left(\theta \right)}\\r^{2} \sin^{2}{\left(\theta \right)} &amp; 0\end{matrix}\right] &amp; \left[\begin{matrix}0 &amp; 0\\0 &amp; 0\end{matrix}\right]\end{matrix}\right]$$</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">repl</span><span class="p">.</span><span class="n">update</span><span class="p">({</span><span class="n">R</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="p">,</span><span class="o">-</span><span class="n">b</span><span class="p">,</span><span class="o">-</span><span class="n">c</span><span class="p">,</span><span class="o">-</span><span class="n">d</span><span class="p">):</span> <span class="n">Rie_coord</span><span class="p">})</span>
 </code></pre></div></div>
 <p>The components $R^\mu{}_{\nu \rho \sigma}$ of the Riemann curvature tensor are:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">R</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="o">-</span><span class="n">b</span><span class="p">,</span><span class="o">-</span><span class="n">c</span><span class="p">,</span><span class="o">-</span><span class="n">d</span><span class="p">).</span><span class="n">replace_with_arrays</span><span class="p">(</span><span class="n">repl</span><span class="p">)</span>
 </code></pre></div></div>
-<p>$$\displaystyle \left[\begin{matrix}\left[\begin{matrix}0 &amp; 0\0 &amp; 0\end{matrix}\right] &amp; \left[\begin{matrix}0 &amp; \sin^{2}{\left(\theta \right)}\- \sin^{2}{\left(\theta \right)} &amp; 0\end{matrix}\right]\\left[\begin{matrix}0 &amp; -1\1 &amp; 0\end{matrix}\right] &amp; \left[\begin{matrix}0 &amp; 0\0 &amp; 0\end{matrix}\right]\end{matrix}\right]$$</p>
+<p>$$\displaystyle \left[\begin{matrix}\left[\begin{matrix}0 &amp; 0\\0 &amp; 0\end{matrix}\right] &amp; \left[\begin{matrix}0 &amp; \sin^{2}{\left(\theta \right)}\\- \sin^{2}{\left(\theta \right)} &amp; 0\end{matrix}\right]\\\left[\begin{matrix}0 &amp; -1\\1 &amp; 0\end{matrix}\right] &amp; \left[\begin{matrix}0 &amp; 0\\0 &amp; 0\end{matrix}\right]\end{matrix}\right]$$</p>
 <p>Ricci Curvature:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Ric</span> <span class="o">=</span> <span class="n">R</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="o">-</span><span class="n">a</span><span class="p">,</span><span class="o">-</span><span class="n">e</span><span class="p">,</span><span class="o">-</span><span class="n">b</span><span class="p">)</span>
 </code></pre></div></div>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Ric</span>
 </code></pre></div></div>
-<p>$$\displaystyle R{}^{l_{0}}{}<em>{al</em>{0}b}$$</p>
+<p>$$\displaystyle R{}^{l_{0}}{}_{al_{0}b}$$</p>
 <p>The components $\mathrm{Ric}_{\mu \nu}$ of the Ricci Tensor are:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Ric</span><span class="p">.</span><span class="n">replace_with_arrays</span><span class="p">(</span><span class="n">repl</span><span class="p">)</span>
 </code></pre></div></div>
-<p>$$\displaystyle \left[\begin{matrix}1 &amp; 0\0 &amp; \sin^{2}{\left(\theta \right)}\end{matrix}\right]$$</p>
+<p>$$\displaystyle \left[\begin{matrix}1 &amp; 0\\0 &amp; \sin^{2}{\left(\theta \right)}\end{matrix}\right]$$</p>
 <p>Scalar Curvature:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">S</span> <span class="o">=</span> <span class="n">Ric</span><span class="p">.</span><span class="n">_replace_indices</span><span class="p">({</span><span class="o">-</span><span class="n">a</span><span class="p">:</span><span class="n">a</span><span class="p">,</span><span class="o">-</span><span class="n">b</span><span class="p">:</span><span class="o">-</span><span class="n">a</span><span class="p">})</span>
 </code></pre></div></div>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">S</span>
 </code></pre></div></div>
-<p>$$\displaystyle R{}^{l_{0}a}{}<em>{l</em>{0}a}$$</p>
+<p>$$\displaystyle R{}^{l_{0}a}{}_{l_{0}a}$$</p>
 <p>The scalar curvature is:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">S</span><span class="p">.</span><span class="n">replace_with_arrays</span><span class="p">(</span><span class="n">repl</span><span class="p">)</span>
 </code></pre></div></div>

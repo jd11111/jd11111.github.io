@@ -79,7 +79,7 @@ ch_syms
 
 
 
-$$\displaystyle \left(\frac{1}{2}\right)g{}^{cl_{0}}\left(\frac{\partial}{\partial {x{}^{a}}}{g{}_{bl_{0}}} + \frac{\partial}{\partial {x{}^{b}}}{g{}_{al_{0}}} + \left(-1\right)\frac{\partial}{\partial {x{}^{l_{0}}}}{g{}_{ab}}\right)$$
+$$\displaystyle \left(\frac{1}{2}\right)g{}^{cl\_{0}}\left(\frac{\partial}{\partial {x{}^{a}}}{g{}\_{bl\_{0}}} + \frac{\partial}{\partial {x{}^{b}}}{g{}\_{al\_{0}}} + \left(-1\right)\frac{\partial}{\partial {x{}^{l\_{0}}}}{g{}\_{ab}}\right)$$
 
 
 ## Covariant Derivative
@@ -118,7 +118,7 @@ cov_der(a,E(a,b,-c))
 
 
 
-$$\displaystyle -\Gamma{}^{l_{0}}{}_{l_{1}c}E{}^{l_{1}b}{}_{l_{0}} + \Gamma{}^{b}{}_{l_{0}l_{1}}E{}^{l_{0}l_{1}}{}_{c} + \Gamma{}^{l_{0}}{}_{l_{0}l_{1}}E{}^{l_{1}b}{}_{c} + \frac{\partial}{\partial {x{}^{l_{0}}}}{E{}^{l_{0}b}{}_{c}}$$
+$$\displaystyle -\Gamma{}^{l\_{0}}{}\_{l\_{1}c}E{}^{l\_{1}b}{}\_{l\_{0}} + \Gamma{}^{b}{}\_{l\_{0}l\_{1}}E{}^{l\_{0}l\_{1}}{}\_{c} + \Gamma{}^{l\_{0}}{}\_{l\_{0}l\_{1}}E{}^{l\_{1}b}{}\_{c} + \frac{\partial}{\partial {x{}^{l\_{0}}}}{E{}^{l\_{0}b}{}\_{c}}$$
 
 
 
@@ -137,7 +137,7 @@ divA
 
 
 
-$$\displaystyle \Gamma{}^{l_{0}}{}_{l_{0}l_{1}}A{}^{l_{1}} + \frac{\partial}{\partial {x{}^{l_{0}}}}{A{}^{l_{0}}}$$
+$$\displaystyle \Gamma{}^{l\_{0}}{}\_{l\_{0}l\_{1}}A{}^{l\_{1}} + \frac{\partial}{\partial {x{}^{l\_{0}}}}{A{}^{l\_{0}}}$$
 
 
 
@@ -162,7 +162,7 @@ def symmetrizer(t,indices,anti=False):
     return sym/(math.factorial(N))
 ```
 
-Define the Riemann curvature tensor $R^{a}{}_{bcd}$ from the well known expression in terms of Christoffel symbols 
+Define the Riemann curvature tensor $R^{a}{}\_{bcd}$ from the well known expression in terms of Christoffel symbols 
 
 
 ```python
@@ -178,7 +178,7 @@ Rie
 
 
 
-$$\displaystyle -\Gamma{}^{l_{0}}{}_{cb}\Gamma{}^{d}{}_{al_{0}} - \left(\frac{\partial}{\partial {x{}^{a}}}{\Gamma{}^{d}{}_{bc}} + \left(-1\right)\frac{\partial}{\partial {x{}^{b}}}{\Gamma{}^{d}{}_{ac}}\right) + \Gamma{}^{l_{0}}{}_{ca}\Gamma{}^{d}{}_{bl_{0}}$$
+$$\displaystyle -\Gamma{}^{l\_{0}}{}\_{cb}\Gamma{}^{d}{}\_{al\_{0}} - \left(\frac{\partial}{\partial {x{}^{a}}}{\Gamma{}^{d}{}\_{bc}} + \left(-1\right)\frac{\partial}{\partial {x{}^{b}}}{\Gamma{}^{d}{}\_{ac}}\right) + \Gamma{}^{l\_{0}}{}\_{ca}\Gamma{}^{d}{}\_{bl\_{0}}$$
 
 
 
@@ -215,7 +215,7 @@ repl = {
         }
 ```
 
-The components $g_{\mu \nu}$ of the metric $g$ are:
+The components $g\_{\mu \nu}$ of the metric $g$ are:
 
 
 ```python
@@ -225,7 +225,7 @@ g(-e,-j).replace_with_arrays(repl)
 
 
 
-$$\displaystyle \left[\begin{matrix}r^{2} & 0\\0 & r^{2} \sin^{2}{\left(\theta \right)}\end{matrix}\right]$$
+$$\displaystyle \left[\begin{matrix}r^{2} & 0\\\\0 & r^{2} \sin^{2}{\left(\theta \right)}\end{matrix}\right]$$
 
 
 
@@ -239,7 +239,7 @@ ch_syms
 
 
 
-$$\displaystyle \left(\frac{1}{2}\right)g{}^{cl_{0}}\left(\frac{\partial}{\partial {x{}^{a}}}{g{}_{bl_{0}}} + \frac{\partial}{\partial {x{}^{b}}}{g{}_{al_{0}}} + \left(-1\right)\frac{\partial}{\partial {x{}^{l_{0}}}}{g{}_{ab}}\right)$$
+$$\displaystyle \left(\frac{1}{2}\right)g{}^{cl\_{0}}\left(\frac{\partial}{\partial {x{}^{a}}}{g{}\_{bl\_{0}}} + \frac{\partial}{\partial {x{}^{b}}}{g{}\_{al\_{0}}} + \left(-1\right)\frac{\partial}{\partial {x{}^{l\_{0}}}}{g{}\_{ab}}\right)$$
 
 
 
@@ -253,7 +253,7 @@ G_coord = ch_syms.replace_with_arrays(repl)
 repl.update({G(e,-j,-h): G_coord})
 ```
 
-The Christoffel Symbols $\Gamma^\mu_{\nu \rho}$ are:
+The Christoffel Symbols $\Gamma^\mu\_{\nu \rho}$ are:
 
 
 ```python
@@ -263,7 +263,7 @@ G(d,-a,-b).replace_with_arrays(repl)
 
 
 
-$$\displaystyle \left[\begin{matrix}\left[\begin{matrix}0 & 0\\0 & - \sin{\left(\theta \right)} \cos{\left(\theta \right)}\end{matrix}\right] & \left[\begin{matrix}0 & \frac{\cos{\left(\theta \right)}}{\sin{\left(\theta \right)}}\\\frac{\cos{\left(\theta \right)}}{\sin{\left(\theta \right)}} & 0\end{matrix}\right]\end{matrix}\right]$$
+$$\displaystyle \left[\begin{matrix}\left[\begin{matrix}0 & 0\\\\0 & - \sin{\left(\theta \right)} \cos{\left(\theta \right)}\end{matrix}\right] & \left[\begin{matrix}0 & \frac{\cos{\left(\theta \right)}}{\sin{\left(\theta \right)}}\\\\\frac{\cos{\left(\theta \right)}}{\sin{\left(\theta \right)}} & 0\end{matrix}\right]\end{matrix}\right]$$
 
 
 
@@ -340,7 +340,7 @@ divA
 
 
 
-$$\displaystyle \Gamma{}^{l_{0}}{}_{l_{0}l_{1}}A{}^{l_{1}} + \frac{\partial}{\partial {x{}^{l_{0}}}}{A{}^{l_{0}}}$$
+$$\displaystyle \Gamma{}^{l\_{0}}{}\_{l\_{0}l\_{1}}A{}^{l\_{1}} + \frac{\partial}{\partial {x{}^{l\_{0}}}}{A{}^{l\_{0}}}$$
 
 
 
@@ -370,7 +370,7 @@ Rie
 
 
 
-$$\displaystyle -\Gamma{}^{l_{0}}{}_{cb}\Gamma{}^{d}{}_{al_{0}} - \left(\frac{\partial}{\partial {x{}^{a}}}{\Gamma{}^{d}{}_{bc}} + \left(-1\right)\frac{\partial}{\partial {x{}^{b}}}{\Gamma{}^{d}{}_{ac}}\right) + \Gamma{}^{l_{0}}{}_{ca}\Gamma{}^{d}{}_{bl_{0}}$$
+$$\displaystyle -\Gamma{}^{l\_{0}}{}\_{cb}\Gamma{}^{d}{}\_{al\_{0}} - \left(\frac{\partial}{\partial {x{}^{a}}}{\Gamma{}^{d}{}\_{bc}} + \left(-1\right)\frac{\partial}{\partial {x{}^{b}}}{\Gamma{}^{d}{}\_{ac}}\right) + \Gamma{}^{l\_{0}}{}\_{ca}\Gamma{}^{d}{}\_{bl\_{0}}$$
 
 
 
@@ -379,7 +379,7 @@ $$\displaystyle -\Gamma{}^{l_{0}}{}_{cb}\Gamma{}^{d}{}_{al_{0}} - \left(\frac{\p
 Rie_coord = Rie.replace_with_arrays(repl,[-a,-b,-c,-d])
 ```
 
-The components $R_{\mu \nu \rho \sigma}$ of the Riemann curvature tensor are:
+The components $R\_{\mu \nu \rho \sigma}$ of the Riemann curvature tensor are:
 
 
 ```python
@@ -389,7 +389,7 @@ Rie_coord
 
 
 
-$$\displaystyle \left[\begin{matrix}\left[\begin{matrix}0 & 0\\0 & 0\end{matrix}\right] & \left[\begin{matrix}0 & r^{2} \sin^{2}{\left(\theta \right)}\\- r^{2} \sin^{2}{\left(\theta \right)} & 0\end{matrix}\right]\\\left[\begin{matrix}0 & - r^{2} \sin^{2}{\left(\theta \right)}\\r^{2} \sin^{2}{\left(\theta \right)} & 0\end{matrix}\right] & \left[\begin{matrix}0 & 0\\0 & 0\end{matrix}\right]\end{matrix}\right]$$
+$$\displaystyle \left[\begin{matrix}\left[\begin{matrix}0 & 0\\\\0 & 0\end{matrix}\right] & \left[\begin{matrix}0 & r^{2} \sin^{2}{\left(\theta \right)}\\\\- r^{2} \sin^{2}{\left(\theta \right)} & 0\end{matrix}\right]\\\\\left[\begin{matrix}0 & - r^{2} \sin^{2}{\left(\theta \right)}\\\\r^{2} \sin^{2}{\left(\theta \right)} & 0\end{matrix}\right] & \left[\begin{matrix}0 & 0\\\\0 & 0\end{matrix}\right]\end{matrix}\right]$$
 
 
 
@@ -398,7 +398,7 @@ $$\displaystyle \left[\begin{matrix}\left[\begin{matrix}0 & 0\\0 & 0\end{matrix}
 repl.update({R(-a,-b,-c,-d): Rie_coord})
 ```
 
-The components $R^\mu{}_{\nu \rho \sigma}$ of the Riemann curvature tensor are:
+The components $R^\mu{}\_{\nu \rho \sigma}$ of the Riemann curvature tensor are:
 
 
 ```python
@@ -408,7 +408,7 @@ R(a,-b,-c,-d).replace_with_arrays(repl)
 
 
 
-$$\displaystyle \left[\begin{matrix}\left[\begin{matrix}0 & 0\\0 & 0\end{matrix}\right] & \left[\begin{matrix}0 & \sin^{2}{\left(\theta \right)}\\- \sin^{2}{\left(\theta \right)} & 0\end{matrix}\right]\\\left[\begin{matrix}0 & -1\\1 & 0\end{matrix}\right] & \left[\begin{matrix}0 & 0\\0 & 0\end{matrix}\right]\end{matrix}\right]$$
+$$\displaystyle \left[\begin{matrix}\left[\begin{matrix}0 & 0\\\\0 & 0\end{matrix}\right] & \left[\begin{matrix}0 & \sin^{2}{\left(\theta \right)}\\\\- \sin^{2}{\left(\theta \right)} & 0\end{matrix}\right]\\\\\left[\begin{matrix}0 & -1\\\\1 & 0\end{matrix}\right] & \left[\begin{matrix}0 & 0\\\\0 & 0\end{matrix}\right]\end{matrix}\right]$$
 
 
 
@@ -427,11 +427,11 @@ Ric
 
 
 
-$$\displaystyle R{}^{l_{0}}{}_{al_{0}b}$$
+$$\displaystyle R{}^{l\_{0}}{}\_{al\_{0}b}$$
 
 
 
-The components $\mathrm{Ric}_{\mu \nu}$ of the Ricci Tensor are:
+The components $\mathrm{Ric}\_{\mu \nu}$ of the Ricci Tensor are:
 
 
 ```python
@@ -441,7 +441,7 @@ Ric.replace_with_arrays(repl)
 
 
 
-$$\displaystyle \left[\begin{matrix}1 & 0\\0 & \sin^{2}{\left(\theta \right)}\end{matrix}\right]$$
+$$\displaystyle \left[\begin{matrix}1 & 0\\\\0 & \sin^{2}{\left(\theta \right)}\end{matrix}\right]$$
 
 
 
@@ -460,7 +460,7 @@ S
 
 
 
-$$\displaystyle R{}^{l_{0}a}{}_{l_{0}a}$$
+$$\displaystyle R{}^{l\_{0}a}{}\_{l\_{0}a}$$
 
 
 
