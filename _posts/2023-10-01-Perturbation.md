@@ -5,7 +5,7 @@ date:   2023-10-01 15:14:45 +0200
 categories:
 ---
 
-This post is an introduction to perturbation theory based on my reading of chapter 2 of the book ["Pertubation Theory For Linear Operators"](https://link.springer.com/book/10.1007/978-3-642-66282-9) by Tosio Kato, where more on the topic (including lots of things i have omitted) can be found. Test!
+This post is an introduction to perturbation theory based on my reading of chapter 2 of the book ["Pertubation Theory For Linear Operators"](https://link.springer.com/book/10.1007/978-3-642-66282-9) by Tosio Kato, where more on the topic (including lots of things i have omitted) can be found.
 
 The following topics are covered:
 

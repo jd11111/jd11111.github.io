@@ -16,45 +16,73 @@ The following topics are covered:
     - [Symmetrization Of Tensors In Sympy](#symmetrization-of-tensors-in-sympy)
 
 
-# The Abstract Index Notation
+### The Abstract Index Notation
 
 In this section i will briefly explain the abstract index notation for tensors with examples, these examples generalize in obvious ways. The reader is assumed to have some knowledge on the tensor product of vector spaces.
 
-Let $V$ be a finite dimensional vector space and $V^*$ be its dual space. 
+Let $V$ be a finite dimensional vector space and $V^*$ be its dual space. Further let $(e_\mu)$ be a basis of $V$ and $(e^\mu)$ its dual basis.
 
-The notation $V_{a\ \ \ d}^{\ bc}$ is used for the tensor product $V^*  \otimes V\otimes V \otimes V^*$.
-A tensor in $V_{a\ \ \ d}^{\ bc}$ is for example denoted as $T\mathstrut_{a}\mathstrut^{bc}\mathstrut_d$.
+Given, for example, a Tensor $T \in V^* \otimes V \otimes V \otimes V^*$ we denote it by
+$ T_a {}^{bc} {}_d$ which simply indicates the structure of the Tensor product $T$ came from.
+As indices we use any latin letters that are all different from each other.
+We use latin indices to differrentiate $ T_a {}^{bc} {}_d$ from the component functions of $T$. The component functions of $T$ are instead denoted with greek indices.
+To reiterate: $ T_a {}^{bc} {}_d$ does not denote the component functions of the tensor $T$, but the tensor itself.
+We also reserve the right to change the latin indices to any other latin indices. So for example $ T_x {}^{yz} {}_e $ also denotes the Tensor $T$.
 
-### Contractions
+## Sum And Scalar Multiples Of Tensors
 
-The contraction of the first and second factor applied to $T\mathstrut_{a}\mathstrut^{bc}\mathstrut_d$ is denoted by $T_{a\ \ \ d}^{\ ac} \in V^c_{\ \ d}$.
+Given a second tensor $S_a {}^{bc} {}_d$ of the same type as $T$, we write $ T_a {}^{bc} {}_d + \alpha S_a {}^{bc} {}_d $ for $T + \alpha S$, where $\alpha$ is some scalar in the abstract index notation.
+The indices on $T$ and $S$ in this expression must be exactly the same! 
+## Contractions
 
-### Product Of Tensors
+The contraction of the first two factors of $T_a {}^{bc} {}_d$ is denoted by $T_a {}^{ac} {}_d$. So any repeat index in such an expression means that the factors get contracted.
 
-We have a natural identification $V_{a\ \ \ d}^{\ bc} \otimes V_{ef}^{\; \; g} =V\mathstrut_a\mathstrut^{bc}\mathstrut_{def}\mathstrut^g$.
-If $S\mathstrut_{ef}\mathstrut^g \in  V_{ef}^{\; \; g} $ then the notation $T\mathstrut_a\mathstrut^{bc}\mathstrut_{d} S\mathstrut_{ef}\mathstrut^g$ is used for the tensor that is associated to $T\mathstrut_a\mathstrut^{bc}\mathstrut_{d}  \otimes S\mathstrut_{ef}\mathstrut^g$ under this identification.
+## Product Of Tensors
 
+We simply write, for example, $T_a {}^{bc} {}_d S_e {}^{fg} {}_h$ for the tensor product $T\otimes S$.
 It is important that the letters in the indices of the two factors are different, because else a contraction would be implied.
 
-### Type Changing
+## Type Changing
 
  If $V$ is naturally isomorphic to its dual space  (for example if $V$ is a Hilbert space), then we can identify $V$ and $ V^* $ and therefore change the type of the factors of $V$ and $V^* $  in a tensor product at will. We indicate this by changing the latin index from upper to lower or vice versa.
  
- So for example $T\mathstrut_{ab}\mathstrut^{c}\mathstrut_d \in V\mathstrut_{ab}\mathstrut^{c}\mathstrut_d $ is the tensor corresponding to $T_{a\ \ \ d}^{\ bc}$ after the second factor in the tensor product has been changed from $V$ to $V^*$.
+So for example $T^a {}^{bc} {}_d $ denotes the tensor obtained from $T$ by applying the above identification of $V$ and $V^*$ to the first factor.
 
-### Rearranging Factors
+## Rearranging Factors
 
-We can also rearrange the factors of the original tensor product in any order and the resulting tensor product can be indentified with the original. 
- 
- For example if we switch the first and the last factor in $V_{a\ \ \ d}^{\ bc}$ we denote the result by $V_{d \ \ \ a}^{\ bc}$ and the tensor in $V_{d \ \ \ a}^{\ bc}$ that corresponds to $T\mathstrut_{ab}\mathstrut^{c}\mathstrut_d $ is denoted by $T\mathstrut_{db}\mathstrut^{c}\mathstrut_a $.
+We can also rearrange the factors of the original tensor product in any order and the resulting tensor product can be indentified with the original.
+In an expression with the sum of two tensors we indicate that a summand has its factors rearranged by permuting the latin indices.
+So for example 
+$$
+\begin{equation}
+S_{ab} - T_{ba} 
+\end{equation}
+$$
+denotes the difference of $T$ and $S$, where either $T$ or $S$ have the second and third factor exchanged.
+Note that the above expression does not define a unique tensor, because there is a certain ambiguity in the above expression: Since both $T_{ab} $ and $ T_{ba} $ denote $T$. So it is unclear if we substract the exchanged version of $T$ from $S$ or the other way around.
+This ambiguity is resolved by specifying an ordered tuple of indices, that specifies the "reference" unpermuted tensor.
+So for example if this tuple is $(a,b)$, then $S_{ab} - T_{ba} $, $(a,b)$ means the tensor
+$$
+(S_{\mu \nu}- T_{\nu \mu}) e^\mu \otimes e^\nu.
+$$
+whereas 
+$S_{ab} - T_{ba} $, $(b,a)$ means the tensor
+$$
+(S_{\nu \mu}- T_{\mu \nu}) e^\mu \otimes e^\nu.
+$$
+When asigning such an expression as a new tensor, for example when defining a tensor $G_{ab}$ by
+$$
+G_{ab}= S_{ab}- T_{ba},
+$$
+then the tuple of indices for the expression on the right is implicitly assumed to be $(a,b)$ (the same as the latin indices of $G$). This is always the case and is very important to remember.
 
-### Symmetrizing Of Tensors
+## Symmetrizing Of Tensors
 
 Lastly we can (anti) symmetrize a tensor.
 For example we denote the symmetrization of the second and third factor of $T\mathstrut_{a}\mathstrut^{bc}\mathstrut_d$ by $T\mathstrut_{a}\mathstrut^{(bc)}\mathstrut_d$. The anti-symmetrization of the same factors is denotes as $T\mathstrut_{a}\mathstrut^{[bc]}\mathstrut_d$.
 If we want to exclude some factors between indices we use two vertical bars surrounding the excluded factors. So for example $T\mathstrut^{[a|b|c]}\mathstrut_d$ is the anti-symmetrization of the first and third factor (excluding the second) of $T\mathstrut^{abc}\mathstrut_d$.
-
-# Tensors in Sympy
+The same caveats as for factor rearrangement apply.
+### Tensors in Sympy
 
 In this section i will explain to you how to create tensors in sympy (using the abstract index notation) and how to perform the tensor operations described in the preceding section.
 
@@ -349,29 +377,30 @@ $$\displaystyle \left[\begin{matrix}-4 & 17\\-28 & 49\end{matrix}\right]$$
 
 
 
-We obtain the coefficient matrix of a rearranged tensor as follows:
+We obtain the coefficient matrix of a tensor expression involving factor permutations as follows:
 
 
 ```python
-T(a,b).replace_with_arrays(repl) #The coefficient matrix of T^{ab}
+expr = T(a,b)- S(b,a)
+expr.replace_with_arrays(repl,indices=[a,b]) # the index tuple is chosen to be (a,b)
 ```
 
 
 
 
-$$\displaystyle \left[\begin{matrix}1 & 2\\5 & 6\end{matrix}\right]$$
-
+$$\displaystyle \left[\begin{matrix}-7 & 0\\4 & -3\end{matrix}\right] $$
+ 
 
 
 
 ```python
-T(b,a).replace_with_arrays(repl) #The coefficient matrix of T^{ba}, it is the tranpose of the coefficient matrix of T^{ab}
+expr.replace_with_arrays(repl,indices=[b,a])# the index tuple is chosen to be (a,b)
 ```
 
 
 
 
-$$\displaystyle \left[\begin{matrix}1 & 5\\2 & 6\end{matrix}\right]$$
+$$\displaystyle \left[\begin{matrix}-7 & 4\\0 & -3\end{matrix}\right] $$
 
 
 
