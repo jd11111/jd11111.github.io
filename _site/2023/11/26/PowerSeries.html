@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Power-Series In Banach Spaces And Algebras | Jannik&#39;s Blog</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="Power-Series In Banach Spaces And Algebras" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This post is a review of some important results on series and power series in Banach spaces and algebras. Some knowledge about Banach spaces / algebras is presumed." />
+<meta property="og:description" content="This post is a review of some important results on series and power series in Banach spaces and algebras. Some knowledge about Banach spaces / algebras is presumed." />
+<link rel="canonical" href="http://localhost:4000/2023/11/26/PowerSeries.html" />
+<meta property="og:url" content="http://localhost:4000/2023/11/26/PowerSeries.html" />
+<meta property="og:site_name" content="Jannik&#39;s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-11-26T10:13:45+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Power-Series In Banach Spaces And Algebras" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-11-26T10:13:45+01:00","datePublished":"2023-11-26T10:13:45+01:00","description":"This post is a review of some important results on series and power series in Banach spaces and algebras. Some knowledge about Banach spaces / algebras is presumed.","headline":"Power-Series In Banach Spaces And Algebras","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2023/11/26/PowerSeries.html"},"url":"http://localhost:4000/2023/11/26/PowerSeries.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Jannik&apos;s Blog" /><!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CKNVMY5C33"></script>
+<script>
+  MathJax = {
+    tex: {
+      packages: ['base'],
+      tags: 'ams',
+      packages: {'[+]': ['ams','mathtools']},
+      inlineMath: [['$','$']], 
+      displayMath: [["$$","$$"]],
+      processEscapes: true,      // use \$ to produce a literal dollar sign
+      processEnvironments: true, // process \begin{xxx}...\end{xxx} outside math mode
+      processRefs: true,         // process \ref{...} outside of math mode
+      formatError:               // function called when TeX syntax errors occur
+          (jax, err) => jax.formatError(err)
+    }
+  }; 
+</script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-CKNVMY5C33');
+</script></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Jannik&#39;s Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Power-Series In Banach Spaces And Algebras</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2023-11-26T10:13:45+01:00" itemprop="datePublished">Nov 26, 2023
+      </time></p>
+  </header>
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>This post is a review of some important results on series and power series in Banach spaces and algebras.
+Some knowledge about Banach spaces / algebras is presumed.</p>
+<p>The following topics are covered:</p>
+<ul>
+<li><a href="#series-in-banach-spaces">Series In Banach Spaces</a></li>
+<li><a href="#power-series-in-banach-spaces">Power Series In Banach Spaces </a></li>
+<li><a href="#power-series-in-banach-algebras">Power Series In Banach Algebras</a></li>
+</ul>
+<h1 id="series-in-banach-spaces">Series In Banach Spaces</h1>
+<p>Let $X$ be a Banach space and let $(x_i)_{i \in \mathbb{N}}$ be a sequence in $X$.
+Define the sequence $ (s_n)_{n \in \mathbb{N}} $ by
+$$
+\begin{equation}
+s_n = \sum_{i=1}^n  x_i.
+\end{equation}
+$$
+If $ (s_n)_{n \in \mathbb{N}} $ is convergent the limit is denoted by $ \sum_{i=1}^\infty x_i $.</p>
+<p><strong>Proposition:</strong></p>
+<p> If $ (s_n)\_{n \in \mathbb{N}} $ converges, then $ \lim\_{i \to \infty} x_i =0 $. </p>
+<p><strong>Proof:</strong>
+Let $\varepsilon &gt;0$.
+Since convergent sequences are Cauchy there is a $N \in \mathbb{N}$ so that
+$$
+\begin{equation}
+| s_n - s_m | &lt; \varepsilon
+\end{equation}
+$$
+for all $n,m &gt;N$.
+In particular with $m = n-1$:
+$$
+\begin{equation}
+| x_n | = | s_n -s_{n-1} | &lt; \varepsilon
+\end{equation}
+$$
+for all $n &gt; N+1$.</p>
+<p><strong>Definition:</strong>
+The sequence $(s_n)_{n \in \mathbb{N}}$ is called <strong>absolutely convergent</strong> if $\sum_{i=1}^\infty | x_i |&lt; \infty$.</p>
+<p><strong>Proposition:</strong> Assume that  $(s_n)_{n \in \mathbb{N}}$ converges absolutely. Then $(s_n)_{n \in \mathbb{N}}$ converges and the sequence $(\tilde{s}_n)_{n \in \mathbb{N}}$
+defined by $\tilde{s}_n = \sum_{i}^n x_{\pi (i)}$
+converges to the same limit for every bijective map $\pi : \mathbb{N} \to \mathbb{N}$.</p>
+<p><strong>Proof:</strong>
+Let $m,n \in \mathbb{N}$.
+Set $N = \min {m,n}$ and $M = \max {m,n }$. Then
+$
+\begin{equation}
+|s_m -s_n | \leq \sum_{i=N+1}^M | x_i | \leq \sum_{i=N+1}^\infty | x_i |  \to 0 \quad  (N \to \infty).
+\end{equation}
+$
+So $(s_n)_{n \in \mathbb{N}}$ is Cauchy and therefore convergent since $X$ is complete. Let $s$ be limit.
+Now let $\pi : \mathbb{N} \to \mathbb{N}$ be bijective. Let $\varepsilon &gt;0$. Since convergent sequences are Cauchy there exist an $N \in \mathbb{N}$
+with
+$
+\begin{equation}
+\sum_{i=n}^m | x_i| &lt;\varepsilon
+\end{equation}
+$
+for all $m\geq n \geq N$.
+Let $k \in \mathbb{N}$ be so that ${1, \dots, N} \subset { \pi(1), \pi(2) \dots, \pi(k) }$. Note that $k\geq N$.
+Then for any $n \in \mathbb{N}$ with $n&gt;k$:
+$
+\begin{equation}
+|  \tilde{s}_n - s_n | \leq \sum_{ i = N+1 }^n  | x_i| &lt; \varepsilon.
+\end{equation}
+$
+And so
+$
+\begin{equation}
+| \tilde{s}_n -s | = | \tilde{s}_n - s_n + s_n -s |  \leq |  \tilde{s}_n -s_n |  + | s_n -s | \to 0 \quad (n \to \infty).
+\end{equation}
+$</p>
+<p><strong>Proposition</strong>:
+Let $r = \limsup_{n \to \infty} |x_n|^{1/n}  $. Then</p>
+<ul>
+<li>if $r&lt;1$, then $(s_n)_{n \in \mathbb{N}}$ converges absolutely,</li>
+<li>if $r&gt;1$,  then $(s_n)_{n \in \mathbb{N}}$ is divergent.</li>
+</ul>
+<p>This is the so called <strong>root test</strong>.</p>
+<p><strong>Proof:</strong>
+Assume $r&lt;1$. By definition $r$ is the supremum of all cluster points of the sequence.
+Now choose $\varepsilon&gt;0$ so small, so that $\beta := r+ \varepsilon &lt;1$. Then $\beta$ is strictly larger than any cluster point of the sequence and therefore there exist an $N \in \mathbb{N}$ so that $|x_n| &lt; \beta ^n$ for all $n \geq N$. Since $\sum_{k=1}^\infty \beta^k &lt;\infty$ it follows for $M \in \mathbb{N}$ with $M&gt;N$ that
+$
+\begin{equation}
+\sum_{n=1}^M | x_n | \leq
+\sum_{n=1}^N | x_n |  + \sum_{n= N+1}^M   \beta^n \leq  \sum_{n=1}^N | x_n |  + \sum_{n= N+1}^\infty   \beta^n &lt;\infty.
+\end{equation}
+$
+And therefore $(s_n)_{n \in \mathbb{N}}$ converges absolutely.
+If $r&gt;1$, then there is a $\varepsilon&gt;0$ with $r-\varepsilon &gt;1$. Since $r$ is the supremum of cluster points, this means that there is a cluster point $c$ with
+$c \geq r- \varepsilon &gt;1$. But this means that there is a subsequence $ (|x_{n_k}|^{1/n_k})_{k \in \mathbb{N}}$ that converges to $c$.
+But then $(x_{n})_{n \in \mathbb{N}}$ is not a null sequence contradicting the convergence of $(s_n)_{n \in \mathbb{N}}$.</p>
+<h1 id="power-series-in-banach-spaces">Power Series In Banach Spaces</h1>
+<p>For $a \in \mathbb{C}$ and $r \in [0, \infty]$. Define
+$
+\begin{equation}
+D(a,r) := { z \in \mathbb{C} : | z-a| &lt;r}.
+\end{equation}
+$</p>
+<p><strong>Proposition:</strong> Let $X$ be a complex Banach space and $(c_n)_{n \in \mathbb{N}}$ a sequence in $X$. Then there exist a unique $R \in [0, \infty]$, called the <strong>radius of convergence</strong>, so that
+$
+\begin{equation}
+\sum_{n = 0}^\infty c_n z^n
+\end{equation}
+$
+converges absolutely for all $z \in D(0,R)$ and uniformly (in $z$) on $\bar D(0,r)$ for all $r&lt;R$, but diverges for all $z \notin \bar D (0,R)$.
+Furthermore
+$
+\begin{equation}
+R = \frac{1}{\limsup_{n \to \infty} |c_n|^{1/n}} = \liminf_{n \to \infty} |c_n|^{-1/n}.
+\end{equation}
+$
+<strong>Proof:</strong>
+Define a sequence $(x_n)_{n \in \mathbb{N}}$ in $X$ by setting $x_n = c_n z^n$.
+Then
+$
+\begin{equation}
+\limsup_{n \to \infty} |x_n |^{1/n} =  |z| \limsup_{n \to \infty } |c_n|^{1/n}  = \frac{|z|}{R}
+\end{equation}
+$
+which is $&lt;1$ if $z \in D(0,R)$ and $&gt;1$ if $z \notin \bar D (0,R)$. So the part about the absolute convergence / divergence and the uniqueness of $R$ follow from the root test.
+It is left to show the assertion on the uniform convergence.
+Let $r&lt;R$ and $\varepsilon &gt;0$ so that $r+ \varepsilon&lt; R$. Then by the definition of the $\liminf$ there is a $M \in \mathbb{N}$ so that
+$r + \varepsilon \leq |c_n|^{-1/n}$ for all $n \geq M$.
+Then for $N&gt;M$:
+$$
+\begin{align}
+&amp;\sup_{z \in \bar D(0,r)} | \sum_{n=0}^\infty c_n z^n - \sum_{n = 0}^N c_n z^n |  \\
+&amp;= \sup_{z \in \bar D(0,r)} |  \sum_{n=N+1}^\infty c_n z^n |   \leq  \sup_{z \in \bar D(0,r)}  \sum_{n=N+1}^\infty  |z|^n |c_n| \\
+&amp;\leq    \sum_{n=N+1}^\infty \bigg( \frac{r}{r+ \varepsilon} \bigg)^n \to 0 \quad (N \to \infty).
+\end{align}
+$$</p>
+<h1 id="power-series-in-banach-algebras">Power Series In Banach Algebras</h1>
+<p>Let $A$ be a (complex, unital) Banach Algebra and $(c_n)_{n \in \mathbb{N}}$ a sequence of complex numbers.
+Furthermore let
+$
+\begin{equation}
+R = \frac{1}{\limsup_{n \to \infty} |c_n|^{1/n}} = \liminf_{n \to \infty} |c_n|^{-1/n}
+\end{equation}
+$
+and $r(a) = \limsup_{n \to \infty } |a^n |^{1/n} $ be the spectral radius of $a \in A$ (note that $r(a) \leq |a|$).</p>
+<p><strong>Proposition</strong>:
+The series
+$
+\begin{equation}
+\sum_{n=0}^\infty c_n a^n
+\end{equation}
+$
+converges absolutely for all $a \in A$ with $r (a) &lt; R$. Furthermore the convergence is uniform (in $a$) on $\bar B(0,r)$ (ball with radius $r$ in $A$) for any $r&lt;R$.</p>
+<p><strong>Proof:</strong>
+Define a sequence $(x_n)_{n \in \mathbb{N}}$ in $A$ by $x_n = c_n a^n$.
+Then
+$$
+\begin{align}
+&amp;\limsup_{n \to \infty } |x_n|^{1/n} \leq \limsup_{n \to \infty }  |c_n|^{1/n} |a^n|^{1/n} \\
+&amp; \leq \big( \limsup_{n \to \infty }  |c_n|^{1/n} \big) \big( \limsup_{n \to \infty}|a^n|^{1/n}  \big) = \frac{r(a)}{R}&lt;1.
+\end{align}
+$$
+The absolute convergence follows from the above using the root test.
+The assertion about the uniform convergence follows almost exactly as in the preceding proposition with $a$ taking the place of $z$ and $B(0,a)$ taking the place of $D(0,r)$ and further using that $|a^n| \leq |a|^n \leq r^n$ for all $a$ inside of the ball.</p>
+<p><strong>Remark:</strong>
+It is important to note that there is no divergence assertion in the above proposition. This is because it is possible that $0 \neq a \in A $ but $a^2=0$. Therefore it is possible that the above series converges for $a \in A$ with $|a| &gt;R$.</p>
+
+  </div><a class="u-url" href="/2023/11/26/PowerSeries.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Jannik&#39;s Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Jannik&#39;s Blog</li><li><a class="u-email" href="mailto:jannik.daun@proton.me">jannik.daun@proton.me</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/jd11111"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">jd11111</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Blog about mathematics, physics and code by Jannik Daun</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

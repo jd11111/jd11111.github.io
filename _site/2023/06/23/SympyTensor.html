@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Introduction To The Abstract Index Notation And The Sympy Tensor Module | Jannik&#39;s Blog</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="Introduction To The Abstract Index Notation And The Sympy Tensor Module" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="In this post i will explain the abstract index notation for tensors and show how to use the basic features of the Sympy Tensor module, which is based on using the abstract index notation." />
+<meta property="og:description" content="In this post i will explain the abstract index notation for tensors and show how to use the basic features of the Sympy Tensor module, which is based on using the abstract index notation." />
+<link rel="canonical" href="http://localhost:4000/2023/06/23/SympyTensor.html" />
+<meta property="og:url" content="http://localhost:4000/2023/06/23/SympyTensor.html" />
+<meta property="og:site_name" content="Jannik&#39;s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-06-23T11:14:45+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Introduction To The Abstract Index Notation And The Sympy Tensor Module" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-06-23T11:14:45+02:00","datePublished":"2023-06-23T11:14:45+02:00","description":"In this post i will explain the abstract index notation for tensors and show how to use the basic features of the Sympy Tensor module, which is based on using the abstract index notation.","headline":"Introduction To The Abstract Index Notation And The Sympy Tensor Module","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2023/06/23/SympyTensor.html"},"url":"http://localhost:4000/2023/06/23/SympyTensor.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Jannik&apos;s Blog" /><!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CKNVMY5C33"></script>
+<script>
+  MathJax = {
+    tex: {
+      packages: ['base'],
+      tags: 'ams',
+      packages: {'[+]': ['ams','mathtools']},
+      inlineMath: [['$','$']], 
+      displayMath: [["$$","$$"]],
+      processEscapes: true,      // use \$ to produce a literal dollar sign
+      processEnvironments: true, // process \begin{xxx}...\end{xxx} outside math mode
+      processRefs: true,         // process \ref{...} outside of math mode
+      formatError:               // function called when TeX syntax errors occur
+          (jax, err) => jax.formatError(err)
+    }
+  }; 
+</script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-CKNVMY5C33');
+</script></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Jannik&#39;s Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Introduction To The Abstract Index Notation And The Sympy Tensor Module</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2023-06-23T11:14:45+02:00" itemprop="datePublished">Jun 23, 2023
+      </time></p>
+  </header>
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>In this post i will explain the abstract index notation for tensors and show how to use the basic features of the Sympy Tensor module, which is  based on using the abstract index notation.</p>
+<p>The following topics are covered:</p>
+<ul>
+<li><a href="#the-abstract-index-notation">The Abstract Index Notation</a></li>
+<li><a href="#tensors-in-sympy">Tensors in Sympy</a>
+<ul>
+<li><a href="#basic-tensor-operations">Basic Tensor Operations</a></li>
+<li><a href="#coefficient-matrices-of-tensor-expressions">Coefficient Matrices Of Tensor Expressions</a></li>
+<li><a href="#symmetries-of-tensors-and-canonicalization">Symmetries Of Tensors And Canonicalization</a></li>
+<li><a href="#symmetrization-of-tensors-in-sympy">Symmetrization Of Tensors In Sympy</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="the-abstract-index-notation">The Abstract Index Notation</h3>
+<p>In this section i will briefly explain the abstract index notation for tensors with examples, these examples generalize in obvious ways. The reader is assumed to have some knowledge on the tensor product of vector spaces.</p>
+<p>Let $V$ be a finite dimensional vector space and $V^*$ be its dual space. Further let $(e_\mu)$ be a basis of $V$ and $(e^\mu)$ its dual basis.</p>
+<p>Given, for example, a Tensor $T \in V^* \otimes V \otimes V \otimes V^*$ we denote it by
+$ T_a {}^{bc} {}_d$ which simply indicates the structure of the Tensor product $T$ came from.
+As indices we use any latin letters that are all different from each other.
+We use latin indices to differrentiate $ T_a {}^{bc} {}_d$ from the component functions of $T$. The component functions of $T$ are instead denoted with greek indices.
+To reiterate: $ T_a {}^{bc} {}_d$ does not denote the component functions of the tensor $T$, but the tensor itself.
+We also reserve the right to change the latin indices to any other latin indices. So for example $ T_x {}^{yz} {}_e $ also denotes the Tensor $T$.</p>
+<h2 id="sum-and-scalar-multiples-of-tensors">Sum And Scalar Multiples Of Tensors</h2>
+<p>Given a second tensor $S_a {}^{bc} {}_d$ of the same type as $T$, we write $ T_a {}^{bc} {}_d + \alpha S_a {}^{bc} {}_d $ for $T + \alpha S$, where $\alpha$ is some scalar in the abstract index notation.
+The indices on $T$ and $S$ in this expression must be exactly the same!</p>
+<h2 id="contractions">Contractions</h2>
+<p>The contraction of the first two factors of $T_a {}^{bc} {}_d$ is denoted by $T_a {}^{ac} {}_d$. So any repeat index in such an expression means that the factors get contracted.</p>
+<h2 id="product-of-tensors">Product Of Tensors</h2>
+<p>We simply write, for example, $T_a {}^{bc} {}_d S_e {}^{fg} {}_h$ for the tensor product $T\otimes S$.
+It is important that the letters in the indices of the two factors are different, because else a contraction would be implied.</p>
+<h2 id="type-changing">Type Changing</h2>
+<p>If $V$ is naturally isomorphic to its dual space  (for example if $V$ is a Hilbert space), then we can identify $V$ and $ V^* $ and therefore change the type of the factors of $V$ and $V^* $  in a tensor product at will. We indicate this by changing the latin index from upper to lower or vice versa.</p>
+<p>So for example $T^a {}^{bc} {}_d $ denotes the tensor obtained from $T$ by applying the above identification of $V$ and $V^*$ to the first factor.</p>
+<h2 id="rearranging-factors">Rearranging Factors</h2>
+<p>We can also rearrange the factors of the original tensor product in any order and the resulting tensor product can be indentified with the original.
+In an expression with the sum of two tensors we indicate that a summand has its factors rearranged by permuting the latin indices.
+So for example
+$$
+\begin{equation}
+S_{ab} - T_{ba}
+\end{equation}
+$$
+denotes the difference of $T$ and $S$, where either $T$ or $S$ have the second and third factor exchanged.
+Note that the above expression does not define a unique tensor, because there is a certain ambiguity in the above expression: Since both $T_{ab} $ and $ T_{ba} $ denote $T$. So it is unclear if we substract the exchanged version of $T$ from $S$ or the other way around.
+This ambiguity is resolved by specifying an ordered tuple of indices, that specifies the &quot;reference&quot; unpermuted tensor.
+So for example if this tuple is $(a,b)$, then $S_{ab} - T_{ba} $, $(a,b)$ means the tensor
+$$
+(S_{\mu \nu}- T_{\nu \mu}) e^\mu \otimes e^\nu.
+$$
+whereas
+$S_{ab} - T_{ba} $, $(b,a)$ means the tensor
+$$
+(S_{\nu \mu}- T_{\mu \nu}) e^\mu \otimes e^\nu.
+$$
+When asigning such an expression as a new tensor, for example when defining a tensor $G_{ab}$ by
+$$
+G_{ab}= S_{ab}- T_{ba},
+$$
+then the tuple of indices for the expression on the right is implicitly assumed to be $(a,b)$ (the same as the latin indices of $G$). This is always the case and is very important to remember.</p>
+<h2 id="symmetrizing-of-tensors">Symmetrizing Of Tensors</h2>
+<p>Lastly we can (anti) symmetrize a tensor.
+For example we denote the symmetrization of the second and third factor of $T\mathstrut_{a}\mathstrut^{bc}\mathstrut_d$ by $T\mathstrut_{a}\mathstrut^{(bc)}\mathstrut_d$. The anti-symmetrization of the same factors is denotes as $T\mathstrut_{a}\mathstrut^{[bc]}\mathstrut_d$.
+If we want to exclude some factors between indices we use two vertical bars surrounding the excluded factors. So for example $T\mathstrut^{[a|b|c]}\mathstrut_d$ is the anti-symmetrization of the first and third factor (excluding the second) of $T\mathstrut^{abc}\mathstrut_d$.
+The same caveats as for factor rearrangement apply.</p>
+<h3 id="tensors-in-sympy">Tensors in Sympy</h3>
+<p>In this section i will explain to you how to create tensors in sympy (using the abstract index notation) and how to perform the tensor operations described in the preceding section.</p>
+<p>After that i will show how to obtain coefficient matrices of the results of such symbolic computations.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sympy.tensor.tensor</span> <span class="kn">import</span> <span class="n">TensorIndexType</span><span class="p">,</span> <span class="n">TensorHead</span><span class="p">,</span> <span class="n">tensor_indices</span> <span class="c1">#import needed stuff
+</span><span class="kn">from</span> <span class="nn">sympy.combinatorics</span> <span class="kn">import</span> <span class="n">Permutation</span>
+</code></pre></div></div>
+<p>We can create a sort of &quot;base space&quot; $V$ using the following:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">V</span><span class="o">=</span> <span class="n">TensorIndexType</span><span class="p">(</span><span class="s">'V'</span><span class="p">,</span> <span class="n">dummy_name</span><span class="o">=</span><span class="s">'V'</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Let's create some Latin indices that will function in the same way as explained in the first section:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">e</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">g</span>  <span class="o">=</span> <span class="n">tensor_indices</span><span class="p">(</span><span class="s">'a, b,c,d,e,f,g'</span><span class="p">,</span> <span class="n">V</span><span class="p">)</span> <span class="c1">#create two indices associated to V (the same as the abcde etc above)
+</span></code></pre></div></div>
+<p>Now to define an actual tensor on $V$ there is another step:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">T</span> <span class="o">=</span> <span class="n">TensorHead</span><span class="p">(</span><span class="s">"T"</span><span class="p">,</span> <span class="p">[</span><span class="n">V</span><span class="p">,</span><span class="n">V</span><span class="p">])</span> <span class="c1">#define a tensor "base" that is like the T of T^{ab}, note that this is not a tensor but it specifies how many indices there are (2 here, but they could be up or down)
+</span><span class="n">S</span> <span class="o">=</span> <span class="n">TensorHead</span><span class="p">(</span><span class="s">"S"</span><span class="p">,</span> <span class="p">[</span><span class="n">V</span><span class="p">,</span><span class="n">V</span><span class="p">])</span> 
+</code></pre></div></div>
+<p>The type (upper/lower indices) is indicated by inserting a minus for a lower index as follows:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">T</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="o">-</span><span class="n">b</span><span class="p">)</span> <span class="c1">#this is a tensor with one upper and one lower index
+</span></code></pre></div></div>
+<p>$\displaystyle T{}^{a}{}_{b}$</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">T</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="c1">#two upper indices
+</span></code></pre></div></div>
+<p>$\displaystyle T{}^{ab}$</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">5</span><span class="o">*</span><span class="n">T</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="c1">#scalar multiply the tensor
+</span></code></pre></div></div>
+<p>$\displaystyle 5T{}^{ab}$</p>
+<h2 id="basic-tensor-operations">Basic Tensor Operations</h2>
+<p>The four basic operations product, sum, contraction and rearrangement are implemented as follows:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">T</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="o">*</span><span class="n">S</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="o">-</span><span class="n">d</span><span class="p">)</span> <span class="c1">#the product of the two tensors
+</span></code></pre></div></div>
+<p>$$\displaystyle T{}^{ab}S{}^{c}{}_{d}$$</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">T</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="o">+</span><span class="n">S</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="c1">#the sum of two tensors
+</span></code></pre></div></div>
+<p>$$\displaystyle S{}^{ab} + T{}^{ab}$$</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">T</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="o">*</span><span class="n">S</span><span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)</span> <span class="c1"># the contraction of the two tensors (dummy index used for the contracted slots, since the output only has 2 slots (a,c))
+</span></code></pre></div></div>
+<p>$$\displaystyle T{}^{aV_{0}}S{}<em>{V</em>{0}}{}^{c}$$</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">T</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="p">)</span> <span class="c1">#rearrange T^{ab} to T^{ba}
+</span></code></pre></div></div>
+<p>$$\displaystyle T{}^{ba}$$</p>
+<p>When we want to rearrange a tensor expression we can do it as illustrated by the following example (the same works for arbitrary tensor expressions):</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span> <span class="o">=</span> <span class="n">T</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="o">+</span> <span class="n">S</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="n">expr</span>
+</code></pre></div></div>
+<p>$$\displaystyle S{}^{ab} + T{}^{ab}$$</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span><span class="p">.</span><span class="n">_replace_indices</span><span class="p">({</span><span class="n">a</span><span class="p">:</span><span class="n">b</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span><span class="n">a</span><span class="p">})</span> <span class="c1">#supply a dictionary of replacements (these can be arbitrary not just interchange)
+</span></code></pre></div></div>
+<p>$$\displaystyle S{}^{ba} + T{}^{ba}$$</p>
+<p>We can also change the type of a tensor expression in the same way</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span><span class="p">.</span><span class="n">_replace_indices</span><span class="p">({</span><span class="n">a</span><span class="p">:</span><span class="o">-</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span><span class="n">b</span><span class="p">})</span> <span class="c1">#lower the first index
+</span></code></pre></div></div>
+<p>$$\displaystyle S{}<em>{a}{}^{b} + T{}</em>{a}{}^{b}$$</p>
+<h2 id="coefficient-matrices-of-tensor-expressions">Coefficient Matrices Of Tensor Expressions</h2>
+<p>Often we not only want to manipulate symbolic tensor expressions, but we also want the coefficient matrix of the resulting tensors. We can set coefficient matrices and insert them into an expression. Note that the syntax is allways the same for any tensor expression.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">repl</span> <span class="o">=</span> <span class="p">{</span><span class="n">T</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="p">:</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]],</span> <span class="n">S</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">)</span> <span class="p">:</span> <span class="p">[[</span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">9</span><span class="p">]]}</span> <span class="c1">#assign a coefficient matrix to the tensors T(a,b) and S(c,d) representing them in some (common) basis
+</span></code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">T</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">).</span><span class="n">replace_with_arrays</span><span class="p">(</span><span class="n">repl</span><span class="p">)</span> <span class="c1">#the coefficient matrix of T^{ab}
+</span></code></pre></div></div>
+<p>$$\displaystyle \left[\begin{matrix}1 &amp; 2 \ 5 &amp; 6\end{matrix}\right]$$</p>
+<p>The coefficient matrix of the sum is obtained like this:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span><span class="o">=</span> <span class="n">T</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="o">+</span><span class="n">S</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="n">expr</span>
+</code></pre></div></div>
+<p>$$\displaystyle S{}^{ab} + T{}^{ab}$$</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span><span class="p">.</span><span class="n">replace_with_arrays</span><span class="p">(</span><span class="n">repl</span><span class="p">)</span> <span class="c1">#the coefficient matrix of the sum 
+</span></code></pre></div></div>
+<p>$$\displaystyle \left[\begin{matrix}9 &amp; 3\7 &amp; 15\end{matrix}\right]$$</p>
+<p>To lower and increase indices the coefficient matrix of the metric must first be given:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">repl</span><span class="p">.</span><span class="n">update</span><span class="p">({</span><span class="n">V</span><span class="p">:</span> <span class="p">[[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]]})</span> <span class="c1">#this specifies the coefficient matrix of the metric to the same common basis
+</span></code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">T</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="o">-</span><span class="n">b</span><span class="p">).</span><span class="n">replace_with_arrays</span><span class="p">(</span><span class="n">repl</span><span class="p">)</span> <span class="c1">#here the metric is used to lower the index b
+</span></code></pre></div></div>
+<p>$$\displaystyle \left[\begin{matrix}-1 &amp; 2 \-5 &amp; 6\end{matrix}\right]$$</p>
+<p>The coefficient matrix of the tensor product of two tensors in the abstract index notation can be obtained as well:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">E</span> <span class="o">=</span> <span class="n">TensorHead</span><span class="p">(</span><span class="s">"E"</span><span class="p">,</span> <span class="p">[</span><span class="n">V</span><span class="p">])</span> <span class="c1">#define a base with one index
+</span><span class="n">F</span> <span class="o">=</span> <span class="n">TensorHead</span><span class="p">(</span><span class="s">"F"</span><span class="p">,</span> <span class="p">[</span><span class="n">V</span><span class="p">])</span> 
+</code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">repl</span><span class="p">.</span><span class="n">update</span><span class="p">({</span><span class="n">E</span><span class="p">(</span><span class="n">c</span><span class="p">):[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="n">F</span><span class="p">(</span><span class="n">d</span><span class="p">):[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]})</span> <span class="c1">#specify coefficients of two vectors with respect to the common basis
+</span></code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span> <span class="o">=</span> <span class="n">E</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">*</span><span class="n">F</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="n">expr</span>
+</code></pre></div></div>
+<p>$$\displaystyle E{}^{c}F{}^{d}$$</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span><span class="p">.</span><span class="n">replace_with_arrays</span><span class="p">(</span><span class="n">repl</span><span class="p">)</span> <span class="c1">#this is the component representation of $$E^c F^d$$
+</span></code></pre></div></div>
+<p>$$\displaystyle \left[\begin{matrix}5 &amp; 6\10 &amp; 12\end{matrix}\right]$$</p>
+<p>The coefficient matrix of a contraction can be obtained as well:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span> <span class="o">=</span> <span class="n">T</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="o">*</span><span class="n">S</span><span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)</span> <span class="c1">#lower the first slot of S^{bc} and then contract T^{ab}S_b^c
+</span><span class="n">expr</span>
+</code></pre></div></div>
+<p>$$\displaystyle T{}^{aV_{0}}S{}<em>{V</em>{0}}{}^{c}$$</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span><span class="p">.</span><span class="n">replace_with_arrays</span><span class="p">(</span><span class="n">repl</span><span class="p">)</span> <span class="c1">#The coefficient matrix of the contraction defined above
+</span></code></pre></div></div>
+<p>$$\displaystyle \left[\begin{matrix}-4 &amp; 17\-28 &amp; 49\end{matrix}\right]$$</p>
+<p>We obtain the coefficient matrix of a tensor expression involving factor permutations as follows:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span> <span class="o">=</span> <span class="n">T</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="o">-</span> <span class="n">S</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="p">)</span>
+<span class="n">expr</span><span class="p">.</span><span class="n">replace_with_arrays</span><span class="p">(</span><span class="n">repl</span><span class="p">,</span><span class="n">indices</span><span class="o">=</span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">])</span> <span class="c1"># the index tuple is chosen to be (a,b)
+</span></code></pre></div></div>
+<p>$$\displaystyle \left[\begin{matrix}-7 &amp; 0\4 &amp; -3\end{matrix}\right] $$</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span><span class="p">.</span><span class="n">replace_with_arrays</span><span class="p">(</span><span class="n">repl</span><span class="p">,</span><span class="n">indices</span><span class="o">=</span><span class="p">[</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="p">])</span><span class="c1"># the index tuple is chosen to be (a,b)
+</span></code></pre></div></div>
+<p>$$\displaystyle \left[\begin{matrix}-7 &amp; 4\0 &amp; -3\end{matrix}\right] $$</p>
+<h2 id="symmetries-of-tensors-and-canonicalization">Symmetries Of Tensors And Canonicalization</h2>
+<p>In this section we consider the canonicalization of tensors and symmetry.
+Canonicalization of a tensor expression means to bring every individual term in the expression into canonical form, meaning that the index labels are in alphabetic order.</p>
+<p>Canonicalization can simplify an expression greatly, because symmetries of the individual terms can be exploited. For details on Canonicalization see <a href="https://arxiv.org/pdf/1702.08114.pdf">here</a>.
+I wil show two examples of this.
+To this end we define a (anti) symmetric tensor as follows:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sympy.tensor.tensor</span> <span class="kn">import</span> <span class="n">TensorSymmetry</span>
+</code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sym2</span> <span class="o">=</span> <span class="n">TensorSymmetry</span><span class="p">.</span><span class="n">fully_symmetric</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> 
+<span class="n">asym2</span> <span class="o">=</span> <span class="n">TensorSymmetry</span><span class="p">.</span><span class="n">fully_symmetric</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> 
+
+<span class="n">Sy</span> <span class="o">=</span> <span class="n">TensorHead</span><span class="p">(</span><span class="s">'Sy'</span><span class="p">,</span> <span class="p">[</span><span class="n">V</span><span class="p">,</span><span class="n">V</span><span class="p">],</span> <span class="n">sym2</span><span class="p">)</span> <span class="c1">#define a symmetric tensor of rank2
+</span><span class="n">A</span> <span class="o">=</span>  <span class="n">TensorHead</span><span class="p">(</span><span class="s">'A'</span><span class="p">,</span> <span class="p">[</span><span class="n">V</span><span class="p">,</span><span class="n">V</span><span class="p">],</span> <span class="n">asym2</span><span class="p">)</span> <span class="c1">#define an anti-symmetric tensor of rank2
+</span>
+</code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span> <span class="o">=</span><span class="n">A</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="o">+</span><span class="n">A</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="p">)</span>
+<span class="n">expr</span> <span class="c1">#the expression is not in canonical form and the anti symmetry has not been used to simplify it
+</span></code></pre></div></div>
+<p>$$\displaystyle A{}^{ab} + A{}^{ba}$$</p>
+<p>Now we use the <code>canon_bp()</code> method to put the expression into canonical form. In the process the symmetry will be exploited to simplify the expression:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span><span class="p">.</span><span class="n">canon_bp</span><span class="p">()</span> <span class="c1">#put the expression into canonical form (its zero because A is anti-symmetric)
+</span></code></pre></div></div>
+<p>$$\displaystyle 0$$</p>
+<p>The same thing also works for symmetric tensors:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span> <span class="o">=</span> <span class="n">Sy</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="o">+</span><span class="n">Sy</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="p">)</span>
+<span class="n">expr</span>
+</code></pre></div></div>
+<p>$$\displaystyle Sy{}^{ab} + Sy{}^{ba}$$</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span><span class="p">.</span><span class="n">canon_bp</span><span class="p">()</span> <span class="c1">#put the expression into canonical form (its 2 Sy^{ab} because Sy is symmetric)
+</span></code></pre></div></div>
+<p>$$\displaystyle 2Sy{}^{ab}$$</p>
+<p>More complicated symmetries can also be implemented. For example the symmetries of the Riemann curvature tensor:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">riesym</span> <span class="o">=</span> <span class="n">TensorSymmetry</span><span class="p">.</span><span class="n">riemann</span><span class="p">()</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">TensorHead</span><span class="p">(</span><span class="s">'R'</span><span class="p">,</span> <span class="p">[</span><span class="n">V</span><span class="p">,</span><span class="n">V</span><span class="p">,</span><span class="n">V</span><span class="p">,</span><span class="n">V</span><span class="p">],</span> <span class="n">riesym</span><span class="p">)</span> <span class="c1">#define a tensor wie riemann curvature symmetries
+</span><span class="n">Ric</span> <span class="o">=</span> <span class="n">TensorHead</span><span class="p">(</span><span class="s">'Ric'</span><span class="p">,</span> <span class="p">[</span><span class="n">V</span><span class="p">,</span><span class="n">V</span><span class="p">])</span> 
+</code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">R</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">)</span><span class="o">+</span><span class="n">R</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">c</span><span class="p">)</span> <span class="o">+</span><span class="n">R</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">)</span><span class="o">-</span><span class="n">R</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="n">expr</span>
+</code></pre></div></div>
+<p>$$\displaystyle -R{}^{cdab} + 3R{}^{abcd} + R{}^{abdc} + R{}^{bacd}$$</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span><span class="p">.</span><span class="n">canon_bp</span><span class="p">()</span> <span class="c1">#uses the symmetries of the riemann tensor to simplify
+</span></code></pre></div></div>
+<p>$$\displaystyle 0$$</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span> <span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">)</span><span class="o">+</span><span class="n">R</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="o">+</span><span class="n">R</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)</span>
+</code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span><span class="p">.</span><span class="n">canon_bp</span><span class="p">()</span> <span class="c1">#the algebraic bianchi identity is not simplified (this should be 0) because it is a multi-term symmetry (and as far as i understand canonicalization only tackles single term symmetries)
+</span></code></pre></div></div>
+<p>$$\displaystyle -R{}^{acbd} + R{}^{abcd} + R{}^{adbc}$$</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sympy.tensor.tensor</span> <span class="kn">import</span> <span class="n">riemann_cyclic</span>
+</code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">riemann_cyclic</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span> <span class="c1">#this is a special function that can rewrite the riemann tensor in terms of cyclic combinations to exploit the multi-term symmetry
+</span></code></pre></div></div>
+<p>$$\displaystyle 0$$</p>
+<p>The symmetries from $R$ carry over to tensors defined from it like Ricci curvature $Ric$</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Ric</span><span class="o">=</span> <span class="n">R</span><span class="p">(</span><span class="o">-</span><span class="n">c</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+</code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Ric</span>
+</code></pre></div></div>
+<p>$$\displaystyle R{}<em>{V</em>{0}}{}^{aV_{0}b}$$</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span> <span class="o">=</span> <span class="n">Ric</span> <span class="o">+</span> <span class="n">Ric</span><span class="p">.</span><span class="n">_replace_indices</span><span class="p">({</span><span class="n">a</span><span class="p">:</span><span class="n">b</span><span class="p">,</span><span class="n">b</span><span class="p">:</span><span class="n">a</span><span class="p">})</span>
+</code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span>
+</code></pre></div></div>
+<p>$$\displaystyle R{}<em>{V</em>{0}}{}^{aV_{0}b} + R{}<em>{V</em>{0}}{}^{bV_{0}a}$$</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span><span class="p">.</span><span class="n">canon_bp</span><span class="p">()</span> <span class="c1">#ric is symmetric 
+</span></code></pre></div></div>
+<p>$$\displaystyle 2R{}^{aV_{0}b}{}<em>{V</em>{0}}$$</p>
+<h2 id="symmetrization-of-tensors-in-sympy">Symmetrization Of Tensors In Sympy</h2>
+<p>As i understand this is not implemented in the Tensor module of Sympy. But we can easily write a function that returns a symmetrization/anti-symmetrization as a tensor expression.
+I came up with the following code (use at your own risk: not extensively tested and also probably not that fast):</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sympy.combinatorics</span> <span class="kn">import</span> <span class="n">Permutation</span>
+<span class="kn">import</span> <span class="nn">math</span>
+</code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">symmetrizer</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">indices</span><span class="p">,</span><span class="n">anti</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="s">"""(Anti)-symmetrize the factors of a tensor (expression) t which are included in the indices list"""</span>
+    <span class="n">sym</span> <span class="o">=</span><span class="n">t</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span>
+    <span class="n">ind_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span> 
+    <span class="n">map_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">ind_list</span><span class="p">,</span><span class="n">indices</span><span class="p">))</span> <span class="c1">#maps number to the corresponding index object
+</span>    <span class="n">p</span> <span class="o">=</span> <span class="n">Permutation</span><span class="p">(</span><span class="n">ind_list</span><span class="p">)</span> 
+    <span class="k">while</span> <span class="n">p</span><span class="p">.</span><span class="n">next_trotterjohnson</span><span class="p">()</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span> <span class="c1">#if all permutations have been looped stop
+</span>        <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">next_trotterjohnson</span><span class="p">()</span> <span class="c1">#next permutation
+</span>        <span class="n">repl_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">indices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">:</span> <span class="n">map_dict</span><span class="p">[</span><span class="n">p</span><span class="p">.</span><span class="nb">list</span><span class="p">()[</span><span class="n">i</span><span class="p">]]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ind_list</span><span class="p">}</span><span class="c1">#replacement dict with the correct permutation
+</span>        <span class="k">if</span> <span class="ow">not</span> <span class="n">anti</span><span class="p">:</span>
+            <span class="n">sym</span> <span class="o">+=</span> <span class="n">t</span><span class="p">.</span><span class="n">_replace_indices</span><span class="p">(</span><span class="n">repl_dict</span><span class="p">)</span> <span class="c1">#symmetrization
+</span>        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sym</span> <span class="o">+=</span> <span class="n">p</span><span class="p">.</span><span class="n">signature</span><span class="p">()</span><span class="o">*</span><span class="n">t</span><span class="p">.</span><span class="n">_replace_indices</span><span class="p">(</span><span class="n">repl_dict</span><span class="p">)</span> <span class="c1">#anti-symmetrization
+</span>    <span class="k">return</span> <span class="n">sym</span><span class="o">/</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
+</code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">K</span> <span class="o">=</span> <span class="n">TensorHead</span><span class="p">(</span><span class="s">"K"</span><span class="p">,</span><span class="n">index_types</span> <span class="o">=</span><span class="p">[</span><span class="n">V</span><span class="p">,</span><span class="n">V</span><span class="p">,</span><span class="n">V</span><span class="p">])</span>
+<span class="n">J</span> <span class="o">=</span> <span class="n">TensorHead</span><span class="p">(</span><span class="s">"J"</span><span class="p">,</span><span class="n">index_types</span> <span class="o">=</span><span class="p">[</span><span class="n">V</span><span class="p">,</span><span class="n">V</span><span class="p">,</span><span class="n">V</span><span class="p">])</span>
+</code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">symmetrizer</span><span class="p">(</span><span class="n">K</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">),[</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">])</span> <span class="c1">#Symmetrize all indices, this is K^{(abc)}
+</span></code></pre></div></div>
+<p>$$\displaystyle \left(\frac{1}{6}\right)\left(K{}^{abc} + K{}^{acb} + K{}^{bac} + K{}^{bca} + K{}^{cab} + K{}^{cba}\right)$$</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">symmetrizer</span><span class="p">(</span><span class="n">K</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">),[</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">],</span><span class="n">anti</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="c1">#anti-symmetrize all indices, this is K^{[abc]}
+</span></code></pre></div></div>
+<p>$$\displaystyle \left(\frac{1}{6}\right)\left(K{}^{abc} + K{}^{bca} + K{}^{cab} + \left(-1\right)K{}^{acb} + \left(-1\right)K{}^{bac} + \left(-1\right)K{}^{cba}\right)$$</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">symmetrizer</span><span class="p">(</span><span class="n">K</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">),[</span><span class="n">a</span><span class="p">,</span><span class="n">c</span><span class="p">])</span><span class="c1">#symmetrize only the first and second factor, this is K^{(a|b|c)}
+</span></code></pre></div></div>
+<p>$$\displaystyle \left(\frac{1}{2}\right)\left(K{}^{abc} + K{}^{cba}\right)$$</p>
+<p>The function also works with arbitrary tensor expressions:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span> <span class="o">=</span> <span class="n">K</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)</span><span class="o">+</span><span class="n">J</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)</span>
+</code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">symmetrizer</span><span class="p">(</span><span class="n">expr</span><span class="p">,[</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">])</span>
+</code></pre></div></div>
+<p>$$ \frac{1}{6}\left( J{}^{abc} + J{}^{acb} + J{}^{bac} + J{}^{bca} + J{}^{cab} + J{}^{cba} + K{}^{abc} + K{}^{acb} + K{}^{bac} + K{}^{bca} + K{}^{cab} + K{}^{cba}\right) $$</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span> <span class="o">=</span> <span class="n">K</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)</span><span class="o">*</span><span class="n">J</span><span class="p">(</span><span class="o">-</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
+</code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">symmetrizer</span><span class="p">(</span><span class="n">expr</span><span class="p">,[</span><span class="n">a</span><span class="p">,</span><span class="n">d</span><span class="p">])</span>
+</code></pre></div></div>
+<p>$$ \left(\frac{1}{2}\right)\left(K{}^{abV_{0}}J{}<em>{V</em>{0}}{}^{de} + K{}^{dbV_{0}}J{}<em>{V</em>{0}}{}^{ae}\right)$$</p>
+
+  </div><a class="u-url" href="/2023/06/23/SympyTensor.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Jannik&#39;s Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Jannik&#39;s Blog</li><li><a class="u-email" href="mailto:jannik.daun@proton.me">jannik.daun@proton.me</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/jd11111"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">jd11111</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Blog about mathematics, physics and code by Jannik Daun</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

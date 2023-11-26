@@ -18,10 +18,8 @@ The following topics are covered:
     - [Example With Python](#python-example-1)
 
 Let $\mathcal{H}$ be a $n$ dimensional Hilbert space and denote by $L(\mathcal{H}) $ the vector space of all linear maps $\mathcal{H} \to \mathcal{H}$.
-Let $U \subset \mathbb{C}$ be an open set containing zero and let $T: U \to L(\mathcal{H})$ be an analytic function.
-
-For $n \in \mathbb{N}$ let $T_n \in L(\mathcal{H})$ so that 
-$T( x) = \sum_{n=0}^\infty T_n x^n$ (for small $x$). Denote $T := T(0) = T_0$.
+For $n \in \mathbb{N}$ let $T_n \in L(\mathcal{H})$ set
+$T( x) = \sum\_{n=0}^\infty T_n x^n$, where $x \in \mathbb{C}$ with $|x|<R$, where $R>0$ is the radius of convergence of the power series. Denote $T := T(0) = T_0$.
 
 The goal of perturbation theory is to find formula for the eigenvalues (and eigenvectors, but that is not considered here) of $T(x)$ as a function of $x$ that is related to the coefficients $T_n$ and other easy to find quantities.
 
@@ -42,18 +40,18 @@ $$
 and therefore using the geometric series
 $$ 
 \begin{equation}
-R(z,x) = R(z) (I + A(x)R(z))^{-1} =R(z) \sum_{p=0}^\infty \big(-A(x) R(z)\big)^p .
+R(z,x) = R(z) (I + A(x)R(z))^{-1} =R(z) \sum\_{p=0}^\infty \big(-A(x) R(z)\big)^p .
 \end{equation}$$
 Upon collecting powers of $x$ in equation 3 we obtain
 $$
 \begin{equation}
-R(z,x) = R(z) + \sum_{n=1 }^\infty R_n(z) x^n
+R(z,x) = R(z) + \sum\_{n=1 }^\infty R_n(z) x^n
 \end{equation}
 $$
 with
 $$
 \begin{equation}
-R_n(z) = \sum_{p=1}^n  (-1 )^p \sum  R(z) T_{j_1} R(z) T_{j_2} R(z) \cdots R(z) T_{j_p} R(z),
+R_n(z) = \sum\_{p=1}^n  (-1 )^p \sum  R(z) T\_{j_1} R(z) T\_{j_2} R(z) \cdots R(z) T\_{j_p} R(z),
 \end{equation}
 $$
 where the second sum is over all $ j_1, \dots , j_p \in \mathbb{N}^* $ so that  $j_1+ \cdots + j_p = n$.
@@ -67,15 +65,15 @@ Fix an eigenvalue $\lambda$ of $T$.
 The laurent expansion of $R(z)$ at $\lambda$ is given by 
 $$
 \begin{equation}
-R(z) = \sum_{n=-m}^\infty (z-\lambda)^n S_{n+1},
+R(z) = \sum\_{n=-m}^\infty (z-\lambda)^n S\_{n+1},
 \end{equation}
 $$
-where $m$ is the algebraic multiplicity of $\lambda$ and for $n \in \mathbb{N}^*$: $S_0 = -P$, $S_n=S^n$ where $S$ is the reduced resolvent at $\lambda$ of $T$ and $S_{-n} =- D^n$ where $D$ is the eigen-nilpotent of $\lambda$ (the offdiagonal part in the jordan block of $\lambda$).
+where $m$ is the algebraic multiplicity of $\lambda$ and for $n \in \mathbb{N}^*$: $S_0 = -P$, $S_n=S^n$ where $S$ is the reduced resolvent at $\lambda$ of $T$ and $S\_{-n} =- D^n$ where $D$ is the eigen-nilpotent of $\lambda$ (the offdiagonal part in the jordan block of $\lambda$).
 
 In particular if $T$ is diagonal and $\lambda_1, \dots, \lambda_N$ are the eigenvalues, then
 $$
 \begin{equation}
-S= - \sum_{ i=1, \dots, N: \lambda_i \neq \lambda} (\lambda- \lambda_i)^{-1} P_i,
+S= - \sum\_{ i=1, \dots, N: \lambda_i \neq \lambda} (\lambda- \lambda_i)^{-1} P_i,
 \end{equation}
 $$
 where $P_i$ is the projection onto the eigenspace of $\lambda_i$.
@@ -101,7 +99,7 @@ $$
 Now
 $$
 \begin{align}
-T_r(x) &= - \frac{1}{2\pi i } \int_\Gamma (T(x) - z I +zI - \lambda I)  R(z,x) dz \\
+T_r(x) &= - \frac{1}{2\pi i } \int_\Gamma (T(x) - z I +zI - \lambda I)  R(z,x) dz \\\\
 &=  - \frac{1}{2\pi i }\int_\Gamma I + (z - \lambda )R (z,x) dz 
  = - \frac{1}{2\pi i }\int_\Gamma (z- \lambda) R(z,x) dz
 \end{align}
@@ -109,7 +107,7 @@ $$
 and upon inserting the series expansion for $R(z,x)$ and then the series expansion for $R(z)$ and integrating term by term we receive an expansion
 $$
 \begin{equation}
-T_r(x) = \sum_{n=1}^\infty \tilde{T}_n x^n.
+T\_r(x) = \sum\_{n=1}^\infty \tilde{T}\_n x^n.
 \end{equation}
 $$
 To obtain the coefficients: 
@@ -117,10 +115,10 @@ Among all the terms that have the power $x^n$ we
 only need to find the coefficients that have the power $(z-\lambda)^{-1}$ in the integrand (using the residue theorem to evaluate the integral). Therefore:
 $$
 \begin{equation}
- \tilde{T}_n= - \sum_{p=1}^n  (-1 )^p \sum S_{k_1} T_{j_1} S_{k_2} T_{j_2} S_{k_3} \cdots S_{k_p}T_{j_p} S_{k_{p+1}},
+ \tilde{T}_n= - \sum\_{p=1}^n  (-1 )^p \sum S\_{k_1} T\_{j_1} S\_{k_2} T\_{j_2} S\_{k_3} \cdots S\_{k_p}T\_{j_p} S\_{k\_{p+1}},
  \end{equation}
 $$
-where the second sum is over all $ j_1, \dots , j_p \in \mathbb{N}^* $ so that $ j_1+ \cdots + j_p = n $ and $ k_1, \dots , k_{p+1} \in \mathbb{Z}$ so that $ k_i \geq -m+1 \forall i $ and  $   k_1 + \cdots + k_{p+1} = p-1 $.
+where the second sum is over all $ j_1, \dots , j_p \in \mathbb{N}^* $ so that $ j_1+ \cdots + j_p = n $ and $ k_1, \dots , k\_{p+1} \in \mathbb{Z}$ so that $ k_i \geq -m+1 \forall i $ and  $   k_1 + \cdots + k\_{p+1} = p-1 $.
 The condition on the $j_i$ ensures that we have the right power of $x$ and the condition on the $k_i$ that the summand had (before evaluating the integral) a (total) factor of $(z-\lambda)^{-1}$ in the integrand.
 
 
@@ -149,7 +147,7 @@ A similar series expansion can also be done for $P(x)$ directly, which can be us
 Now if the eigenspace of $T$ to eigenvalue $\lambda$ is one dimensional, then $P(x)$ is the projection onto the eigenspace to the perturbed eigenvalue $\lambda(x)$ of $T(x)$ that comes from $\lambda$ (no splitting). Therefore (the trace is the sum of all eigenvalues) 
 $$
 \begin{equation}
-\lambda(x) = \lambda +  \sum_{n=1}^\infty \operatorname{trace} \tilde{T}_n x^n 
+\lambda(x) = \lambda +  \sum\_{n=1}^\infty \operatorname{trace} \tilde{T}_n x^n 
 \end{equation}
 $$
 
@@ -157,7 +155,7 @@ Now assume further that $T$ is self-adjoint and let $e_1, \dots, e_n$ be an orth
 Then
 $$
 \begin{equation}
-P(-) = e _1  \langle e_1 , -\rangle, \quad S(-)= -\sum_{i=2}^n (\lambda -\lambda_i  )^{-1}  e _i  \langle e_i , -\rangle .
+P(-) = e _1  \langle e_1 , -\rangle, \quad S(-)= -\sum\_{i=2}^n (\lambda -\lambda_i  )^{-1}  e _i  \langle e_i , -\rangle .
 \end{equation}
 $$
 So $\operatorname{trace} \tilde{T}_1 = \langle e_1, T_1 e_1 \rangle,$
@@ -165,7 +163,7 @@ and (using $PS=SP=0$ and $\operatorname{trace}(AB)= \operatorname{trace}(BA)$ to
 $$
 \begin{equation}
 \operatorname{trace} \tilde{T}_2 = \langle e_1, T_2 e_1 \rangle - \operatorname{trace} P T_1 S T_1 P = \langle e_1, T_2 e_1 \rangle + 
-\sum_{i=2}^n (\lambda - \lambda_i )^{-1}\langle e_1, T_1e _i \rangle   \langle e_i , T_1 e_1 \rangle.
+\sum\_{i=2}^n (\lambda - \lambda_i )^{-1}\langle e_1, T_1e _i \rangle   \langle e_i , T_1 e_1 \rangle.
 \end{equation}
 $$
 
@@ -262,36 +260,36 @@ plt.show()
 If the eigenspace to eigenvalue $\lambda$ of $T$ is not one dimensional ($\lambda$ is called a degenerate eigenvalue) and the eigenvalue $\lambda$ splits, then we look at the perturbation series (which defines an analytic function)
 $$
 \begin{equation}
-\tilde{T} (x) = \sum_{n=0}^\infty  \tilde{T}_{n+1} x^n.
+\tilde{T} (x) = \sum\_{n=0}^\infty  \tilde{T}\_{n+1} x^n.
 \end{equation}
 $$
 The unperturbed operator here is $\tilde{T}_1$. 
 Now $ T_r(x) = x \tilde{T} (x) $ and therefore $\tilde{\lambda}(x)$ is an eigenvalue of $\tilde{T} (x) $ if and only if $ x \tilde{\lambda}(x)$ is an eigenvalue of $T_r(x)$.
 
 
-Since $\tilde{T} (x) $ is given by a perturbation series we can apply perturbation theory to it. Let $$\tilde{\lambda}_{1}$$ be an eigenvalue of $$ \tilde{T}_{1} $$ with one dimensional eigenspace. Then we can apply non degenerate perturbation theory.
-Assume further that $T_{1}$ is self-adjoint so $$\tilde{T}_{1} = PT_{1}P$$ is as well. Let $e_{1}, \dots, e_m$ be the an orthonormal basis of $\operatorname{ran}P$ which consists of eigenvectors to eigenvalue $$\tilde{\lambda}_{1}, \dots,  \tilde{\lambda}_m$$ of $$\tilde{T}_{1}$$. Then this basis can be extended to a orthonormal basis $e_{1}, \dots e_m, e_{m+1}, \dots , e_n$ of $\mathcal{H}$ of eigenvectors of $T$ to eigenvalue $\lambda_{1} ,\dots, \lambda_n $, where $\lambda_{1} = \cdots = \lambda_m = \lambda$. 
+Since $\tilde{T} (x) $ is given by a perturbation series we can apply perturbation theory to it. Let $\tilde{\lambda}\_{1}$ be an eigenvalue of $ \tilde{T}\_{1} $ with one dimensional eigenspace. Then we can apply non degenerate perturbation theory.
+Assume further that $T\_{1}$ is self-adjoint so $\tilde{T}\_{1} = PT\_{1}P$ is as well. Let $e\_{1}, \dots, e_m$ be the an orthonormal basis of $\operatorname{ran}P$ which consists of eigenvectors to eigenvalue $\tilde{\lambda}\_{1}, \dots,  \tilde{\lambda}_m$ of $\tilde{T}\_{1}$. Then this basis can be extended to a orthonormal basis $e\_{1}, \dots e_m, e\_{m+1}, \dots , e_n$ of $\mathcal{H}$ of eigenvectors of $T$ to eigenvalue $\lambda\_{1} ,\dots, \lambda_n $, where $\lambda\_{1} = \cdots = \lambda_m = \lambda$. 
 
-Let $\tilde{P}$ be the projection onto the eigenspace of $$\tilde{T}_1$$ to eigenvalue $$\tilde{\lambda}_{1}$$
+Let $\tilde{P}$ be the projection onto the eigenspace of $\tilde{T}_1$ to eigenvalue $\tilde{\lambda}\_{1}$
 then 
 $$
 \begin{equation}
-\tilde{P} (-) = e_1 \langle e_1, - \rangle , \quad P(-) = \sum_{i=1}^m e_i \langle e_i , - \rangle, \quad   S(-) = - \sum_{i=m+1}^n (\lambda - \lambda_i)^{-1} e_i \langle e_i, - \rangle. 
+\tilde{P} (-) = e_1 \langle e_1, - \rangle , \quad P(-) = \sum\_{i=1}^m e_i \langle e_i , - \rangle, \quad   S(-) = - \sum\_{i=m+1}^n (\lambda - \lambda_i)^{-1} e_i \langle e_i, - \rangle. 
 \end{equation}
 $$
 And so applying the formula from the previous section (further assuming $T_2=0$ for simplicity)
 $$ 
 \begin{equation}
-\operatorname{trace} \tilde{P} \tilde{T}_2 \tilde{P} = - \langle e_1  , PT_1 S T_1 P e_1 \rangle =  \sum_{i=m+1}^n (\lambda - \lambda_i )^{-1} |\langle e_1, T_1e _i \rangle |^2 . 
+\operatorname{trace} \tilde{P} \tilde{T}_2 \tilde{P} = - \langle e_1  , PT_1 S T_1 P e_1 \rangle =  \sum\_{i=m+1}^n (\lambda - \lambda_i )^{-1} |\langle e_1, T_1e _i \rangle |^2 . 
 \end{equation}
 $$
 And so there will be an eigenvalue $\lambda_1 (x)$ of $T(x)$ with
 $$
 \begin{equation}
-\lambda_1 (x) = \lambda + x \tilde{\lambda}_1 + x^2 \bigg(  \sum_{i=m+1}^n (\lambda - \lambda_i )^{-1} |\langle e_1, T_1e _i \rangle |^2  \bigg) + o(x^2) .
+\lambda_1 (x) = \lambda + x \tilde{\lambda}_1 + x^2 \bigg(  \sum\_{i=m+1}^n (\lambda - \lambda_i )^{-1} |\langle e_1, T_1e _i \rangle |^2  \bigg) + o(x^2) .
 \end{equation}
 $$
-If all the eigenvalues of $$\tilde{T}_1$$ have one dimensional eigenspace, then all the eigenvalues of $T(x)$ that have split from $\lambda$ are found in this way. If not, then the degenerate expansion can be applied again to the eigenvalues in those higher dimensional eigenspaces. 
+If all the eigenvalues of $\tilde{T}_1$ have one dimensional eigenspace, then all the eigenvalues of $T(x)$ that have split from $\lambda$ are found in this way. If not, then the degenerate expansion can be applied again to the eigenvalues in those higher dimensional eigenspaces. 
 
 # Python Example
 The following python jupyter notebook code illustrates the derived formula for the perturbed eigenvalues. Again a linear perturbation $T(x)= T_0 + T_1 x $ with self-adjoint $T_0$ and $T_1$ on a 3 dimensional Hilbert space is considered.

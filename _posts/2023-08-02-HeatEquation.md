@@ -31,9 +31,9 @@ $$e_n(t) =  \sqrt{2} \sin( \pi n t ) $$
 with eigenvalues
 $$\lambda_n = \frac{1}{n^2 \pi^2}$$
 and the Hilbert-Schmidt kernel $k$ is given by 
-$$k =\sum_{n=1}^\infty  \lambda_n \overline{e}_n \otimes e_n. $$
+$$k =\sum\_{n=1}^\infty  \lambda_n \overline{e}_n \otimes e_n. $$
 Explicitly 
- $$ k(t,s)=    \sum_{n=1}^\infty  \frac{2}{ n^2\pi^2} \sin( \pi n t ) \sin( \pi n s ),$$
+ $$ k(t,s)=    \sum\_{n=1}^\infty  \frac{2}{ n^2\pi^2} \sin( \pi n t ) \sin( \pi n s ),$$
  where the convergence is even in $C[0,1]\times C[0,1]$.
 So in total:
 $$ (Af)(t) =  \int_0^1 k(t,s) f(s) ds$$
@@ -92,8 +92,8 @@ $$u(x+h)= u(x) + u^\prime (x) h + 1/2 \Delta u (x) h^2 + 1/6 u^{\prime \prime \p
 from which it follows that 
 $$ u(x-h)-2u(x)+u(x+h)  = \Delta u (x) h^2 + o(h^4).$$
 
-Using this $\Delta u$ can be approximated by evaluating $u$ for points $x_0, \dots, x_n$ with $x_j = x_{j-1}+h$ for all $j$ and some fixed $h>0$ and then simply computing 
-$$\Delta u (x_j)= \frac{u(x_{j-1})-2u(x_j)+u(x_{j+1})}{h^2} $$
+Using this $\Delta u$ can be approximated by evaluating $u$ for points $x_0, \dots, x_n$ with $x_j = x\_{j-1}+h$ for all $j$ and some fixed $h>0$ and then simply computing 
+$$\Delta u (x_j)= \frac{u(x\_{j-1})-2u(x_j)+u(x\_{j+1})}{h^2} $$
 for $j = 1, \dots , n-1$.
 
 This is implemented in the following function:
@@ -137,7 +137,7 @@ so that $u(0)= u_0$ for a given $u_0 \in L^2(0,1)$ and so that $\dot{u}(t) =  \D
 
 The $e_n$ from above form the spectral decomposition of $\Delta $ with eigenvalues $- 1/ \lambda_n = -n^2 \pi^2$ and so 
 using the spectral theorem:
-$$ u(t)= \sum_{n=1}^\infty e^{- n^2 \pi^2 t} e_n \langle e_n , u_0 \rangle =  \sum_{n=1}^\infty e^{- n^2 \pi^2 t} e_n \langle e_n , u_0 \rangle =\sqrt{2}  \sum_{n=1}^\infty  e^{- n^2 \pi^2 t} \int_0^1 \sin(n \pi s) u_0(s) ds \, e_n.$$
+$$ u(t)= \sum\_{n=1}^\infty e^{- n^2 \pi^2 t} e_n \langle e_n , u_0 \rangle =  \sum\_{n=1}^\infty e^{- n^2 \pi^2 t} e_n \langle e_n , u_0 \rangle =\sqrt{2}  \sum\_{n=1}^\infty  e^{- n^2 \pi^2 t} \int_0^1 \sin(n \pi s) u_0(s) ds \, e_n.$$
 
 
 ```python
@@ -259,7 +259,7 @@ $$
 u(t) = \exp(\Delta t) u(0) +\int_0^t \exp(\Delta (t-s))q(s)ds .
 $$
 With $q$ time independent:
-$$ u(t) -\exp(\Delta t) u(0)  =  \int_0^t \sum_{n=1}^\infty e^{- n^2 \pi^2 (t-s)} e_n \langle e_n , q \rangle ds =\sum_{n=1}^\infty  \frac{1}{\pi^2 n^2}(1- e^{- n^2 \pi^2 t}) e_n \langle e_n , q \rangle $$
+$$ u(t) -\exp(\Delta t) u(0)  =  \int_0^t \sum\_{n=1}^\infty e^{- n^2 \pi^2 (t-s)} e_n \langle e_n , q \rangle ds =\sum\_{n=1}^\infty  \frac{1}{\pi^2 n^2}(1- e^{- n^2 \pi^2 t}) e_n \langle e_n , q \rangle $$
 
 
 ```python

@@ -18,7 +18,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Physics, Maths and Code with Jannik Daun
+title: Jannik's Blog
 email: jannik.daun@proton.me
 description: >- # this means to ignore newlines until "baseurl:"
   Blog about mathematics, physics and code by Jannik Daun
@@ -28,6 +28,7 @@ twitter_username:
 github_username:  jd11111
 # Build settings
 theme: jekyll-theme-minimal
+markdown: GFM
 plugins:
   - jekyll-feed
  # - jekyll-toc 
