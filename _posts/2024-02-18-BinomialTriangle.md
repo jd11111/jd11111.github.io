@@ -1,11 +1,13 @@
 ---
 layout: post
 title:  "Generating The Binomial Triangle In Haskell"
-date:   2023-11-26 11:13:45 +0200
+date:   2024-02-18 11:13:45 +0200
 categories:
 ---
 
 This post shows how to "generate" the whole binomial triangle in Haskell using its lazyness and recursion.
+
+The code shown is meant to be run in a jupyter notebook (using [iHaskell](https://github.com/IHaskell/IHaskell) for example). It should also work in GHCI. Of course the code can also be adapted to run in a compiled Haskell file.
 
 The first 6 rows of the binomial triangle look like this:
 ```
