@@ -1,11 +1,11 @@
 ---
 layout: post
-title:  "Power-Series In Banach Spaces And Algebras"
+title:  "Generating The Binomial Triangle In Haskell"
 date:   2023-11-26 11:13:45 +0200
 categories:
 ---
 
-# Binomial Triangle In Haskell
+This post shows how to "generate" the whole binomial triangle in Haskell using its lazyness and recursion.
 
 The first 6 rows of the binomial triangle look like this:
 ```
