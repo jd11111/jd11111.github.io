@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Generating The Binomial Triangle In Haskell"
-date:   2024-02-18 10:00:00 +0200
+date:   2024-02-17 10:00:00 +0200
 ---
 
 This post shows how to "generate" the whole binomial triangle in Haskell using its lazyness and recursion.
