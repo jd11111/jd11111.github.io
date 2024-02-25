@@ -38,18 +38,18 @@ Note that there will always be exactly $n-1$ stars and $n-1$ bars.
 
 ### Cyclic Group Action
 
-Define the cyclic group of order $n$ by $C_n : = \langle g | g^n = 1 \rangle$.
-Then $C_n$ acts on $S_n$ via $g (\alpha_1, \dots, \alpha_n) = (\alpha_n , \alpha_1, \dots, \alpha_{n-1})$.
+Define the cyclic group of order $n$ by the following [presentation]([https://en.wikipedia.org/wiki/Presentation_of_a_group]) $C_n : = \langle g | g^n = 1 \rangle$.
+Then $C_n$ acts on $S_n$ via $g (\alpha_1, \dots, \alpha_n) = (\alpha_n , \alpha_1, \dots, \alpha_{n-1})$
+for $(\alpha_1, \dots, \alpha_n) \in S_n$.
 
 The goal of this post is to generate an element of each orbit and the number of elements in that orbit using the Haskell programming language.
 
-I will sketch the mathematics that allow to do this.
-For the details refer to [this](https://en.wikipedia.org/wiki/Catalan_number).
-
+I will sketch the mathematics that allow to do this:
 
 Consider that any element of $S_n$ can be seen as a length $2n$ list of Bools where a bar
 corresponds to False and a star to True (i will refer to such a list as a word).  
-We can also view such a list as a lattice path that only moves up (True) and to the right (False).  
+We can also view such a list as a lattice path that only moves up (True) and to the right (False).
+For the details see one of the points [here](https://en.wikipedia.org/wiki/Catalan_number#Applications_in_combinatorics).  
 Using the [exceedance-decreasing algorithm](https://en.wikipedia.org/wiki/Catalan_number#Third_proof) it can be shown, that the orbit of an element of $S_n$
 consists of exactly $n-1$ elements.  
 Where it has to be noticed that every step in this algorithm corresponds to acting with $C_n$ elements on the original tuple that defined the path.
