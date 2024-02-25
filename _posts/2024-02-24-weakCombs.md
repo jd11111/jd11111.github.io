@@ -17,7 +17,7 @@ This section of the post introduces the problem that will be solved below in Has
 $\def\mod{\operatorname{mod}}$
 Let $n \in \mathbb{N}$ be fixed. Consider the set 
 $$
-S_n:= \{ (\alpha_1, \dots, \alpha_{n}) \in \mathbb{N}^n : \sum_{i=1}^{n} \alpha_i = n-1 \}.
+S_n:= \\{ (\alpha_1, \dots, \alpha_{n}) \in \mathbb{N}^n : \sum_{i=1}^{n} \alpha_i = n-1 \\}.
 $$
 The elements of $S_n$ are called weak length $n$ combinations of $n-1$ (in the following i will call them just combinations). 
 
