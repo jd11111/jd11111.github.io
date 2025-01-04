@@ -11,7 +11,7 @@ The code shown is meant to be run in a jupyter notebook (using [iHaskell](https:
 The first 6 rows of the binomial triangle look like this:
 ```
 1
-1 1s
+1 1 
 1 2 1 
 1 3 3  1 
 1 4 6  4  1

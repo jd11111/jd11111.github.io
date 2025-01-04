@@ -12,7 +12,7 @@ The problem and how to solve it will be explained in the first section and in th
 
 This section of the post introduces the problem that will be solved below in Haskell.
 
-### Weak combinationss
+### Weak combinations
 
 $\def\mod{\operatorname{mod}}$
 Let $n \in \mathbb{N}$ be fixed. Consider the set 
