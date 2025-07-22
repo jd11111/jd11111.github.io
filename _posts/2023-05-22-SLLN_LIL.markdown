@@ -26,40 +26,30 @@ The SLLN states that $\bar{X}_n $ converges to $\mu$ almost surely (from now on 
 But it does not tell us how fast $\bar{X}_n $ converges to $\mu$.
 This is where the LIL comes in.
 Define a sequence of real numbers $l$ by 
-$
 \begin{equation}
 l_n=\sigma \sqrt{2/n \log ( \log ( n))} \quad \text{for} \ n > e 
 \end{equation}
-$
 Note that $\lim\_{n \to \infty } l_n =0$.
 Then the LIL says that
-$$
 \begin{equation}
 \tag{1}
     \limsup\_{n \to \infty} l_n^{-1} |\bar{X}_n - \mu|= 1 \quad \text{a.s.}
 \end{equation}
-$$
 Unravelling the definition this means that the following is true for $\forall \varepsilon >0$:
-$$
 \begin{equation}
     | \bar{X}_n - \mu| < (1 + \varepsilon )l_n \quad \text{a.s.}
 \end{equation}
-$$
 for all but finitely many $n$ and 
-$$
 \begin{equation}
    (1 - \varepsilon ) l_n < | \bar{X}_n - \mu| \quad \text{a.s.}
 \end{equation}
-$$
 for infinitely many $n$.
 Using the [big-$\mathcal{O}$ notation](https://en.wikipedia.org/wiki/Big_O_notation#Formal_definition) the LIL is therefore equivalent to saying that $|\bar{X}_n - \mu| = \mathcal{O}(l_n)$ a.s. as $n \to \infty$ with any bounding constant $>1$, but not with any bounding constant $<1$.
 So the LIL gives us an upper bound for the speed of convergence in the SLLN for large $n$.
 Furthermore the LIL also tells us that
-$$
 \begin{equation}
  \lim x_n^{-1} l_n^{-1} |\bar{X}_n - \mu| = 0  \quad \text{a.s.}
 \end{equation}
-$$
 for any sequence of positive real numbers $x$ that converges to $\infty$ (follows from the rules of the product of $\limsup$'s).
 In other words using the [little-$o$ notation](https://en.wikipedia.org/wiki/Big_O_notation#Little-o_notation) $\bar{X}_n - \mu = o(x_n l_n) $ a.s. as $n \to \infty$.
 

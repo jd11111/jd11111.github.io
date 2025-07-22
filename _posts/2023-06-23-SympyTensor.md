@@ -53,33 +53,29 @@ So for example $T^a {}^{bc} {}_d $ denotes the tensor obtained from $T$ by apply
 We can also rearrange the factors of the original tensor product in any order and the resulting tensor product can be indentified with the original.
 In an expression with the sum of two tensors we indicate that a summand has its factors rearranged by permuting the latin indices.
 So for example 
-$$
 \begin{equation}
-S\_{ab} - T\_{ba} 
+S_{ab} - T_{ba} 
 \end{equation}
-$$
 denotes the difference of $T$ and $S$, where either $T$ or $S$ have the second and third factor exchanged.
-Note that the above expression does not define a unique tensor, because there is a certain ambiguity in the above expression: Since both $T\_{ab} $ and $ T\_{ba} $ denote $T$. So it is unclear if we substract the exchanged version of $T$ from $S$ or the other way around.
+Note that the above expression does not define a unique tensor, because there is a certain ambiguity in the above expression: Since both $T_{ab} $ and $ T_{ba} $ denote $T$. So it is unclear if we substract the exchanged version of $T$ from $S$ or the other way around.
 This ambiguity is resolved by specifying an ordered tuple of indices, that specifies the "reference" unpermuted tensor.
-So for example if this tuple is $(a,b)$, then $S\_{ab} - T\_{ba} $, $(a,b)$ means the tensor
-$$
-(S\_{\mu \nu}- T\_{\nu \mu}) e^\mu \otimes e^\nu.
-$$
+So for example if this tuple is $(a,b)$, then $S_{ab} - T_{ba} $, $(a,b)$ means the tensor
+(S_{\mu \nu}- T_{\nu \mu}) e^\mu \otimes e^\nu.
 whereas 
-$S\_{ab} - T\_{ba} $, $(b,a)$ means the tensor
-$$
-(S\_{\nu \mu}- T\_{\mu \nu}) e^\mu \otimes e^\nu.
-$$
-When asigning such an expression as a new tensor, for example when defining a tensor $G\_{ab}$ by
-$$
-G\_{ab}= S\_{ab}- T\_{ba},
-$$
+$S_{ab} - T_{ba} $, $(b,a)$ means the tensor
+\begin{equation}
+(S_{\nu \mu}- T_{\mu \nu}) e^\mu \otimes e^\nu.
+\end{equation}
+When asigning such an expression as a new tensor, for example when defining a tensor $G_{ab}$ by
+\begin{equation*}
+G_{ab}= S_{ab}- T_{ba},
+\end{equation*}
 then the tuple of indices for the expression on the right is implicitly assumed to be $(a,b)$ (the same as the latin indices of $G$). This is always the case and is very important to remember.
 
 ## Symmetrizing Of Tensors
 
 Lastly we can (anti) symmetrize a tensor.
-For example we denote the symmetrization of the second and third factor of $T\mathstrut\_{a}\mathstrut^{bc}\mathstrut_d$ by $T\mathstrut\_{a}\mathstrut^{(bc)}\mathstrut_d$. The anti-symmetrization of the same factors is denotes as $T\mathstrut\_{a}\mathstrut^{[bc]}\mathstrut_d$.
+For example we denote the symmetrization of the second and third factor of $T\mathstrut_{a}\mathstrut^{bc}\mathstrut_d$ by $T\mathstrut_{a}\mathstrut^{(bc)}\mathstrut_d$. The anti-symmetrization of the same factors is denotes as $T\mathstrut_{a}\mathstrut^{[bc]}\mathstrut_d$.
 If we want to exclude some factors between indices we use two vertical bars surrounding the excluded factors. So for example $T\mathstrut^{[a|b|c]}\mathstrut_d$ is the anti-symmetrization of the first and third factor (excluding the second) of $T\mathstrut^{abc}\mathstrut_d$.
 The same caveats as for factor rearrangement apply.
 ### Tensors in Sympy
@@ -126,7 +122,7 @@ T(a,-b) #this is a tensor with one upper and one lower index
 
 
 
-$\displaystyle T{}^{a}{}\_{b}$
+$\displaystyle T{}^{a}{}_{b}$
 
 
 
@@ -163,8 +159,9 @@ T(a,b)*S(c,-d) #the product of the two tensors
 
 
 
-
-$$\displaystyle T{}^{ab}S{}^{c}{}\_{d}$$
+\begin{equation}
+ T{}^{ab}S{}^{c}{}_{d}
+\end{equation}
 
 
 
@@ -176,7 +173,9 @@ T(a,b)+S(a,b) #the sum of two tensors
 
 
 
-$$\displaystyle S{}^{ab} + T{}^{ab}$$
+\begin{equation}
+\displaystyle S{}^{ab} + T{}^{ab}
+\end{equation}
 
 
 
@@ -187,8 +186,9 @@ T(a,b)*S(-b,c) # the contraction of the two tensors (dummy index used for the co
 
 
 
-
-$$\displaystyle T{}^{aV\_{0}}S{}\_{V\_{0}}{}^{c}$$
+\begin{equation}
+ T{}^{aV_0}S{}_{V_0}{}^{c}
+\end{equation}
 
 
 
@@ -199,8 +199,9 @@ T(b,a) #rearrange T^{ab} to T^{ba}
 
 
 
-
-$$\displaystyle T{}^{ba}$$
+\begin{equation}
+ T{}^{ba}
+\end{equation}
 
 
 
@@ -214,8 +215,9 @@ expr
 
 
 
-
-$$\displaystyle S{}^{ab} + T{}^{ab}$$
+\begin{equation}
+\displaystyle S{}^{ab} + T{}^{ab}
+\end{equation}
 
 
 
@@ -227,8 +229,9 @@ expr._replace_indices({a:b, b:a}) #supply a dictionary of replacements (these ca
 
 
 
-$$\displaystyle S{}^{ba} + T{}^{ba}$$
-
+\begin{equation}
+    \displaystyle S{}^{ba} + T{}^{ba}
+\end{equation}
 
 
 We can also change the type of a tensor expression in the same way
@@ -240,8 +243,9 @@ expr._replace_indices({a:-a, b:b}) #lower the first index
 
 
 
-
-$$\displaystyle S{}\_{a}{}^{b} + T{}\_{a}{}^{b}$$
+\begin{equation}
+\displaystyle S{}_{a}{}^{b} + T{}_{a}{}^{b}
+\end{equation}
 
 
 
@@ -261,8 +265,9 @@ T(a,b).replace_with_arrays(repl) #the coefficient matrix of T^{ab}
 
 
 
-
-$$\displaystyle \left[\begin{matrix}1 & 2 \\\\ 5 & 6\end{matrix}\right]$$
+\begin{equation}
+\displaystyle \left[\begin{matrix}1 & 2 \\\\ 5 & 6\end{matrix}\right]
+\end{equation}
 
 
 
@@ -276,8 +281,9 @@ expr
 
 
 
-
-$$\displaystyle S{}^{ab} + T{}^{ab}$$
+\begin{equation}
+\displaystyle S{}^{ab} + T{}^{ab}
+\end{equation}
 
 
 
@@ -288,8 +294,9 @@ expr.replace_with_arrays(repl) #the coefficient matrix of the sum
 
 
 
-
-$$\displaystyle \left[\begin{matrix}9 & 3\\\\7 & 15\end{matrix}\right]$$
+\begin{equation}
+\displaystyle \left[\begin{matrix}9 & 3\\\\7 & 15\end{matrix}\right]
+\end{equation}
 
 
 
@@ -307,8 +314,9 @@ T(a,-b).replace_with_arrays(repl) #here the metric is used to lower the index b
 
 
 
-
-$$\displaystyle \left[\begin{matrix}-1 & 2 \\\\-5 & 6\end{matrix}\right]$$
+\begin{equation}
+\displaystyle \left[\begin{matrix}-1 & 2 \\\\-5 & 6\end{matrix}\right]
+\end{equation}
 
 
 
@@ -333,20 +341,22 @@ expr
 
 
 
-
-$$\displaystyle E{}^{c}F{}^{d}$$
+\begin{equation}
+\displaystyle E{}^{c}F{}^{d}
+\end{equation}
 
 
 
 
 ```python
-expr.replace_with_arrays(repl) #this is the component representation of $$E^c F^d$$
+expr.replace_with_arrays(repl) #this is the component representation of E^c F^d
 ```
 
 
 
-
-$$\displaystyle \left[\begin{matrix}5 & 6\\\\10 & 12\end{matrix}\right]$$
+\begin{equation}
+\displaystyle \left[\begin{matrix}5 & 6\\\\10 & 12\end{matrix}\right]
+\end{equation}
 
 
 
@@ -360,8 +370,9 @@ expr
 
 
 
-
-$$\displaystyle T{}^{aV\_{0}}S{}\_{V\_{0}}{}^{c}$$
+\begin{equation}
+\displaystyle T{}^{aV_{0}}S{}_{V_{0}}{}^{c}
+\end{equation}
 
 
 
@@ -372,8 +383,9 @@ expr.replace_with_arrays(repl) #The coefficient matrix of the contraction define
 
 
 
-
-$$\displaystyle \left[\begin{matrix}-4 & 17\\\\-28 & 49\end{matrix}\right]$$
+\begin{equation}
+\displaystyle \left[\begin{matrix}-4 & 17\\\\-28 & 49\end{matrix}\right]
+\end{equation}
 
 
 
@@ -387,8 +399,9 @@ expr.replace_with_arrays(repl,indices=[a,b]) # the index tuple is chosen to be (
 
 
 
-
-$$\displaystyle \left[\begin{matrix}-7 & 0\\\\4 & -3\end{matrix}\right] $$
+\begin{equation}
+\displaystyle \left[\begin{matrix}-7 & 0\\\\4 & -3\end{matrix}\right] 
+\end{equation}
  
 
 
@@ -399,8 +412,9 @@ expr.replace_with_arrays(repl,indices=[b,a])# the index tuple is chosen to be (a
 
 
 
-
-$$\displaystyle \left[\begin{matrix}-7 & 4\\\\0 & -3\end{matrix}\right] $$
+\begin{equation}
+\displaystyle \left[\begin{matrix}-7 & 4\\\\0 & -3\end{matrix}\right] 
+\end{equation}
 
 
 
@@ -436,8 +450,9 @@ expr #the expression is not in canonical form and the anti symmetry has not been
 
 
 
-
-$$\displaystyle A{}^{ab} + A{}^{ba}$$
+\begin{equation}
+\displaystyle A{}^{ab} + A{}^{ba}
+\end{equation}
 
 
 
@@ -450,8 +465,9 @@ expr.canon_bp() #put the expression into canonical form (its zero because A is a
 
 
 
-
-$$\displaystyle 0$$
+\begin{equation}
+\displaystyle 0
+\end{equation}
 
 
 
@@ -465,8 +481,9 @@ expr
 
 
 
-
-$$\displaystyle Sy{}^{ab} + Sy{}^{ba}$$
+\begin{equation}
+\displaystyle Sy{}^{ab} + Sy{}^{ba}
+\end{equation}
 
 
 
@@ -477,8 +494,9 @@ expr.canon_bp() #put the expression into canonical form (its 2 Sy^{ab} because S
 
 
 
-
-$$\displaystyle 2Sy{}^{ab}$$
+\begin{equation}
+\displaystyle 2Sy{}^{ab}
+\end{equation}
 
 
 
@@ -499,8 +517,9 @@ expr
 
 
 
-
-$$\displaystyle -R{}^{cdab} + 3R{}^{abcd} + R{}^{abdc} + R{}^{bacd}$$
+\begin{equation}
+\displaystyle -R{}^{cdab} + 3R{}^{abcd} + R{}^{abdc} + R{}^{bacd}
+\end{equation}
 
 
 
@@ -512,7 +531,9 @@ expr.canon_bp() #uses the symmetries of the riemann tensor to simplify
 
 
 
-$$\displaystyle 0$$
+\begin{equation}
+    0
+\end{equation}
 
 
 
@@ -528,8 +549,9 @@ expr.canon_bp() #the algebraic bianchi identity is not simplified (this should b
 
 
 
-
-$$\displaystyle -R{}^{acbd} + R{}^{abcd} + R{}^{adbc}$$
+\begin{equation}
+\displaystyle -R{}^{acbd} + R{}^{abcd} + R{}^{adbc}
+\end{equation}
 
 
 
@@ -545,9 +567,9 @@ riemann_cyclic(expr) #this is a special function that can rewrite the riemann te
 
 
 
-
-$$\displaystyle 0$$
-
+\begin{equation}
+    0
+\end{equation}
 
 
 The symmetries from $R$ carry over to tensors defined from it like Ricci curvature $Ric$
@@ -564,8 +586,9 @@ Ric
 
 
 
-
-$$\displaystyle R{}\_{V\_{0}}{}^{aV\_{0}b}$$
+\begin{equation}
+\displaystyle R{}_{V_{0}}{}^{aV_{0}b}
+\end{equation}
 
 
 
@@ -581,8 +604,9 @@ expr
 
 
 
-
-$$\displaystyle R{}\_{V\_{0}}{}^{aV\_{0}b} + R{}\_{V\_{0}}{}^{bV\_{0}a}$$
+\begin{equation}
+\displaystyle R{}_{V_{0}}{}^{aV_{0}b} + R{}_{V_{0}}{}^{bV_{0}a}
+\end{equation}
 
 
 
@@ -593,8 +617,9 @@ expr.canon_bp() #ric is symmetric
 
 
 
-
-$$\displaystyle 2R{}^{aV\_{0}b}{}\_{V\_{0}}$$
+\begin{equation}
+\displaystyle 2R{}^{aV_{0}b}{}_{V_{0}}
+\end{equation}
 
 
 
@@ -641,8 +666,9 @@ symmetrizer(K(a,b,c),[a,b,c]) #Symmetrize all indices, this is K^{(abc)}
 
 
 
-
-$$\displaystyle \left(\frac{1}{6}\right)\left(K{}^{abc} + K{}^{acb} + K{}^{bac} + K{}^{bca} + K{}^{cab} + K{}^{cba}\right)$$
+\begin{equation}
+\displaystyle \left(\frac{1}{6}\right)\left(K{}^{abc} + K{}^{acb} + K{}^{bac} + K{}^{bca} + K{}^{cab} + K{}^{cba}\right)
+\end{equation}
 
 
 
@@ -653,8 +679,9 @@ symmetrizer(K(a,b,c),[a,b,c],anti=True)#anti-symmetrize all indices, this is K^{
 
 
 
-
-$$\displaystyle \left(\frac{1}{6}\right)\left(K{}^{abc} + K{}^{bca} + K{}^{cab} + \left(-1\right)K{}^{acb} + \left(-1\right)K{}^{bac} + \left(-1\right)K{}^{cba}\right)$$
+\begin{equation}
+\displaystyle \left(\frac{1}{6}\right)\left(K{}^{abc} + K{}^{bca} + K{}^{cab} + \left(-1\right)K{}^{acb} + \left(-1\right)K{}^{bac} + \left(-1\right)K{}^{cba}\right)
+\end{equation}
 
 
 
@@ -665,8 +692,9 @@ symmetrizer(K(a,b,c),[a,c])#symmetrize only the first and second factor, this is
 
 
 
-
-$$\displaystyle \left(\frac{1}{2}\right)\left(K{}^{abc} + K{}^{cba}\right)$$
+\begin{equation}
+\displaystyle \left(\frac{1}{2}\right)\left(K{}^{abc} + K{}^{cba}\right)
+\end{equation}
 
 
 
@@ -685,8 +713,9 @@ symmetrizer(expr,[a,b,c])
 
 
 
-$$ \frac{1}{6}\left( J{}^{abc} + J{}^{acb} + J{}^{bac} + J{}^{bca} + J{}^{cab} + J{}^{cba} + K{}^{abc} + K{}^{acb} + K{}^{bac} + K{}^{bca} + K{}^{cab} + K{}^{cba}\right) $$ 
-
+\begin{equation}
+ \frac{1}{6}\left( J{}^{abc} + J{}^{acb} + J{}^{bac} + J{}^{bca} + J{}^{cab} + J{}^{cba} + K{}^{abc} + K{}^{acb} + K{}^{bac} + K{}^{bca} + K{}^{cab} + K{}^{cba}\right) 
+\end{equation}
 
 
 
@@ -700,8 +729,6 @@ symmetrizer(expr,[a,d])
 ```
 
 
-
-
-$$ \left(\frac{1}{2}\right)\left(K{}^{abV\_{0}}J{}\_{V\_{0}}{}^{de} + K{}^{dbV\_{0}}J{}\_{V\_{0}}{}^{ae}\right)$$
-
-
+\begin{equation}
+ \left(\frac{1}{2}\right)\left(K{}^{abV_0}J{}_{V_0}{}^{de} + K{}^{dbV_0}J{}_{V_0}{}^{ae}\right)
+\end{equation}

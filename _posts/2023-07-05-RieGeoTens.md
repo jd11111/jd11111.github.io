@@ -78,8 +78,9 @@ ch_syms
 
 
 
-
-$$\displaystyle \left(\frac{1}{2}\right)g{}^{cl\_{0}}\left(\frac{\partial}{\partial {x{}^{a}}}{g{}\_{bl\_{0}}} + \frac{\partial}{\partial {x{}^{b}}}{g{}\_{al\_{0}}} + \left(-1\right)\frac{\partial}{\partial {x{}^{l\_{0}}}}{g{}\_{ab}}\right)$$
+\begin{equation}
+\displaystyle \left(\frac{1}{2}\right)g{}^{cl\_{0}}\left(\frac{\partial}{\partial {x{}^{a}}}{g{}\_{bl\_{0}}} + \frac{\partial}{\partial {x{}^{b}}}{g{}\_{al\_{0}}} + \left(-1\right)\frac{\partial}{\partial {x{}^{l\_{0}}}}{g{}\_{ab}}\right)
+\end{equation}
 
 
 ## Covariant Derivative
@@ -117,8 +118,9 @@ cov_der(a,E(a,b,-c))
 
 
 
-
-$$\displaystyle -\Gamma{}^{l\_{0}}{}\_{l\_{1}c}E{}^{l\_{1}b}{}\_{l\_{0}} + \Gamma{}^{b}{}\_{l\_{0}l\_{1}}E{}^{l\_{0}l\_{1}}{}\_{c} + \Gamma{}^{l\_{0}}{}\_{l\_{0}l\_{1}}E{}^{l\_{1}b}{}\_{c} + \frac{\partial}{\partial {x{}^{l\_{0}}}}{E{}^{l\_{0}b}{}\_{c}}$$
+\begin{equation}
+\displaystyle -\Gamma{}^{l\_{0}}{}\_{l\_{1}c}E{}^{l\_{1}b}{}\_{l\_{0}} + \Gamma{}^{b}{}\_{l\_{0}l\_{1}}E{}^{l\_{0}l\_{1}}{}\_{c} + \Gamma{}^{l\_{0}}{}\_{l\_{0}l\_{1}}E{}^{l\_{1}b}{}\_{c} + \frac{\partial}{\partial {x{}^{l\_{0}}}}{E{}^{l\_{0}b}{}\_{c}}
+\end{equation}
 
 
 
@@ -136,8 +138,9 @@ divA
 
 
 
-
-$$\displaystyle \Gamma{}^{l\_{0}}{}\_{l\_{0}l\_{1}}A{}^{l\_{1}} + \frac{\partial}{\partial {x{}^{l\_{0}}}}{A{}^{l\_{0}}}$$
+\begin{equation}
+\displaystyle \Gamma{}^{l\_{0}}{}\_{l\_{0}l\_{1}}A{}^{l\_{1}} + \frac{\partial}{\partial {x{}^{l\_{0}}}}{A{}^{l\_{0}}}
+\end{equation}
 
 
 
@@ -177,8 +180,9 @@ Rie
 
 
 
-
-$$\displaystyle -\Gamma{}^{l\_{0}}{}\_{cb}\Gamma{}^{d}{}\_{al\_{0}} - \left(\frac{\partial}{\partial {x{}^{a}}}{\Gamma{}^{d}{}\_{bc}} + \left(-1\right)\frac{\partial}{\partial {x{}^{b}}}{\Gamma{}^{d}{}\_{ac}}\right) + \Gamma{}^{l\_{0}}{}\_{ca}\Gamma{}^{d}{}\_{bl\_{0}}$$
+\begin{equation}
+\displaystyle -\Gamma{}^{l\_{0}}{}\_{cb}\Gamma{}^{d}{}\_{al\_{0}} - \left(\frac{\partial}{\partial {x{}^{a}}}{\Gamma{}^{d}{}\_{bc}} + \left(-1\right)\frac{\partial}{\partial {x{}^{b}}}{\Gamma{}^{d}{}\_{ac}}\right) + \Gamma{}^{l\_{0}}{}\_{ca}\Gamma{}^{d}{}\_{bl\_{0}}
+\end{equation}
 
 
 
@@ -224,8 +228,9 @@ g(-e,-j).replace_with_arrays(repl)
 
 
 
-
-$$\displaystyle \left[\begin{matrix}r^{2} & 0\\\\0 & r^{2} \sin^{2}{\left(\theta \right)}\end{matrix}\right]$$
+\begin{equation}
+\displaystyle \left[\begin{matrix}r^{2} & 0\\\\0 & r^{2} \sin^{2}{\left(\theta \right)}\end{matrix}\right]
+\end{equation}
 
 
 
@@ -238,8 +243,9 @@ ch_syms
 
 
 
-
-$$\displaystyle \left(\frac{1}{2}\right)g{}^{cl\_{0}}\left(\frac{\partial}{\partial {x{}^{a}}}{g{}\_{bl\_{0}}} + \frac{\partial}{\partial {x{}^{b}}}{g{}\_{al\_{0}}} + \left(-1\right)\frac{\partial}{\partial {x{}^{l\_{0}}}}{g{}\_{ab}}\right)$$
+\begin{equation}
+\displaystyle \left(\frac{1}{2}\right)g{}^{cl\_{0}}\left(\frac{\partial}{\partial {x{}^{a}}}{g{}\_{bl\_{0}}} + \frac{\partial}{\partial {x{}^{b}}}{g{}\_{al\_{0}}} + \left(-1\right)\frac{\partial}{\partial {x{}^{l\_{0}}}}{g{}\_{ab}}\right)
+\end{equation}
 
 
 
@@ -262,8 +268,9 @@ G(d,-a,-b).replace_with_arrays(repl)
 
 
 
-
-$$\displaystyle \left[\begin{matrix}\left[\begin{matrix}0 & 0\\\\0 & - \sin{\left(\theta \right)} \cos{\left(\theta \right)}\end{matrix}\right] & \left[\begin{matrix}0 & \frac{\cos{\left(\theta \right)}}{\sin{\left(\theta \right)}}\\\\\frac{\cos{\left(\theta \right)}}{\sin{\left(\theta \right)}} & 0\end{matrix}\right]\end{matrix}\right]$$
+\begin{equation}
+\displaystyle \left[\begin{matrix}\left[\begin{matrix}0 & 0\\\\0 & - \sin{\left(\theta \right)} \cos{\left(\theta \right)}\end{matrix}\right] & \left[\begin{matrix}0 & \frac{\cos{\left(\theta \right)}}{\sin{\left(\theta \right)}}\\\\\frac{\cos{\left(\theta \right)}}{\sin{\left(\theta \right)}} & 0\end{matrix}\right]\end{matrix}\right]
+\end{equation}
 
 
 
@@ -295,8 +302,9 @@ df(i).replace_with_arrays(repl)
 
 
 
-
-$$\displaystyle \left[\begin{matrix}\frac{\frac{\partial}{\partial \theta} f{\left(\theta,\varphi \right)}}{r^{2}} & \frac{\frac{\partial}{\partial \varphi} f{\left(\theta,\varphi \right)}}{r^{2} \sin^{2}{\left(\theta \right)}}\end{matrix}\right]$$
+\begin{equation}
+\displaystyle \left[\begin{matrix}\frac{\frac{\partial}{\partial \theta} f{\left(\theta,\varphi \right)}}{r^{2}} & \frac{\frac{\partial}{\partial \varphi} f{\left(\theta,\varphi \right)}}{r^{2} \sin^{2}{\left(\theta \right)}}\end{matrix}\right]
+\end{equation}
 
 
 
@@ -316,8 +324,9 @@ laplace.replace_with_arrays(repl)
 
 
 
-
-$$\displaystyle \frac{\frac{\partial^{2}}{\partial \theta^{2}} f{\left(\theta,\varphi \right)}}{r^{2}} + \frac{\cos{\left(\theta \right)} \frac{\partial}{\partial \theta} f{\left(\theta,\varphi \right)}}{r^{2} \sin{\left(\theta \right)}} + \frac{\frac{\partial^{2}}{\partial \varphi^{2}} f{\left(\theta,\varphi \right)}}{r^{2} \sin^{2}{\left(\theta \right)}}$$
+\begin{equation}
+\displaystyle \frac{\frac{\partial^{2}}{\partial \theta^{2}} f{\left(\theta,\varphi \right)}}{r^{2}} + \frac{\cos{\left(\theta \right)} \frac{\partial}{\partial \theta} f{\left(\theta,\varphi \right)}}{r^{2} \sin{\left(\theta \right)}} + \frac{\frac{\partial^{2}}{\partial \varphi^{2}} f{\left(\theta,\varphi \right)}}{r^{2} \sin^{2}{\left(\theta \right)}}
+\end{equation}
 
 
 
@@ -339,8 +348,9 @@ divA
 
 
 
-
-$$\displaystyle \Gamma{}^{l\_{0}}{}\_{l\_{0}l\_{1}}A{}^{l\_{1}} + \frac{\partial}{\partial {x{}^{l\_{0}}}}{A{}^{l\_{0}}}$$
+\begin{equation}
+\displaystyle \Gamma{}^{l\_{0}}{}\_{l\_{0}l\_{1}}A{}^{l\_{1}} + \frac{\partial}{\partial {x{}^{l\_{0}}}}{A{}^{l\_{0}}}
+\end{equation}
 
 
 
@@ -353,8 +363,9 @@ divA.replace_with_arrays(repl)
 
 
 
-
-$$\displaystyle \frac{A^{\theta}{\left(\theta,\varphi \right)} \cos{\left(\theta \right)}}{\sin{\left(\theta \right)}} + \frac{\partial}{\partial \theta} A^{\theta}{\left(\theta,\varphi \right)} + \frac{\partial}{\partial \varphi} A^{\varphi}{\left(\theta,\varphi \right)}$$
+\begin{equation}
+\displaystyle \frac{A^{\theta}{\left(\theta,\varphi \right)} \cos{\left(\theta \right)}}{\sin{\left(\theta \right)}} + \frac{\partial}{\partial \theta} A^{\theta}{\left(\theta,\varphi \right)} + \frac{\partial}{\partial \varphi} A^{\varphi}{\left(\theta,\varphi \right)}
+\end{equation}
 
 
 
@@ -369,8 +380,9 @@ Rie
 
 
 
-
-$$\displaystyle -\Gamma{}^{l\_{0}}{}\_{cb}\Gamma{}^{d}{}\_{al\_{0}} - \left(\frac{\partial}{\partial {x{}^{a}}}{\Gamma{}^{d}{}\_{bc}} + \left(-1\right)\frac{\partial}{\partial {x{}^{b}}}{\Gamma{}^{d}{}\_{ac}}\right) + \Gamma{}^{l\_{0}}{}\_{ca}\Gamma{}^{d}{}\_{bl\_{0}}$$
+\begin{equation}
+\displaystyle -\Gamma{}^{l\_{0}}{}\_{cb}\Gamma{}^{d}{}\_{al\_{0}} - \left(\frac{\partial}{\partial {x{}^{a}}}{\Gamma{}^{d}{}\_{bc}} + \left(-1\right)\frac{\partial}{\partial {x{}^{b}}}{\Gamma{}^{d}{}\_{ac}}\right) + \Gamma{}^{l\_{0}}{}\_{ca}\Gamma{}^{d}{}\_{bl\_{0}}
+\end{equation}
 
 
 
@@ -388,8 +400,9 @@ Rie_coord
 
 
 
-
-$$\displaystyle \left[\begin{matrix}\left[\begin{matrix}0 & 0\\\\0 & 0\end{matrix}\right] & \left[\begin{matrix}0 & r^{2} \sin^{2}{\left(\theta \right)}\\\\- r^{2} \sin^{2}{\left(\theta \right)} & 0\end{matrix}\right]\\\\\left[\begin{matrix}0 & - r^{2} \sin^{2}{\left(\theta \right)}\\\\r^{2} \sin^{2}{\left(\theta \right)} & 0\end{matrix}\right] & \left[\begin{matrix}0 & 0\\\\0 & 0\end{matrix}\right]\end{matrix}\right]$$
+\begin{equation}
+\displaystyle \left[\begin{matrix}\left[\begin{matrix}0 & 0\\\\0 & 0\end{matrix}\right] & \left[\begin{matrix}0 & r^{2} \sin^{2}{\left(\theta \right)}\\\\- r^{2} \sin^{2}{\left(\theta \right)} & 0\end{matrix}\right]\\\\\left[\begin{matrix}0 & - r^{2} \sin^{2}{\left(\theta \right)}\\\\r^{2} \sin^{2}{\left(\theta \right)} & 0\end{matrix}\right] & \left[\begin{matrix}0 & 0\\\\0 & 0\end{matrix}\right]\end{matrix}\right]
+\end{equation}
 
 
 
@@ -407,8 +420,9 @@ R(a,-b,-c,-d).replace_with_arrays(repl)
 
 
 
-
-$$\displaystyle \left[\begin{matrix}\left[\begin{matrix}0 & 0\\\\0 & 0\end{matrix}\right] & \left[\begin{matrix}0 & \sin^{2}{\left(\theta \right)}\\\\- \sin^{2}{\left(\theta \right)} & 0\end{matrix}\right]\\\\\left[\begin{matrix}0 & -1\\\\1 & 0\end{matrix}\right] & \left[\begin{matrix}0 & 0\\\\0 & 0\end{matrix}\right]\end{matrix}\right]$$
+\begin{equation}
+\displaystyle \left[\begin{matrix}\left[\begin{matrix}0 & 0\\\\0 & 0\end{matrix}\right] & \left[\begin{matrix}0 & \sin^{2}{\left(\theta \right)}\\\\- \sin^{2}{\left(\theta \right)} & 0\end{matrix}\right]\\\\\left[\begin{matrix}0 & -1\\\\1 & 0\end{matrix}\right] & \left[\begin{matrix}0 & 0\\\\0 & 0\end{matrix}\right]\end{matrix}\right]
+\end{equation}
 
 
 
@@ -426,8 +440,9 @@ Ric
 
 
 
-
-$$\displaystyle R{}^{l\_{0}}{}\_{al\_{0}b}$$
+\begin{equation}
+\displaystyle R{}^{l\_{0}}{}\_{al\_{0}b}
+\end{equation}
 
 
 
@@ -440,8 +455,9 @@ Ric.replace_with_arrays(repl)
 
 
 
-
-$$\displaystyle \left[\begin{matrix}1 & 0\\\\0 & \sin^{2}{\left(\theta \right)}\end{matrix}\right]$$
+\begin{equation}
+\displaystyle \left[\begin{matrix}1 & 0\\\\0 & \sin^{2}{\left(\theta \right)}\end{matrix}\right]
+\end{equation}
 
 
 
@@ -459,8 +475,9 @@ S
 
 
 
-
-$$\displaystyle R{}^{l\_{0}a}{}\_{l\_{0}a}$$
+\begin{equation}
+\displaystyle R{}^{l\_{0}a}{}\_{l\_{0}a}
+\end{equation}
 
 
 
@@ -473,7 +490,8 @@ S.replace_with_arrays(repl)
 
 
 
-
-$$\displaystyle \frac{2}{r^{2}}$$
+\begin{equation}
+\displaystyle \frac{2}{r^{2}}
+\end{equation}
 
 

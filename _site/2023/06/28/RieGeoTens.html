@@ -123,7 +123,9 @@ I also show how to calculate the Christoffel symbols and the different curvature
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ch_syms</span>
 </code></pre></div></div>
 
-\[\displaystyle \left(\frac{1}{2}\right)g{}^{cl\_{0}}\left(\frac{\partial}{\partial {x{}^{a}}}{g{}\_{bl\_{0}}} + \frac{\partial}{\partial {x{}^{b}}}{g{}\_{al\_{0}}} + \left(-1\right)\frac{\partial}{\partial {x{}^{l\_{0}}}}{g{}\_{ab}}\right)\]
+<p>\begin{equation}
+\displaystyle \left(\frac{1}{2}\right)g{}^{cl_{0}}\left(\frac{\partial}{\partial {x{}^{a}}}{g{}_{bl_{0}}} + \frac{\partial}{\partial {x{}^{b}}}{g{}_{al_{0}}} + \left(-1\right)\frac{\partial}{\partial {x{}^{l_{0}}}}{g{}_{ab}}\right)
+\end{equation}</p>
 
 <h2 id="covariant-derivative">Covariant Derivative</h2>
 
@@ -152,7 +154,9 @@ I also show how to calculate the Christoffel symbols and the different curvature
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">cov_der</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="nc">E</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="o">-</span><span class="n">c</span><span class="p">))</span>
 </code></pre></div></div>
 
-\[\displaystyle -\Gamma{}^{l\_{0}}{}\_{l\_{1}c}E{}^{l\_{1}b}{}\_{l\_{0}} + \Gamma{}^{b}{}\_{l\_{0}l\_{1}}E{}^{l\_{0}l\_{1}}{}\_{c} + \Gamma{}^{l\_{0}}{}\_{l\_{0}l\_{1}}E{}^{l\_{1}b}{}\_{c} + \frac{\partial}{\partial {x{}^{l\_{0}}}}{E{}^{l\_{0}b}{}\_{c}}\]
+<p>\begin{equation}
+\displaystyle -\Gamma{}^{l_{0}}{}_{l_{1}c}E{}^{l_{1}b}{}_{l_{0}} + \Gamma{}^{b}{}_{l_{0}l_{1}}E{}^{l_{0}l_{1}}{}_{c} + \Gamma{}^{l_{0}}{}_{l_{0}l_{1}}E{}^{l_{1}b}{}_{c} + \frac{\partial}{\partial {x{}^{l_{0}}}}{E{}^{l_{0}b}{}_{c}}
+\end{equation}</p>
 
 <p>Divergence of a vector field:</p>
 
@@ -162,7 +166,9 @@ I also show how to calculate the Christoffel symbols and the different curvature
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">divA</span>
 </code></pre></div></div>
 
-\[\displaystyle \Gamma{}^{l\_{0}}{}\_{l\_{0}l\_{1}}A{}^{l\_{1}} + \frac{\partial}{\partial {x{}^{l\_{0}}}}{A{}^{l\_{0}}}\]
+<p>\begin{equation}
+\displaystyle \Gamma{}^{l_{0}}{}_{l_{0}l_{1}}A{}^{l_{1}} + \frac{\partial}{\partial {x{}^{l_{0}}}}{A{}^{l_{0}}}
+\end{equation}</p>
 
 <h2 id="riemann-curvature">Riemann Curvature</h2>
 
@@ -192,7 +198,9 @@ I also show how to calculate the Christoffel symbols and the different curvature
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Rie</span>
 </code></pre></div></div>
 
-\[\displaystyle -\Gamma{}^{l\_{0}}{}\_{cb}\Gamma{}^{d}{}\_{al\_{0}} - \left(\frac{\partial}{\partial {x{}^{a}}}{\Gamma{}^{d}{}\_{bc}} + \left(-1\right)\frac{\partial}{\partial {x{}^{b}}}{\Gamma{}^{d}{}\_{ac}}\right) + \Gamma{}^{l\_{0}}{}\_{ca}\Gamma{}^{d}{}\_{bl\_{0}}\]
+<p>\begin{equation}
+\displaystyle -\Gamma{}^{l_{0}}{}_{cb}\Gamma{}^{d}{}_{al_{0}} - \left(\frac{\partial}{\partial {x{}^{a}}}{\Gamma{}^{d}{}_{bc}} + \left(-1\right)\frac{\partial}{\partial {x{}^{b}}}{\Gamma{}^{d}{}_{ac}}\right) + \Gamma{}^{l_{0}}{}_{ca}\Gamma{}^{d}{}_{bl_{0}}
+\end{equation}</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Rie</span><span class="p">.</span><span class="n">free_indices</span>
 </code></pre></div></div>
@@ -222,14 +230,18 @@ I also show how to calculate the Christoffel symbols and the different curvature
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">g</span><span class="p">(</span><span class="o">-</span><span class="n">e</span><span class="p">,</span><span class="o">-</span><span class="n">j</span><span class="p">).</span><span class="nf">replace_with_arrays</span><span class="p">(</span><span class="n">repl</span><span class="p">)</span>
 </code></pre></div></div>
 
-\[\displaystyle \left[\begin{matrix}r^{2} &amp; 0\\\\0 &amp; r^{2} \sin^{2}{\left(\theta \right)}\end{matrix}\right]\]
+<p>\begin{equation}
+\displaystyle \left[\begin{matrix}r^{2} &amp; 0\\0 &amp; r^{2} \sin^{2}{\left(\theta \right)}\end{matrix}\right]
+\end{equation}</p>
 
 <h2 id="calculation-of-the-christoffel-symbols">Calculation of the Christoffel-Symbols</h2>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ch_syms</span>
 </code></pre></div></div>
 
-\[\displaystyle \left(\frac{1}{2}\right)g{}^{cl\_{0}}\left(\frac{\partial}{\partial {x{}^{a}}}{g{}\_{bl\_{0}}} + \frac{\partial}{\partial {x{}^{b}}}{g{}\_{al\_{0}}} + \left(-1\right)\frac{\partial}{\partial {x{}^{l\_{0}}}}{g{}\_{ab}}\right)\]
+<p>\begin{equation}
+\displaystyle \left(\frac{1}{2}\right)g{}^{cl_{0}}\left(\frac{\partial}{\partial {x{}^{a}}}{g{}_{bl_{0}}} + \frac{\partial}{\partial {x{}^{b}}}{g{}_{al_{0}}} + \left(-1\right)\frac{\partial}{\partial {x{}^{l_{0}}}}{g{}_{ab}}\right)
+\end{equation}</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">G_coord</span> <span class="o">=</span> <span class="n">ch_syms</span><span class="p">.</span><span class="nf">replace_with_arrays</span><span class="p">(</span><span class="n">repl</span><span class="p">)</span>
 </code></pre></div></div>
@@ -242,7 +254,9 @@ I also show how to calculate the Christoffel symbols and the different curvature
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">G</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="o">-</span><span class="n">a</span><span class="p">,</span><span class="o">-</span><span class="n">b</span><span class="p">).</span><span class="nf">replace_with_arrays</span><span class="p">(</span><span class="n">repl</span><span class="p">)</span>
 </code></pre></div></div>
 
-\[\displaystyle \left[\begin{matrix}\left[\begin{matrix}0 &amp; 0\\\\0 &amp; - \sin{\left(\theta \right)} \cos{\left(\theta \right)}\end{matrix}\right] &amp; \left[\begin{matrix}0 &amp; \frac{\cos{\left(\theta \right)}}{\sin{\left(\theta \right)}}\\\\\frac{\cos{\left(\theta \right)}}{\sin{\left(\theta \right)}} &amp; 0\end{matrix}\right]\end{matrix}\right]\]
+<p>\begin{equation}
+\displaystyle \left[\begin{matrix}\left[\begin{matrix}0 &amp; 0\\0 &amp; - \sin{\left(\theta \right)} \cos{\left(\theta \right)}\end{matrix}\right] &amp; \left[\begin{matrix}0 &amp; \frac{\cos{\left(\theta \right)}}{\sin{\left(\theta \right)}}\\\frac{\cos{\left(\theta \right)}}{\sin{\left(\theta \right)}} &amp; 0\end{matrix}\right]\end{matrix}\right]
+\end{equation}</p>
 
 <h2 id="differential-operators-in-spherical-coordinates">Differential Operators In Spherical Coordinates</h2>
 
@@ -262,7 +276,9 @@ I also show how to calculate the Christoffel symbols and the different curvature
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">df</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="nf">replace_with_arrays</span><span class="p">(</span><span class="n">repl</span><span class="p">)</span>
 </code></pre></div></div>
 
-\[\displaystyle \left[\begin{matrix}\frac{\frac{\partial}{\partial \theta} f{\left(\theta,\varphi \right)}}{r^{2}} &amp; \frac{\frac{\partial}{\partial \varphi} f{\left(\theta,\varphi \right)}}{r^{2} \sin^{2}{\left(\theta \right)}}\end{matrix}\right]\]
+<p>\begin{equation}
+\displaystyle \left[\begin{matrix}\frac{\frac{\partial}{\partial \theta} f{\left(\theta,\varphi \right)}}{r^{2}} &amp; \frac{\frac{\partial}{\partial \varphi} f{\left(\theta,\varphi \right)}}{r^{2} \sin^{2}{\left(\theta \right)}}\end{matrix}\right]
+\end{equation}</p>
 
 <h3 id="the-laplacian">The Laplacian</h3>
 
@@ -274,7 +290,9 @@ I also show how to calculate the Christoffel symbols and the different curvature
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">laplace</span><span class="p">.</span><span class="nf">replace_with_arrays</span><span class="p">(</span><span class="n">repl</span><span class="p">)</span>
 </code></pre></div></div>
 
-\[\displaystyle \frac{\frac{\partial^{2}}{\partial \theta^{2}} f{\left(\theta,\varphi \right)}}{r^{2}} + \frac{\cos{\left(\theta \right)} \frac{\partial}{\partial \theta} f{\left(\theta,\varphi \right)}}{r^{2} \sin{\left(\theta \right)}} + \frac{\frac{\partial^{2}}{\partial \varphi^{2}} f{\left(\theta,\varphi \right)}}{r^{2} \sin^{2}{\left(\theta \right)}}\]
+<p>\begin{equation}
+\displaystyle \frac{\frac{\partial^{2}}{\partial \theta^{2}} f{\left(\theta,\varphi \right)}}{r^{2}} + \frac{\cos{\left(\theta \right)} \frac{\partial}{\partial \theta} f{\left(\theta,\varphi \right)}}{r^{2} \sin{\left(\theta \right)}} + \frac{\frac{\partial^{2}}{\partial \varphi^{2}} f{\left(\theta,\varphi \right)}}{r^{2} \sin^{2}{\left(\theta \right)}}
+\end{equation}</p>
 
 <h3 id="the-divergence-of-a-vectorfield">The Divergence Of A Vectorfield</h3>
 
@@ -288,14 +306,18 @@ I also show how to calculate the Christoffel symbols and the different curvature
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">divA</span>
 </code></pre></div></div>
 
-\[\displaystyle \Gamma{}^{l\_{0}}{}\_{l\_{0}l\_{1}}A{}^{l\_{1}} + \frac{\partial}{\partial {x{}^{l\_{0}}}}{A{}^{l\_{0}}}\]
+<p>\begin{equation}
+\displaystyle \Gamma{}^{l_{0}}{}_{l_{0}l_{1}}A{}^{l_{1}} + \frac{\partial}{\partial {x{}^{l_{0}}}}{A{}^{l_{0}}}
+\end{equation}</p>
 
 <p>The divergence $\mathrm{div}A$ is:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">divA</span><span class="p">.</span><span class="nf">replace_with_arrays</span><span class="p">(</span><span class="n">repl</span><span class="p">)</span>
 </code></pre></div></div>
 
-\[\displaystyle \frac{A^{\theta}{\left(\theta,\varphi \right)} \cos{\left(\theta \right)}}{\sin{\left(\theta \right)}} + \frac{\partial}{\partial \theta} A^{\theta}{\left(\theta,\varphi \right)} + \frac{\partial}{\partial \varphi} A^{\varphi}{\left(\theta,\varphi \right)}\]
+<p>\begin{equation}
+\displaystyle \frac{A^{\theta}{\left(\theta,\varphi \right)} \cos{\left(\theta \right)}}{\sin{\left(\theta \right)}} + \frac{\partial}{\partial \theta} A^{\theta}{\left(\theta,\varphi \right)} + \frac{\partial}{\partial \varphi} A^{\varphi}{\left(\theta,\varphi \right)}
+\end{equation}</p>
 
 <h2 id="calculating-the-curvature-of-the-sphere">Calculating The Curvature Of The Sphere</h2>
 
@@ -304,7 +326,9 @@ I also show how to calculate the Christoffel symbols and the different curvature
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Rie</span>
 </code></pre></div></div>
 
-\[\displaystyle -\Gamma{}^{l\_{0}}{}\_{cb}\Gamma{}^{d}{}\_{al\_{0}} - \left(\frac{\partial}{\partial {x{}^{a}}}{\Gamma{}^{d}{}\_{bc}} + \left(-1\right)\frac{\partial}{\partial {x{}^{b}}}{\Gamma{}^{d}{}\_{ac}}\right) + \Gamma{}^{l\_{0}}{}\_{ca}\Gamma{}^{d}{}\_{bl\_{0}}\]
+<p>\begin{equation}
+\displaystyle -\Gamma{}^{l_{0}}{}_{cb}\Gamma{}^{d}{}_{al_{0}} - \left(\frac{\partial}{\partial {x{}^{a}}}{\Gamma{}^{d}{}_{bc}} + \left(-1\right)\frac{\partial}{\partial {x{}^{b}}}{\Gamma{}^{d}{}_{ac}}\right) + \Gamma{}^{l_{0}}{}_{ca}\Gamma{}^{d}{}_{bl_{0}}
+\end{equation}</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Rie_coord</span> <span class="o">=</span> <span class="n">Rie</span><span class="p">.</span><span class="nf">replace_with_arrays</span><span class="p">(</span><span class="n">repl</span><span class="p">,[</span><span class="o">-</span><span class="n">a</span><span class="p">,</span><span class="o">-</span><span class="n">b</span><span class="p">,</span><span class="o">-</span><span class="n">c</span><span class="p">,</span><span class="o">-</span><span class="n">d</span><span class="p">])</span>
 </code></pre></div></div>
@@ -314,7 +338,9 @@ I also show how to calculate the Christoffel symbols and the different curvature
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Rie_coord</span>
 </code></pre></div></div>
 
-\[\displaystyle \left[\begin{matrix}\left[\begin{matrix}0 &amp; 0\\\\0 &amp; 0\end{matrix}\right] &amp; \left[\begin{matrix}0 &amp; r^{2} \sin^{2}{\left(\theta \right)}\\\\- r^{2} \sin^{2}{\left(\theta \right)} &amp; 0\end{matrix}\right]\\\\\left[\begin{matrix}0 &amp; - r^{2} \sin^{2}{\left(\theta \right)}\\\\r^{2} \sin^{2}{\left(\theta \right)} &amp; 0\end{matrix}\right] &amp; \left[\begin{matrix}0 &amp; 0\\\\0 &amp; 0\end{matrix}\right]\end{matrix}\right]\]
+<p>\begin{equation}
+\displaystyle \left[\begin{matrix}\left[\begin{matrix}0 &amp; 0\\0 &amp; 0\end{matrix}\right] &amp; \left[\begin{matrix}0 &amp; r^{2} \sin^{2}{\left(\theta \right)}\\- r^{2} \sin^{2}{\left(\theta \right)} &amp; 0\end{matrix}\right]\\\left[\begin{matrix}0 &amp; - r^{2} \sin^{2}{\left(\theta \right)}\\r^{2} \sin^{2}{\left(\theta \right)} &amp; 0\end{matrix}\right] &amp; \left[\begin{matrix}0 &amp; 0\\0 &amp; 0\end{matrix}\right]\end{matrix}\right]
+\end{equation}</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">repl</span><span class="p">.</span><span class="nf">update</span><span class="p">({</span><span class="nc">R</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="p">,</span><span class="o">-</span><span class="n">b</span><span class="p">,</span><span class="o">-</span><span class="n">c</span><span class="p">,</span><span class="o">-</span><span class="n">d</span><span class="p">):</span> <span class="n">Rie_coord</span><span class="p">})</span>
 </code></pre></div></div>
@@ -324,7 +350,9 @@ I also show how to calculate the Christoffel symbols and the different curvature
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">R</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="o">-</span><span class="n">b</span><span class="p">,</span><span class="o">-</span><span class="n">c</span><span class="p">,</span><span class="o">-</span><span class="n">d</span><span class="p">).</span><span class="nf">replace_with_arrays</span><span class="p">(</span><span class="n">repl</span><span class="p">)</span>
 </code></pre></div></div>
 
-\[\displaystyle \left[\begin{matrix}\left[\begin{matrix}0 &amp; 0\\\\0 &amp; 0\end{matrix}\right] &amp; \left[\begin{matrix}0 &amp; \sin^{2}{\left(\theta \right)}\\\\- \sin^{2}{\left(\theta \right)} &amp; 0\end{matrix}\right]\\\\\left[\begin{matrix}0 &amp; -1\\\\1 &amp; 0\end{matrix}\right] &amp; \left[\begin{matrix}0 &amp; 0\\\\0 &amp; 0\end{matrix}\right]\end{matrix}\right]\]
+<p>\begin{equation}
+\displaystyle \left[\begin{matrix}\left[\begin{matrix}0 &amp; 0\\0 &amp; 0\end{matrix}\right] &amp; \left[\begin{matrix}0 &amp; \sin^{2}{\left(\theta \right)}\\- \sin^{2}{\left(\theta \right)} &amp; 0\end{matrix}\right]\\\left[\begin{matrix}0 &amp; -1\\1 &amp; 0\end{matrix}\right] &amp; \left[\begin{matrix}0 &amp; 0\\0 &amp; 0\end{matrix}\right]\end{matrix}\right]
+\end{equation}</p>
 
 <p>Ricci Curvature:</p>
 
@@ -334,14 +362,18 @@ I also show how to calculate the Christoffel symbols and the different curvature
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Ric</span>
 </code></pre></div></div>
 
-\[\displaystyle R{}^{l\_{0}}{}\_{al\_{0}b}\]
+<p>\begin{equation}
+\displaystyle R{}^{l_{0}}{}_{al_{0}b}
+\end{equation}</p>
 
 <p>The components $\mathrm{Ric}_{\mu \nu}$ of the Ricci Tensor are:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Ric</span><span class="p">.</span><span class="nf">replace_with_arrays</span><span class="p">(</span><span class="n">repl</span><span class="p">)</span>
 </code></pre></div></div>
 
-\[\displaystyle \left[\begin{matrix}1 &amp; 0\\\\0 &amp; \sin^{2}{\left(\theta \right)}\end{matrix}\right]\]
+<p>\begin{equation}
+\displaystyle \left[\begin{matrix}1 &amp; 0\\0 &amp; \sin^{2}{\left(\theta \right)}\end{matrix}\right]
+\end{equation}</p>
 
 <p>Scalar Curvature:</p>
 
@@ -351,14 +383,18 @@ I also show how to calculate the Christoffel symbols and the different curvature
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">S</span>
 </code></pre></div></div>
 
-\[\displaystyle R{}^{l\_{0}a}{}\_{l\_{0}a}\]
+<p>\begin{equation}
+\displaystyle R{}^{l_{0}a}{}_{l_{0}a}
+\end{equation}</p>
 
 <p>The scalar curvature is:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">S</span><span class="p">.</span><span class="nf">replace_with_arrays</span><span class="p">(</span><span class="n">repl</span><span class="p">)</span>
 </code></pre></div></div>
 
-\[\displaystyle \frac{2}{r^{2}}\]
+<p>\begin{equation}
+\displaystyle \frac{2}{r^{2}}
+\end{equation}</p>
 
 
   </div><a class="u-url" href="/2023/06/28/RieGeoTens.html" hidden></a>

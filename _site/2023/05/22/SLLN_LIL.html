@@ -81,32 +81,30 @@ The $n$-sample mean $\bar{X}_n $ of $X$ is defined by $\bar{X}_n =  n^{-1} \sum_
 <p>But it does not tell us how fast $\bar{X}_n $ converges to $\mu$.
 This is where the LIL comes in.
 Define a sequence of real numbers $l$ by 
-$
 \begin{equation}
 l_n=\sigma \sqrt{2/n \log ( \log ( n))} \quad \text{for} \ n &gt; e 
 \end{equation}
-$
 Note that $\lim_{n \to \infty } l_n =0$.
 Then the LIL says that
-\(\begin{equation}
+\begin{equation}
 \tag{1}
-    \limsup\_{n \to \infty} l_n^{-1} |\bar{X}_n - \mu|= 1 \quad \text{a.s.}
-\end{equation}\)
+    \limsup_{n \to \infty} l_n^{-1} |\bar{X}_n - \mu|= 1 \quad \text{a.s.}
+\end{equation}
 Unravelling the definition this means that the following is true for $\forall \varepsilon &gt;0$:
-\(\begin{equation}
+\begin{equation}
     | \bar{X}_n - \mu| &lt; (1 + \varepsilon )l_n \quad \text{a.s.}
-\end{equation}\)
+\end{equation}
 for all but finitely many $n$ and 
-\(\begin{equation}
+\begin{equation}
    (1 - \varepsilon ) l_n &lt; | \bar{X}_n - \mu| \quad \text{a.s.}
-\end{equation}\)
+\end{equation}
 for infinitely many $n$.
 Using the <a href="https://en.wikipedia.org/wiki/Big_O_notation#Formal_definition">big-$\mathcal{O}$ notation</a> the LIL is therefore equivalent to saying that $|\bar{X}_n - \mu| = \mathcal{O}(l_n)$ a.s. as $n \to \infty$ with any bounding constant $&gt;1$, but not with any bounding constant $&lt;1$.
 So the LIL gives us an upper bound for the speed of convergence in the SLLN for large $n$.
 Furthermore the LIL also tells us that
-\(\begin{equation}
+\begin{equation}
  \lim x_n^{-1} l_n^{-1} |\bar{X}_n - \mu| = 0  \quad \text{a.s.}
-\end{equation}\)
+\end{equation}
 for any sequence of positive real numbers $x$ that converges to $\infty$ (follows from the rules of the product of $\limsup$’s).
 In other words using the <a href="https://en.wikipedia.org/wiki/Big_O_notation#Little-o_notation">little-$o$ notation</a> $\bar{X}_n - \mu = o(x_n l_n) $ a.s. as $n \to \infty$.</p>
 

@@ -27,16 +27,26 @@ on $L^2(0,1)$ with the domain $\mathrm{dom} \, \Delta = H^2 \cap H^1_0 $, where 
 The negative inverse $A := -\Delta^{-1} : L^2 (0,1) \to \mathrm{dom} \, \Delta $ is a self-adjoint Hilbert-Schmidt operator.
 
 The ONB of eigenfunctions of $A$ can be found as:
-$$e_n(t) =  \sqrt{2} \sin( \pi n t ) $$
+\begin{equation}
+e_n(t) =  \sqrt{2} \sin( \pi n t ) 
+\end{equation}
 with eigenvalues
-$$\lambda_n = \frac{1}{n^2 \pi^2}$$
+\begin{equation}
+\lambda_n = \frac{1}{n^2 \pi^2}
+\end{equation}
 and the Hilbert-Schmidt kernel $k$ is given by 
-$$k =\sum\_{n=1}^\infty  \lambda_n \overline{e}_n \otimes e_n. $$
+\begin{equation}
+k =\sum\_{n=1}^\infty  \lambda_n \overline{e}_n \otimes e_n.
+\end{equation}
 Explicitly 
- $$ k(t,s)=    \sum\_{n=1}^\infty  \frac{2}{ n^2\pi^2} \sin( \pi n t ) \sin( \pi n s ),$$
+\begin{equation}
+  k(t,s)=    \sum\_{n=1}^\infty  \frac{2}{ n^2\pi^2} \sin( \pi n t ) \sin( \pi n s ),
+\end{equation}
  where the convergence is even in $C[0,1]\times C[0,1]$.
 So in total:
-$$ (Af)(t) =  \int_0^1 k(t,s) f(s) ds$$
+\begin{equation}
+ (Af)(t) =  \int_0^1 k(t,s) f(s) ds
+\end{equation}
 for all $f \in L^2(0,1)$.
 
 The main idea for numeric computation is to simply truncate the series in the kernel at a finite number of terms:
@@ -86,14 +96,21 @@ def A(t,cns):
 To check the above method for correctness a numeric version of the laplacian can be used:
 
 For the 1D laplacian:
-$$ \Delta u (x)= \frac{u(x-h)-2u(x)+u(x+h)}{h^2} + o(h^2).$$
+\begin{equation}
+ \Delta u (x)= \frac{u(x-h)-2u(x)+u(x+h)}{h^2} + o(h^2).
+\end{equation}
 Since
-$$u(x+h)= u(x) + u^\prime (x) h + 1/2 \Delta u (x) h^2 + 1/6 u^{\prime \prime \prime} (x) h^3 + o(h^4)$$
+\begin{equation}
+u(x+h)= u(x) + u^\prime (x) h + 1/2 \Delta u (x) h^2 + 1/6 u^{\prime \prime \prime} (x) h^3 + o(h^4)
+\end{equation}
 from which it follows that 
-$$ u(x-h)-2u(x)+u(x+h)  = \Delta u (x) h^2 + o(h^4).$$
-
+\begin{equation}
+ u(x-h)-2u(x)+u(x+h)  = \Delta u (x) h^2 + o(h^4).
+\end{equation}
 Using this $\Delta u$ can be approximated by evaluating $u$ for points $x_0, \dots, x_n$ with $x_j = x\_{j-1}+h$ for all $j$ and some fixed $h>0$ and then simply computing 
-$$\Delta u (x_j)= \frac{u(x\_{j-1})-2u(x_j)+u(x\_{j+1})}{h^2} $$
+\begin{equation}
+\Delta u (x_j)= \frac{u(x\_{j-1})-2u(x_j)+u(x\_{j+1})}{h^2} 
+\end{equation}
 for $j = 1, \dots , n-1$.
 
 This is implemented in the following function:
@@ -137,7 +154,9 @@ so that $u(0)= u_0$ for a given $u_0 \in L^2(0,1)$ and so that $\dot{u}(t) =  \D
 
 The $e_n$ from above form the spectral decomposition of $\Delta $ with eigenvalues $- 1/ \lambda_n = -n^2 \pi^2$ and so 
 using the spectral theorem:
-$$ u(t)= \sum\_{n=1}^\infty e^{- n^2 \pi^2 t} e_n \langle e_n , u_0 \rangle =  \sum\_{n=1}^\infty e^{- n^2 \pi^2 t} e_n \langle e_n , u_0 \rangle =\sqrt{2}  \sum\_{n=1}^\infty  e^{- n^2 \pi^2 t} \int_0^1 \sin(n \pi s) u_0(s) ds \, e_n.$$
+\begin{equation}
+ u(t)= \sum\_{n=1}^\infty e^{- n^2 \pi^2 t} e_n \langle e_n , u_0 \rangle =  \sum\_{n=1}^\infty e^{- n^2 \pi^2 t} e_n \langle e_n , u_0 \rangle =\sqrt{2}  \sum\_{n=1}^\infty  e^{- n^2 \pi^2 t} \int_0^1 \sin(n \pi s) u_0(s) ds \, e_n.
+\end{equation}
 
 
 ```python
@@ -192,7 +211,9 @@ HTML(ani.to_html5_video())
 
 To verify the validity of the above solution the time derivative can be computed numerically as follows:
 The (partial) time derivative satisfies
-$$ \frac{\partial u}{\partial t}(t,x) = \frac{u(t+h,x) - u(t,x)}{h} + o(h) .$$
+\begin{equation}
+ \frac{\partial u}{\partial t}(t,x) = \frac{u(t+h,x) - u(t,x)}{h} + o(h) .
+\end{equation}
 
 Which leads to a similar approximation as for the laplacian above: 
 
@@ -255,11 +276,13 @@ $\dot{u}(t) = \Delta u(t) + q(t)$
 for $q \in C([0, \infty), L^2(0,1))$.
 
 Then the solution is given by 
-$$
+\begin{equation}
 u(t) = \exp(\Delta t) u(0) +\int_0^t \exp(\Delta (t-s))q(s)ds .
-$$
+\end{equation}
 With $q$ time independent:
-$$ u(t) -\exp(\Delta t) u(0)  =  \int_0^t \sum\_{n=1}^\infty e^{- n^2 \pi^2 (t-s)} e_n \langle e_n , q \rangle ds =\sum\_{n=1}^\infty  \frac{1}{\pi^2 n^2}(1- e^{- n^2 \pi^2 t}) e_n \langle e_n , q \rangle $$
+\begin{equation}
+ u(t) -\exp(\Delta t) u(0)  =  \int_0^t \sum\_{n=1}^\infty e^{- n^2 \pi^2 (t-s)} e_n \langle e_n , q \rangle ds =\sum\_{n=1}^\infty  \frac{1}{\pi^2 n^2}(1- e^{- n^2 \pi^2 t}) e_n \langle e_n , q \rangle 
+\end{equation}
 
 
 ```python

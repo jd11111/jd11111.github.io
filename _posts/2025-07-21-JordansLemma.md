@@ -1,12 +1,12 @@
 ---
 layout: post
-title:  "Jordans Lemma"
+title:  "Jordan's Lemma"
 date:   2025-07-20 10:00:00 +0200
 categories:
 ---
 In this post i will prove:
 
-**Jordans Lemma:**
+**Jordan's Lemma:**
 Let $\alpha \in (0, \infty)$, $R \in (0, \infty)$, $\gamma_R : [0, \pi] \to \mathbb{C}$, $\gamma_R(t):= R \exp (it)$ and $f: \gamma\_R ([0, \\pi]) \to \mathbb{C}$ continuous.
 Then
 \begin{equation}
@@ -19,12 +19,12 @@ where $M_R:= \max_{ t \in [0, \pi]} |f(R e^{it})|$.
 By definition of the curve integral:
 \begin{equation}
 \bigg| \int_{\gamma_R} \exp ( \alpha i z) f (z) dz \bigg|
-=\bigg| \int_0^{\pi} \exp ( \alpha i R e^{it}) f (r e^{it}) r e^{it} dt \bigg|.
+=\bigg| \int_0^{\pi} \exp ( \alpha i R e^{it}) f (R e^{it}) R i e^{it} dt \bigg|.
 \end{equation}
 Moving the absolute value into the integral:
 \begin{equation}
-\bigg| \int_0^{\pi} \exp ( \alpha i R e^{it}) f (R e^{it}) R e^{it} dt \bigg|
-\leq \int_0^{\pi} |\exp ( \alpha i R e^{it})| |f (R e^{it})| R |e^{it}| dt
+\bigg| \int_0^{\pi} \exp ( \alpha i R e^{it}) f (R e^{it}) R i e^{it} dt \bigg|
+\leq \int_0^{\pi} |\exp ( \alpha i R e^{it})| |f (R e^{it})| R |ie^{it}| dt
 \end{equation}
 and therefore using the monotonicity of the integral:
 \begin{equation}
@@ -34,7 +34,7 @@ and therefore using the monotonicity of the integral:
 It is left to estimate the integral.
 In general: $\forall z := x+iy \in \mathbb{C}: |e^z | = e^{x}$ and therefore for all $t \in [0,\pi]$:
 \begin{equation}
-    |\exp ( \alpha i R e^{it})| = \exp (- \alpha R \sin (t) )
+    |\exp ( \alpha i R e^{it})| = \exp (- \alpha R \sin (t) ),
 \end{equation}
 where $e^{it} = \cos (t) + i \sin (t)$ was used.
 Therefore
