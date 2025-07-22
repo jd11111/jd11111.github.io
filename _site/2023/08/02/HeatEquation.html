@@ -2,24 +2,8 @@
 <html lang="en"><head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Numerical Solution Of The 1D Heat Equation Using A Spectral Method | Jannik&#39;s Blog</title>
-<meta name="generator" content="Jekyll v3.9.3" />
-<meta property="og:title" content="Numerical Solution Of The 1D Heat Equation Using A Spectral Method" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="In this post i will tell you how to solve the 1D heat equation numerically in python using the spectral decomposition of the 1D laplacian. The stationary heat equation will be solved as well as the evolution equation (homogeneous and inhomogeneous). The focus here is on a basic numerical implementation and not on the underlying math." />
-<meta property="og:description" content="In this post i will tell you how to solve the 1D heat equation numerically in python using the spectral decomposition of the 1D laplacian. The stationary heat equation will be solved as well as the evolution equation (homogeneous and inhomogeneous). The focus here is on a basic numerical implementation and not on the underlying math." />
-<link rel="canonical" href="http://localhost:4000/2023/08/02/HeatEquation.html" />
-<meta property="og:url" content="http://localhost:4000/2023/08/02/HeatEquation.html" />
-<meta property="og:site_name" content="Jannik&#39;s Blog" />
-<meta property="og:type" content="article" />
-<meta property="article:published_time" content="2023-08-02T11:14:45+02:00" />
-<meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Numerical Solution Of The 1D Heat Equation Using A Spectral Method" />
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-08-02T11:14:45+02:00","datePublished":"2023-08-02T11:14:45+02:00","description":"In this post i will tell you how to solve the 1D heat equation numerically in python using the spectral decomposition of the 1D laplacian. The stationary heat equation will be solved as well as the evolution equation (homogeneous and inhomogeneous). The focus here is on a basic numerical implementation and not on the underlying math.","headline":"Numerical Solution Of The 1D Heat Equation Using A Spectral Method","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2023/08/02/HeatEquation.html"},"url":"http://localhost:4000/2023/08/02/HeatEquation.html"}</script>
-<!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Jannik&apos;s Blog" /><!-- Google tag (gtag.js) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/assets/main.css"><!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CKNVMY5C33"></script>
 <script>
   MathJax = {
@@ -73,239 +57,286 @@
     <p>In this post i will tell you how to solve the 1D heat equation numerically in python using the spectral decomposition of the 1D laplacian.
 The stationary heat equation will be solved as well as the evolution equation (homogeneous and inhomogeneous).
 The focus here is on a basic numerical implementation and not on the underlying math.</p>
+
 <p>The following topics are covered:</p>
+
 <ul>
-<li><a href="#stationary-heat-equation">Stationary Heat Equation</a></li>
-<li><a href="#numerical-laplacian-in-one-dimension">Numerical Laplacian In One Dimension</a></li>
-<li><a href="#time-evolution-of-the-heat-equation">Time Evolution Of The Heat Equation</a></li>
-<li><a href="#numerical-time-derivative">Numerical Time Derivative </a></li>
-<li><a href="#inhomogeneous-evolution-equation">Inhomogeneous Evolution Equation</a></li>
+  <li><a href="#stationary-heat-equation">Stationary Heat Equation</a></li>
+  <li><a href="#numerical-laplacian-in-one-dimension">Numerical Laplacian In One Dimension</a></li>
+  <li><a href="#time-evolution-of-the-heat-equation">Time Evolution Of The Heat Equation</a></li>
+  <li><a href="#numerical-time-derivative">Numerical Time Derivative </a></li>
+  <li><a href="#inhomogeneous-evolution-equation">Inhomogeneous Evolution Equation</a></li>
 </ul>
+
 <p>The below code is meant to run in a jupyter notebook, but it can also easily be adapted to plain python.</p>
+
 <h1 id="stationary-heat-equation">Stationary Heat Equation</h1>
-<p>The stationary heat equation is the equation
+
+<p>The stationary heat equation is the equation 
 $  \Delta u =-f $
-on $L^2(0,1)$ with the domain $\mathrm{dom} , \Delta = H^2 \cap H^1_0 $, where $\Delta$ is the self-adjoint laplacian ($u$ has two weak derivatives and $u(0)=u(1)=0$ for the continuous representant).</p>
-<p>The negative inverse $A := -\Delta^{-1} : L^2 (0,1) \to \mathrm{dom} , \Delta $ is a self-adjoint Hilbert-Schmidt operator.</p>
+on $L^2(0,1)$ with the domain $\mathrm{dom} \, \Delta = H^2 \cap H^1_0 $, where $\Delta$ is the self-adjoint laplacian ($u$ has two weak derivatives and $u(0)=u(1)=0$ for the continuous representant).</p>
+
+<p>The negative inverse $A := -\Delta^{-1} : L^2 (0,1) \to \mathrm{dom} \, \Delta $ is a self-adjoint Hilbert-Schmidt operator.</p>
+
 <p>The ONB of eigenfunctions of $A$ can be found as:
-$$e_n(t) =  \sqrt{2} \sin( \pi n t ) $$
+\(e_n(t) =  \sqrt{2} \sin( \pi n t )\)
 with eigenvalues
-$$\lambda_n = \frac{1}{n^2 \pi^2}$$
-and the Hilbert-Schmidt kernel $k$ is given by
-$$k =\sum_{n=1}^\infty  \lambda_n \overline{e}_n \otimes e_n. $$
-Explicitly
-$$ k(t,s)=    \sum_{n=1}^\infty  \frac{2}{ n^2\pi^2} \sin( \pi n t ) \sin( \pi n s ),$$
-where the convergence is even in $C[0,1]\times C[0,1]$.
+\(\lambda_n = \frac{1}{n^2 \pi^2}\)
+and the Hilbert-Schmidt kernel $k$ is given by 
+\(k =\sum\_{n=1}^\infty  \lambda_n \overline{e}_n \otimes e_n.\)
+Explicitly 
+ \(k(t,s)=    \sum\_{n=1}^\infty  \frac{2}{ n^2\pi^2} \sin( \pi n t ) \sin( \pi n s ),\)
+ where the convergence is even in $C[0,1]\times C[0,1]$.
 So in total:
-$$ (Af)(t) =  \int_0^1 k(t,s) f(s) ds$$
+\((Af)(t) =  \int_0^1 k(t,s) f(s) ds\)
 for all $f \in L^2(0,1)$.</p>
+
 <p>The main idea for numeric computation is to simply truncate the series in the kernel at a finite number of terms:</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">integrate</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">from</span> <span class="nn">matplotlib.animation</span> <span class="kn">import</span> <span class="n">FuncAnimation</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">from</span> <span class="n">scipy</span> <span class="kn">import</span> <span class="n">integrate</span>
+<span class="kn">from</span> <span class="n">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="n">matplotlib.animation</span> <span class="kn">import</span> <span class="n">FuncAnimation</span>
+<span class="kn">from</span> <span class="n">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
 
 <span class="n">n_max</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1">#maximum number of terms in the series
 </span></code></pre></div></div>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="c1">#example function to be solved for
-</span>    <span class="k">return</span> <span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mf">0.3</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span>
+</span>    <span class="k">return</span> <span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="nf">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mf">0.3</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span>
 </code></pre></div></div>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">c</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
-    <span class="s">"""Function to compute the n-th term in the expansion of f"""</span>
-    <span class="n">res</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">integrate</span><span class="p">.</span><span class="n">quad</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">f</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">sin</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="o">*</span><span class="n">s</span><span class="p">),</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="sh">"""</span><span class="s">Function to compute the n-th term in the expansion of f</span><span class="sh">"""</span>
+    <span class="n">res</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">integrate</span><span class="p">.</span><span class="nf">quad</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="nf">f</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="nf">sin</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="o">*</span><span class="n">s</span><span class="p">),</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">res</span>
 </code></pre></div></div>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">f_cns</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n_max</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span> <span class="c1">#expansion coefficients of f
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">f_cns</span> <span class="o">=</span> <span class="p">[</span><span class="nf">c</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n_max</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span> <span class="c1">#expansion coefficients of f
 </span></code></pre></div></div>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">A</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">cns</span><span class="p">):</span>
-    <span class="s">"""The kernel applied to the function with expansion coefficients cns evaluated at t"""</span>
+    <span class="sh">"""</span><span class="s">The kernel applied to the function with expansion coefficients cns evaluated at t</span><span class="sh">"""</span>
     <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">cns</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">res</span> <span class="o">+=</span><span class="mi">1</span><span class="o">/</span><span class="n">n</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">cns</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">sin</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nf">len</span><span class="p">(</span><span class="n">cns</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">+=</span><span class="mi">1</span><span class="o">/</span><span class="n">n</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">cns</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="nf">sin</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
     <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">res</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 </code></pre></div></div>
+
 <h1 id="numerical-laplacian-in-one-dimension">Numerical Laplacian In One Dimension</h1>
+
 <p>To check the above method for correctness a numeric version of the laplacian can be used:</p>
+
 <p>For the 1D laplacian:
-$$ \Delta u (x)= \frac{u(x-h)-2u(x)+u(x+h)}{h^2} + o(h^2).$$
+\(\Delta u (x)= \frac{u(x-h)-2u(x)+u(x+h)}{h^2} + o(h^2).\)
 Since
-$$u(x+h)= u(x) + u^\prime (x) h + 1/2 \Delta u (x) h^2 + 1/6 u^{\prime \prime \prime} (x) h^3 + o(h^4)$$
-from which it follows that
-$$ u(x-h)-2u(x)+u(x+h)  = \Delta u (x) h^2 + o(h^4).$$</p>
-<p>Using this $\Delta u$ can be approximated by evaluating $u$ for points $x_0, \dots, x_n$ with $x_j = x_{j-1}+h$ for all $j$ and some fixed $h&gt;0$ and then simply computing
-$$\Delta u (x_j)= \frac{u(x_{j-1})-2u(x_j)+u(x_{j+1})}{h^2} $$
+\(u(x+h)= u(x) + u^\prime (x) h + 1/2 \Delta u (x) h^2 + 1/6 u^{\prime \prime \prime} (x) h^3 + o(h^4)\)
+from which it follows that 
+\(u(x-h)-2u(x)+u(x+h)  = \Delta u (x) h^2 + o(h^4).\)</p>
+
+<p>Using this $\Delta u$ can be approximated by evaluating $u$ for points $x_0, \dots, x_n$ with $x_j = x_{j-1}+h$ for all $j$ and some fixed $h&gt;0$ and then simply computing 
+\(\Delta u (x_j)= \frac{u(x\_{j-1})-2u(x_j)+u(x\_{j+1})}{h^2}\)
 for $j = 1, \dots , n-1$.</p>
+
 <p>This is implemented in the following function:</p>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">laplacian</span><span class="p">(</span><span class="n">FX</span><span class="p">,</span><span class="n">h</span><span class="p">):</span>
-    <span class="s">"""Evaluate the approximation the laplacian given function values in the array FX= [u(x_0), ... , u(x_n)] where the x_j are as above with distance h"""</span> 
-    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">FX</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">FX</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">Evaluate the approximation the laplacian given function values in the array FX= [u(x_0), ... , u(x_n)] where the x_j are as above with distance h</span><span class="sh">"""</span> 
+    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros_like</span><span class="p">(</span><span class="n">FX</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nf">len</span><span class="p">(</span><span class="n">FX</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
         <span class="n">out</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span> <span class="n">FX</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">FX</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">FX</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">out</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="c1">#simply duplicate the values at the boundary (makes sense by continuity)
 </span>    <span class="n">out</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">out</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">out</span><span class="o">/</span><span class="n">h</span><span class="o">**</span><span class="mi">2</span>
 </code></pre></div></div>
-<p>Now we can compare $f$ to $-\Delta (Af)$ (they should be equal):</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">()</span>
 
-<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">label</span> <span class="o">=</span><span class="s">"f"</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">laplacian</span><span class="p">(</span><span class="n">A</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">f_cns</span><span class="p">),</span><span class="mi">1</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)),</span> <span class="n">label</span> <span class="o">=</span><span class="sa">r</span><span class="s">"$-\Delta (Af)$ "</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">ls</span><span class="o">=</span><span class="s">"--"</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>
+<p>Now we can compare $f$ to $-\Delta (Af)$ (they should be equal):</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">()</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="nf">f</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">label</span> <span class="o">=</span><span class="sh">"</span><span class="s">f</span><span class="sh">"</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="nf">laplacian</span><span class="p">(</span><span class="nc">A</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">f_cns</span><span class="p">),</span><span class="mi">1</span><span class="o">/</span><span class="nf">len</span><span class="p">(</span><span class="n">X</span><span class="p">)),</span> <span class="n">label</span> <span class="o">=</span><span class="sa">r</span><span class="sh">"</span><span class="s">$-\Delta (Af)$ </span><span class="sh">"</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">ls</span><span class="o">=</span><span class="sh">"</span><span class="s">--</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">legend</span><span class="p">()</span>
 </code></pre></div></div>
+
 <p><img src="/assets/heatfiles/pic.png" alt="" /></p>
+
 <h1 id="time-evolution-of-the-heat-equation">Time Evolution Of The Heat Equation</h1>
+
 <p>The problem is to find
 $u \in C^1( [0, \infty) ; L^2(0,1) )$
 so that $u(0)= u_0$ for a given $u_0 \in L^2(0,1)$ and so that $\dot{u}(t) =  \Delta u(t)$ for all $t \in [0 , \infty)$. The solution is given by $u(t)= e^{ \Delta t}u(0)$.</p>
-<p>The $e_n$ from above form the spectral decomposition of $\Delta $ with eigenvalues $- 1/ \lambda_n = -n^2 \pi^2$ and so
+
+<p>The $e_n$ from above form the spectral decomposition of $\Delta $ with eigenvalues $- 1/ \lambda_n = -n^2 \pi^2$ and so 
 using the spectral theorem:
-$$ u(t)= \sum_{n=1}^\infty e^{- n^2 \pi^2 t} e_n \langle e_n , u_0 \rangle =  \sum_{n=1}^\infty e^{- n^2 \pi^2 t} e_n \langle e_n , u_0 \rangle =\sqrt{2}  \sum_{n=1}^\infty  e^{- n^2 \pi^2 t} \int_0^1 \sin(n \pi s) u_0(s) ds , e_n.$$</p>
+\(u(t)= \sum\_{n=1}^\infty e^{- n^2 \pi^2 t} e_n \langle e_n , u_0 \rangle =  \sum\_{n=1}^\infty e^{- n^2 \pi^2 t} e_n \langle e_n , u_0 \rangle =\sqrt{2}  \sum\_{n=1}^\infty  e^{- n^2 \pi^2 t} \int_0^1 \sin(n \pi s) u_0(s) ds \, e_n.\)</p>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">ut</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">cns</span><span class="p">):</span>
-    <span class="s">"""Implementation of the above formula for u(t) where cns are the expansion coefficients of u_0"""</span>
+    <span class="sh">"""</span><span class="s">Implementation of the above formula for u(t) where cns are the expansion coefficients of u_0</span><span class="sh">"""</span>
     <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">cns</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">res</span> <span class="o">+=</span><span class="n">np</span><span class="p">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">n</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="n">cns</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">sin</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nf">len</span><span class="p">(</span><span class="n">cns</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">+=</span><span class="n">np</span><span class="p">.</span><span class="nf">exp</span><span class="p">(</span><span class="o">-</span><span class="n">n</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="n">cns</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="nf">sin</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
     <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">res</span>
 </code></pre></div></div>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">u0</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="c1">#example function as u_0
-</span>    <span class="k">return</span> <span class="mf">0.8</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mf">0.7</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span>
-</code></pre></div></div>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">u0_cns</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="p">(</span><span class="n">u0</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n_max</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span> <span class="c1">#expansion coefficients of u_0
-</span></code></pre></div></div>
-<p>The evolution can be visualized using an animation. The heat simply dissipates as expected.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
-<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">ln</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="p">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span><span class="n">label</span><span class="o">=</span><span class="s">"$u(t)$"</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">ax</span><span class="p">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">"Position"</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">"Temperature"</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">u0</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="c1">#example function as u_0
+</span>    <span class="k">return</span> <span class="mf">0.8</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="nf">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mf">0.7</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">u0_cns</span> <span class="o">=</span> <span class="p">[</span><span class="nf">c</span><span class="p">(</span><span class="n">u0</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n_max</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span> <span class="c1">#expansion coefficients of u_0
+</span></code></pre></div></div>
+
+<p>The evolution can be visualized using an animation. The heat simply dissipates as expected.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">()</span>
+<span class="n">ln</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="p">.</span><span class="nf">plot</span><span class="p">([],</span> <span class="p">[],</span><span class="n">label</span><span class="o">=</span><span class="sh">"</span><span class="s">$u(t)$</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_xlabel</span><span class="p">(</span><span class="sh">"</span><span class="s">Position</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_ylabel</span><span class="p">(</span><span class="sh">"</span><span class="s">Temperature</span><span class="sh">"</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">frame</span><span class="p">):</span>
-    <span class="n">ln</span><span class="p">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">ut</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">u0_cns</span><span class="p">))</span>
+    <span class="n">ln</span><span class="p">.</span><span class="nf">set_data</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="nf">ut</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">u0_cns</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">ln</span><span class="p">,</span>
 
-<span class="n">ani</span> <span class="o">=</span> <span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">update</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">blit</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">HTML</span><span class="p">(</span><span class="n">ani</span><span class="p">.</span><span class="n">to_html5_video</span><span class="p">())</span>
+<span class="n">ani</span> <span class="o">=</span> <span class="nc">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">update</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">blit</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="nc">HTML</span><span class="p">(</span><span class="n">ani</span><span class="p">.</span><span class="nf">to_html5_video</span><span class="p">())</span>
 </code></pre></div></div>
-<video width="640" height="480" controls autoplay loop>
- <source type="video/mp4" src="/assets/heatfiles/anim1.mp4">
+
+<video width="640" height="480" controls="" autoplay="" loop="">
+ <source type="video/mp4" src="/assets/heatfiles/anim1.mp4" />
  </video>
+
 <h1 id="numerical-time-derivative">Numerical Time Derivative</h1>
+
 <p>To verify the validity of the above solution the time derivative can be computed numerically as follows:
 The (partial) time derivative satisfies
-$$ \frac{\partial u}{\partial t}(t,x) = \frac{u(t+h,x) - u(t,x)}{h} + o(h) .$$</p>
+\(\frac{\partial u}{\partial t}(t,x) = \frac{u(t+h,x) - u(t,x)}{h} + o(h) .\)</p>
+
 <p>Which leads to a similar approximation as for the laplacian above:</p>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">partial_t</span><span class="p">(</span><span class="n">FXY</span><span class="p">,</span><span class="n">h</span><span class="p">):</span>
     <span class="n">tl</span> <span class="o">=</span> <span class="n">FXY</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">FXY</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tl</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros_like</span><span class="p">(</span><span class="n">FXY</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">tl</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
         <span class="n">out</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span> <span class="n">FXY</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">FXY</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
     <span class="n">out</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span> <span class="n">out</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">out</span><span class="o">/</span><span class="n">h</span>
 </code></pre></div></div>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
-<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.05</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
-<span class="n">h</span> <span class="o">=</span> <span class="mf">0.05</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
-<span class="n">Ts</span><span class="p">,</span> <span class="n">Xs</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span><span class="n">sparse</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
-<span class="n">Zs</span> <span class="o">=</span> <span class="n">ut</span><span class="p">(</span><span class="n">Ts</span><span class="p">,</span><span class="n">Xs</span><span class="p">,</span><span class="n">u0_cns</span><span class="p">)</span>
-</code></pre></div></div>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">DUDT</span> <span class="o">=</span> <span class="n">partial_t</span><span class="p">(</span><span class="n">Zs</span><span class="p">.</span><span class="n">T</span><span class="p">,</span><span class="n">h</span><span class="p">)</span>
-</code></pre></div></div>
-<p>Now $\Delta u (t)$ and $\frac{du}{dt}(t)$ can be compared to each other in another animation to check that they are truly equal:</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">ln</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="p">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span><span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s">"$\frac{du}{dt}(t)$"</span><span class="p">)</span>
-<span class="n">ln2</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="p">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span><span class="n">ls</span><span class="o">=</span><span class="s">"--"</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s">"$\Delta u(t)$"</span><span class="p">)</span>
 
-<span class="n">ax</span><span class="p">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">175</span><span class="p">,</span><span class="mi">80</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">"Position"</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.05</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mf">0.05</span><span class="o">/</span><span class="nf">len</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+<span class="n">Ts</span><span class="p">,</span> <span class="n">Xs</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">meshgrid</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span><span class="n">sparse</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+<span class="n">Zs</span> <span class="o">=</span> <span class="nf">ut</span><span class="p">(</span><span class="n">Ts</span><span class="p">,</span><span class="n">Xs</span><span class="p">,</span><span class="n">u0_cns</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">DUDT</span> <span class="o">=</span> <span class="nf">partial_t</span><span class="p">(</span><span class="n">Zs</span><span class="p">.</span><span class="n">T</span><span class="p">,</span><span class="n">h</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Now $\Delta u (t)$ and $\frac{du}{dt}(t)$ can be compared to each other in another animation to check that they are truly equal:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">()</span>
+<span class="n">ln</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="p">.</span><span class="nf">plot</span><span class="p">([],</span> <span class="p">[],</span><span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="sh">"</span><span class="s">$\frac{du}{dt}(t)$</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">ln2</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="p">.</span><span class="nf">plot</span><span class="p">([],</span> <span class="p">[],</span><span class="n">ls</span><span class="o">=</span><span class="sh">"</span><span class="s">--</span><span class="sh">"</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="sh">"</span><span class="s">$\Delta u(t)$</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">175</span><span class="p">,</span><span class="mi">80</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_xlabel</span><span class="p">(</span><span class="sh">"</span><span class="s">Position</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">legend</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">frame</span><span class="p">):</span>
-    <span class="n">ln</span><span class="p">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">DUDT</span><span class="p">[</span><span class="n">frame</span><span class="p">])</span>
-    <span class="n">ln2</span><span class="p">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">laplacian</span><span class="p">(</span><span class="n">ut</span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">frame</span><span class="p">],</span><span class="n">X</span><span class="p">,</span><span class="n">u0_cns</span><span class="p">),</span><span class="mi">1</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)))</span>
+    <span class="n">ln</span><span class="p">.</span><span class="nf">set_data</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">DUDT</span><span class="p">[</span><span class="n">frame</span><span class="p">])</span>
+    <span class="n">ln2</span><span class="p">.</span><span class="nf">set_data</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="nf">laplacian</span><span class="p">(</span><span class="nf">ut</span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">frame</span><span class="p">],</span><span class="n">X</span><span class="p">,</span><span class="n">u0_cns</span><span class="p">),</span><span class="mi">1</span><span class="o">/</span><span class="nf">len</span><span class="p">(</span><span class="n">X</span><span class="p">)))</span>
     <span class="k">return</span> <span class="n">ln</span><span class="p">,</span> <span class="n">ln2</span>
 
-<span class="n">ani</span> <span class="o">=</span> <span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">update</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">blit</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">HTML</span><span class="p">(</span><span class="n">ani</span><span class="p">.</span><span class="n">to_html5_video</span><span class="p">())</span>
+<span class="n">ani</span> <span class="o">=</span> <span class="nc">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">update</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="nf">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">blit</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="nc">HTML</span><span class="p">(</span><span class="n">ani</span><span class="p">.</span><span class="nf">to_html5_video</span><span class="p">())</span>
 </code></pre></div></div>
-<video width="640" height="480" controls autoplay loop>
- <source type="video/mp4" src="/assets/heatfiles/anim2.mp4">
+<video width="640" height="480" controls="" autoplay="" loop="">
+ <source type="video/mp4" src="/assets/heatfiles/anim2.mp4" />
  </video>
-<h1 id="inhomogeneous-evolution-equation">Inhomogeneous Evolution Equation</h1>
-<p>Consider now the problem
-$\dot{u}(t) = \Delta u(t) + q(t)$
-for $q \in C([0, \infty), L^2(0,1))$.</p>
-<p>Then the solution is given by
-$$
-u(t) = \exp(\Delta t) u(0) +\int_0^t \exp(\Delta (t-s))q(s)ds .
-$$
-With $q$ time independent:
-$$ u(t) -\exp(\Delta t) u(0)  =  \int_0^t \sum_{n=1}^\infty e^{- n^2 \pi^2 (t-s)} e_n \langle e_n , q \rangle ds =\sum_{n=1}^\infty  \frac{1}{\pi^2 n^2}(1- e^{- n^2 \pi^2 t}) e_n \langle e_n , q \rangle $$</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">u_inhom</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">u0_cns</span><span class="p">,</span><span class="n">q_cns</span><span class="p">):</span>
-    <span class="s">"""implementation of the formula for u(t) above"""</span>
-    <span class="n">ret</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">q_cns</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">ret</span><span class="o">+=</span> <span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="n">n</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">q_cns</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">np</span><span class="p">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">n</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">t</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">sin</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">ret</span><span class="o">+</span><span class="n">ut</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">u0_cns</span><span class="p">)</span>
-</code></pre></div></div>
-<p>We can do an animation of the time evolution with $q=f$ and $u(0)$ as above. Notice how $u(t) \to A(f)$ as $t \to \infty$.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
-<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.25</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">ln</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="p">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span> <span class="n">label</span> <span class="o">=</span><span class="s">"$u(t)$"</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">A</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">f_cns</span><span class="p">),</span><span class="n">label</span> <span class="o">=</span> <span class="s">"$A(f)$"</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">"Position"</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">"Temperature"</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>
+<h1 id="inhomogeneous-evolution-equation">Inhomogeneous Evolution Equation</h1>
+
+<p>Consider now the problem
+$\dot{u}(t) = \Delta u(t) + q(t)$ 
+for $q \in C([0, \infty), L^2(0,1))$.</p>
+
+<p>Then the solution is given by 
+\(u(t) = \exp(\Delta t) u(0) +\int_0^t \exp(\Delta (t-s))q(s)ds .\)
+With $q$ time independent:
+\(u(t) -\exp(\Delta t) u(0)  =  \int_0^t \sum\_{n=1}^\infty e^{- n^2 \pi^2 (t-s)} e_n \langle e_n , q \rangle ds =\sum\_{n=1}^\infty  \frac{1}{\pi^2 n^2}(1- e^{- n^2 \pi^2 t}) e_n \langle e_n , q \rangle\)</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">u_inhom</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">u0_cns</span><span class="p">,</span><span class="n">q_cns</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">implementation of the formula for u(t) above</span><span class="sh">"""</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nf">len</span><span class="p">(</span><span class="n">q_cns</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">ret</span><span class="o">+=</span> <span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="n">n</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">q_cns</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">np</span><span class="p">.</span><span class="nf">exp</span><span class="p">(</span><span class="o">-</span><span class="n">n</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">t</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="nf">sin</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ret</span><span class="o">+</span><span class="nf">ut</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">u0_cns</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>We can do an animation of the time evolution with $q=f$ and $u(0)$ as above. Notice how $u(t) \to A(f)$ as $t \to \infty$.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.25</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">()</span>
+<span class="n">ln</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="p">.</span><span class="nf">plot</span><span class="p">([],</span> <span class="p">[],</span> <span class="n">label</span> <span class="o">=</span><span class="sh">"</span><span class="s">$u(t)$</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="nc">A</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">f_cns</span><span class="p">),</span><span class="n">label</span> <span class="o">=</span> <span class="sh">"</span><span class="s">$A(f)$</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_xlabel</span><span class="p">(</span><span class="sh">"</span><span class="s">Position</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_ylabel</span><span class="p">(</span><span class="sh">"</span><span class="s">Temperature</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">legend</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">frame</span><span class="p">):</span>
-    <span class="n">ln</span><span class="p">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">u_inhom</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">frame</span><span class="p">,</span><span class="n">u0_cns</span><span class="p">,</span><span class="n">f_cns</span><span class="p">))</span>
+    <span class="n">ln</span><span class="p">.</span><span class="nf">set_data</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="nf">u_inhom</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">frame</span><span class="p">,</span><span class="n">u0_cns</span><span class="p">,</span><span class="n">f_cns</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">ln</span><span class="p">,</span>
 
-<span class="n">ani</span> <span class="o">=</span> <span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">update</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">blit</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">HTML</span><span class="p">(</span><span class="n">ani</span><span class="p">.</span><span class="n">to_html5_video</span><span class="p">())</span>
+<span class="n">ani</span> <span class="o">=</span> <span class="nc">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">update</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">blit</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="nc">HTML</span><span class="p">(</span><span class="n">ani</span><span class="p">.</span><span class="nf">to_html5_video</span><span class="p">())</span>
 </code></pre></div></div>
-<video width="640" height="480" controls autoplay loop>
- <source type="video/mp4" src="/assets/heatfiles/anim3.mp4">
+<video width="640" height="480" controls="" autoplay="" loop="">
+ <source type="video/mp4" src="/assets/heatfiles/anim3.mp4" />
  </video>
-<p>To verify the validity of the solution the same technique as before can be used:</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
-<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.05</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
-<span class="n">h</span> <span class="o">=</span> <span class="mf">0.05</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
-<span class="n">Ts</span><span class="p">,</span> <span class="n">Xs</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span><span class="n">sparse</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
-<span class="n">Zs_inhom</span> <span class="o">=</span> <span class="n">u_inhom</span><span class="p">(</span><span class="n">Xs</span><span class="p">,</span><span class="n">Ts</span><span class="p">,</span><span class="n">u0_cns</span><span class="p">,</span><span class="n">f_cns</span><span class="p">)</span>
-<span class="n">DUDT_inhom</span> <span class="o">=</span> <span class="n">partial_t</span><span class="p">(</span><span class="n">Zs_inhom</span><span class="p">.</span><span class="n">T</span><span class="p">,</span><span class="n">h</span><span class="p">)</span>
-</code></pre></div></div>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">ln</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="p">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span><span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s">"$\frac{du}{dt}(t)$"</span><span class="p">)</span>
-<span class="n">ln2</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="p">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span><span class="n">ls</span><span class="o">=</span><span class="s">"--"</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s">"$\Delta u(t) +q$"</span><span class="p">)</span>
 
-<span class="n">ax</span><span class="p">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">175</span><span class="p">,</span><span class="mi">80</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">"Position"</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>
+<p>To verify the validity of the solution the same technique as before can be used:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.05</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mf">0.05</span><span class="o">/</span><span class="nf">len</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+<span class="n">Ts</span><span class="p">,</span> <span class="n">Xs</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">meshgrid</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span><span class="n">sparse</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+<span class="n">Zs_inhom</span> <span class="o">=</span> <span class="nf">u_inhom</span><span class="p">(</span><span class="n">Xs</span><span class="p">,</span><span class="n">Ts</span><span class="p">,</span><span class="n">u0_cns</span><span class="p">,</span><span class="n">f_cns</span><span class="p">)</span>
+<span class="n">DUDT_inhom</span> <span class="o">=</span> <span class="nf">partial_t</span><span class="p">(</span><span class="n">Zs_inhom</span><span class="p">.</span><span class="n">T</span><span class="p">,</span><span class="n">h</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">()</span>
+<span class="n">ln</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="p">.</span><span class="nf">plot</span><span class="p">([],</span> <span class="p">[],</span><span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="sh">"</span><span class="s">$\frac{du}{dt}(t)$</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">ln2</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="p">.</span><span class="nf">plot</span><span class="p">([],</span> <span class="p">[],</span><span class="n">ls</span><span class="o">=</span><span class="sh">"</span><span class="s">--</span><span class="sh">"</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="sh">"</span><span class="s">$\Delta u(t) +q$</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">175</span><span class="p">,</span><span class="mi">80</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_xlabel</span><span class="p">(</span><span class="sh">"</span><span class="s">Position</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">legend</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">frame</span><span class="p">):</span>
-    <span class="n">ln</span><span class="p">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">DUDT_inhom</span><span class="p">[</span><span class="n">frame</span><span class="p">])</span>
-    <span class="n">ln2</span><span class="p">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">laplacian</span><span class="p">(</span><span class="n">u_inhom</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">T</span><span class="p">[</span><span class="n">frame</span><span class="p">],</span><span class="n">u0_cns</span><span class="p">,</span><span class="n">f_cns</span><span class="p">),</span><span class="mi">1</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">))</span><span class="o">+</span><span class="n">f</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+    <span class="n">ln</span><span class="p">.</span><span class="nf">set_data</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">DUDT_inhom</span><span class="p">[</span><span class="n">frame</span><span class="p">])</span>
+    <span class="n">ln2</span><span class="p">.</span><span class="nf">set_data</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="nf">laplacian</span><span class="p">(</span><span class="nf">u_inhom</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">T</span><span class="p">[</span><span class="n">frame</span><span class="p">],</span><span class="n">u0_cns</span><span class="p">,</span><span class="n">f_cns</span><span class="p">),</span><span class="mi">1</span><span class="o">/</span><span class="nf">len</span><span class="p">(</span><span class="n">X</span><span class="p">))</span><span class="o">+</span><span class="nf">f</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">ln</span><span class="p">,</span> <span class="n">ln2</span>
 
-<span class="n">ani</span> <span class="o">=</span> <span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">update</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">blit</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">HTML</span><span class="p">(</span><span class="n">ani</span><span class="p">.</span><span class="n">to_html5_video</span><span class="p">())</span>
+<span class="n">ani</span> <span class="o">=</span> <span class="nc">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">update</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="nf">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">blit</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="nc">HTML</span><span class="p">(</span><span class="n">ani</span><span class="p">.</span><span class="nf">to_html5_video</span><span class="p">())</span>
 </code></pre></div></div>
-<video width="640" height="480" controls autoplay loop>
- <source type="video/mp4" src="/assets/heatfiles/anim4.mp4">
+
+<video width="640" height="480" controls="" autoplay="" loop="">
+ <source type="video/mp4" src="/assets/heatfiles/anim4.mp4" />
  </video>
 
   </div><a class="u-url" href="/2023/08/02/HeatEquation.html" hidden></a>
@@ -329,7 +360,7 @@ $$ u(t) -\exp(\Delta t) u(0)  =  \int_0^t \sum_{n=1}^\infty e^{- n^2 \pi^2 (t-s)
 </div>
 
       <div class="footer-col footer-col-3">
-        <p>Blog about mathematics, physics and code by Jannik Daun</p>
+        <p>Blog about things Jannik is currently interested in</p>
       </div>
     </div>
 

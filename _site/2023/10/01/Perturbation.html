@@ -2,24 +2,8 @@
 <html lang="en"><head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Introduction To Perturbation Theory | Jannik&#39;s Blog</title>
-<meta name="generator" content="Jekyll v3.9.3" />
-<meta property="og:title" content="Introduction To Perturbation Theory" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="This post is an introduction to perturbation theory based on my reading of chapter 2 of the book &quot;Pertubation Theory For Linear Operators&quot; by Tosio Kato, where more on the topic (including lots of things i have omitted) can be found." />
-<meta property="og:description" content="This post is an introduction to perturbation theory based on my reading of chapter 2 of the book &quot;Pertubation Theory For Linear Operators&quot; by Tosio Kato, where more on the topic (including lots of things i have omitted) can be found." />
-<link rel="canonical" href="http://localhost:4000/2023/10/01/Perturbation.html" />
-<meta property="og:url" content="http://localhost:4000/2023/10/01/Perturbation.html" />
-<meta property="og:site_name" content="Jannik&#39;s Blog" />
-<meta property="og:type" content="article" />
-<meta property="article:published_time" content="2023-10-01T15:14:45+02:00" />
-<meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Introduction To Perturbation Theory" />
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-10-01T15:14:45+02:00","datePublished":"2023-10-01T15:14:45+02:00","description":"This post is an introduction to perturbation theory based on my reading of chapter 2 of the book &quot;Pertubation Theory For Linear Operators&quot; by Tosio Kato, where more on the topic (including lots of things i have omitted) can be found.","headline":"Introduction To Perturbation Theory","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2023/10/01/Perturbation.html"},"url":"http://localhost:4000/2023/10/01/Perturbation.html"}</script>
-<!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Jannik&apos;s Blog" /><!-- Google tag (gtag.js) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/assets/main.css"><!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CKNVMY5C33"></script>
 <script>
   MathJax = {
@@ -70,291 +54,299 @@
       </time></p>
   </header>
   <div class="post-content e-content" itemprop="articleBody">
-    <p>This post is an introduction to perturbation theory based on my reading of chapter 2 of the book <a href="https://link.springer.com/book/10.1007/978-3-642-66282-9">&quot;Pertubation Theory For Linear Operators&quot;</a> by Tosio Kato, where more on the topic (including lots of things i have omitted) can be found.</p>
+    <p>This post is an introduction to perturbation theory based on my reading of chapter 2 of the book <a href="https://link.springer.com/book/10.1007/978-3-642-66282-9">“Pertubation Theory For Linear Operators”</a> by Tosio Kato, where more on the topic (including lots of things i have omitted) can be found.</p>
+
 <p>The following topics are covered:</p>
+
 <ul>
-<li><a href="#expansion-of-the-perturbed-resolvent">Expansion Of The Perturbed Resolvent</a></li>
-<li><a href="#expansion-of-the-unperturbed-resolvent">Expansion Of The Unperturbed Resolvent</a></li>
-<li><a href="#expansion-of-the-reduced-operator">Expansion Of The Reduced Operator</a></li>
-<li><a href="#non-degenerate-eigenvalue-expansion">Non-Degenerate Eigenvalue Expansion</a>
-<ul>
-<li><a href="#python-example">Example With Python</a></li>
+  <li><a href="#expansion-of-the-perturbed-resolvent">Expansion Of The Perturbed Resolvent</a></li>
+  <li><a href="#expansion-of-the-unperturbed-resolvent">Expansion Of The Unperturbed Resolvent</a></li>
+  <li><a href="#expansion-of-the-reduced-operator">Expansion Of The Reduced Operator</a></li>
+  <li><a href="#non-degenerate-eigenvalue-expansion">Non-Degenerate Eigenvalue Expansion</a>
+    <ul>
+      <li><a href="#python-example">Example With Python</a></li>
+    </ul>
+  </li>
+  <li><a href="#degenerate-eigenvalue-expansion">Degenerate Eigenvalue Expansion</a>
+    <ul>
+      <li><a href="#python-example-1">Example With Python</a></li>
+    </ul>
+  </li>
 </ul>
-</li>
-<li><a href="#degenerate-eigenvalue-expansion">Degenerate Eigenvalue Expansion</a>
-<ul>
-<li><a href="#python-example-1">Example With Python</a></li>
-</ul>
-</li>
-</ul>
+
 <p>Let $\mathcal{H}$ be a $n$ dimensional Hilbert space and denote by $L(\mathcal{H}) $ the vector space of all linear maps $\mathcal{H} \to \mathcal{H}$.
 For $n \in \mathbb{N}$ let $T_n \in L(\mathcal{H})$ set
 $T( x) = \sum_{n=0}^\infty T_n x^n$, where $x \in \mathbb{C}$ with $|x|&lt;R$, where $R&gt;0$ is the radius of convergence of the power series. Denote $T := T(0) = T_0$.</p>
+
 <p>The goal of perturbation theory is to find formula for the eigenvalues (and eigenvectors, but that is not considered here) of $T(x)$ as a function of $x$ that is related to the coefficients $T_n$ and other easy to find quantities.</p>
+
 <h2 id="expansion-of-the-perturbed-resolvent">Expansion Of The Perturbed Resolvent</h2>
 <p>Define the resolvent (for $z$ none of the eigenvalues of $T(x)$) by:
-$$
-\begin{equation}
-R(z,x) = (T(x) -zI)^{-1}
-\end{equation}
-$$
+\(\begin{equation}
+ R(z,x) = (T(x) -zI)^{-1}
+\end{equation}\)
 and set $R(z) = R(z,0)$.
 Let $A(x) = T(x) -T$.
 Then we have
-$$
-\begin{equation} T(x) - zI = T -z I + A(x) =  \big(I +A(x)  R(z) \big)(T-zI)
-\end{equation}
-$$
+\(\begin{equation} T(x) - zI = T -z I + A(x) =  \big(I +A(x)  R(z) \big)(T-zI)
+\end{equation}\)
 and therefore using the geometric series
-$$
-\begin{equation}
-R(z,x) = R(z) (I + A(x)R(z))^{-1} =R(z) \sum_{p=0}^\infty \big(-A(x) R(z)\big)^p .
-\end{equation}$$
+\(\begin{equation}
+R(z,x) = R(z) (I + A(x)R(z))^{-1} =R(z) \sum\_{p=0}^\infty \big(-A(x) R(z)\big)^p .
+\end{equation}\)
 Upon collecting powers of $x$ in equation 3 we obtain
-$$
-\begin{equation}
-R(z,x) = R(z) + \sum_{n=1 }^\infty R_n(z) x^n
-\end{equation}
-$$
+\(\begin{equation}
+R(z,x) = R(z) + \sum\_{n=1 }^\infty R_n(z) x^n
+\end{equation}\)
 with
-$$
-\begin{equation}
-R_n(z) = \sum_{p=1}^n  (-1 )^p \sum  R(z) T_{j_1} R(z) T_{j_2} R(z) \cdots R(z) T_{j_p} R(z),
-\end{equation}
-$$
+\(\begin{equation}
+R_n(z) = \sum\_{p=1}^n  (-1 )^p \sum  R(z) T\_{j_1} R(z) T\_{j_2} R(z) \cdots R(z) T\_{j_p} R(z),
+\end{equation}\)
 where the second sum is over all $ j_1, \dots , j_p \in \mathbb{N}^* $ so that  $j_1+ \cdots + j_p = n$.
 So for example $R_1(z) = -R(z) T_1 R(z)$.</p>
+
 <p>It can also be shown similarly, that $R(x,z)$ is a bi-analytic map (on appropriatly chosen domains).</p>
+
 <h2 id="expansion-of-the-unperturbed-resolvent">Expansion Of The Unperturbed Resolvent</h2>
+
 <p>Fix an eigenvalue $\lambda$ of $T$.
-The laurent expansion of $R(z)$ at $\lambda$ is given by
-$$
-\begin{equation}
-R(z) = \sum_{n=-m}^\infty (z-\lambda)^n S_{n+1},
-\end{equation}
-$$
+The laurent expansion of $R(z)$ at $\lambda$ is given by 
+\(\begin{equation}
+R(z) = \sum\_{n=-m}^\infty (z-\lambda)^n S\_{n+1},
+\end{equation}\)
 where $m$ is the algebraic multiplicity of $\lambda$ and for $n \in \mathbb{N}^*$: $S_0 = -P$, $S_n=S^n$ where $S$ is the reduced resolvent at $\lambda$ of $T$ and $S_{-n} =- D^n$ where $D$ is the eigen-nilpotent of $\lambda$ (the offdiagonal part in the jordan block of $\lambda$).</p>
+
 <p>In particular if $T$ is diagonal and $\lambda_1, \dots, \lambda_N$ are the eigenvalues, then
-$$
-\begin{equation}
-S= - \sum_{ i=1, \dots, N: \lambda_i \neq \lambda} (\lambda- \lambda_i)^{-1} P_i,
-\end{equation}
-$$
+\(\begin{equation}
+S= - \sum\_{ i=1, \dots, N: \lambda_i \neq \lambda} (\lambda- \lambda_i)^{-1} P_i,
+\end{equation}\)
 where $P_i$ is the projection onto the eigenspace of $\lambda_i$.</p>
+
 <h2 id="expansion-of-the-reduced-operator">Expansion Of The Reduced Operator</h2>
+
 <p>Let
-$$
-\begin{equation}
+\(\begin{equation}
 P(x) = - \frac{1}{2\pi i } \int_\Gamma R(z,x) dz,
-\end{equation}
-$$
+\end{equation}\)
 where $\Gamma $ is (for example) a positively oriented circle centered at $\lambda$ containing no other eigenvalues of $T$.
 Then $P(x)$ is the sum of the projections onto the (generalized) eigenspaces of all the eigenvalues of $T(x)$ contained inside of $\Gamma$. For $|x| $ small enough, these are exactly the eigenvalues that have split from $\lambda$. In particular $P:= P(0)$ is the eigenprojection onto the generalized eigenspace to eigenvalue $\lambda$.</p>
+
 <p>The eigenvectors of $T(x)$ to the eigenvalues that have split from $\lambda$ (and are not equal to $\lambda$) are the same as the eigenvectors to nonzero eigenvalue of
-$$
-\begin{equation}
+\(\begin{equation}
 T_r(x) :=  (T(x) - \lambda I ) P(x).
-\end{equation}
-$$
+\end{equation}\)
 Now
-$$
-\begin{align}
-T_r(x) &amp;= - \frac{1}{2\pi i } \int_\Gamma (T(x) - z I +zI - \lambda I)  R(z,x) dz \\
-&amp;=  - \frac{1}{2\pi i }\int_\Gamma I + (z - \lambda )R (z,x) dz
-= - \frac{1}{2\pi i }\int_\Gamma (z- \lambda) R(z,x) dz
-\end{align}
-$$
+\(\begin{align}
+T_r(x) &amp;= - \frac{1}{2\pi i } \int_\Gamma (T(x) - z I +zI - \lambda I)  R(z,x) dz \\\\
+&amp;=  - \frac{1}{2\pi i }\int_\Gamma I + (z - \lambda )R (z,x) dz 
+ = - \frac{1}{2\pi i }\int_\Gamma (z- \lambda) R(z,x) dz
+\end{align}\)
 and upon inserting the series expansion for $R(z,x)$ and then the series expansion for $R(z)$ and integrating term by term we receive an expansion
-$$
-\begin{equation}
-T_r(x) = \sum_{n=1}^\infty \tilde{T}_n x^n.
-\end{equation}
-$$
-To obtain the coefficients:
-Among all the terms that have the power $x^n$ we
+\(\begin{equation}
+T\_r(x) = \sum\_{n=1}^\infty \tilde{T}\_n x^n.
+\end{equation}\)
+To obtain the coefficients: 
+Among all the terms that have the power $x^n$ we 
 only need to find the coefficients that have the power $(z-\lambda)^{-1}$ in the integrand (using the residue theorem to evaluate the integral). Therefore:
-$$
-\begin{equation}
-\tilde{T}_n= - \sum_{p=1}^n  (-1 )^p \sum S_{k_1} T_{j_1} S_{k_2} T_{j_2} S_{k_3} \cdots S_{k_p}T_{j_p} S_{k_{p+1}},
-\end{equation}
-$$
+\(\begin{equation}
+ \tilde{T}_n= - \sum\_{p=1}^n  (-1 )^p \sum S\_{k_1} T\_{j_1} S\_{k_2} T\_{j_2} S\_{k_3} \cdots S\_{k_p}T\_{j_p} S\_{k\_{p+1}},
+ \end{equation}\)
 where the second sum is over all $ j_1, \dots , j_p \in \mathbb{N}^* $ so that $ j_1+ \cdots + j_p = n $ and $ k_1, \dots , k_{p+1} \in \mathbb{Z}$ so that $ k_i \geq -m+1 \forall i $ and  $   k_1 + \cdots + k_{p+1} = p-1 $.
 The condition on the $j_i$ ensures that we have the right power of $x$ and the condition on the $k_i$ that the summand had (before evaluating the integral) a (total) factor of $(z-\lambda)^{-1}$ in the integrand.</p>
+
 <p>From now on assume that the Jordan block of $\lambda$ is diagonal ($D=0$) so only the summands with all the $k_i\geq 0$ contribute. Then explicitly:</p>
-<p>For $n=1$ we have $p=1$ and so we must have $j_1=1$ and $k_1+k_2 = 0$ which is only possible if $k_1 = k_2 =0$ and so
-$$
-\begin{equation}
+
+<p>For $n=1$ we have $p=1$ and so we must have $j_1=1$ and $k_1+k_2 = 0$ which is only possible if $k_1 = k_2 =0$ and so 
+\(\begin{equation}
 \tilde{T}_1 = P T_1 P.
-\end{equation}
-$$</p>
+\end{equation}\)</p>
+
 <p>For $n=2$ and $p=1$ we must have $j_1=2$ and $k_1=k_2=0$. For $p=2$ we must have $j_1=j_2 =1$ and $k_1 + k_2 +k_3 =1$ so $(k_1, k_2,k_3)$ must be a permutation of $(1,0,0)$, there are 3 possibilities. So in total:
-$$
-\begin{equation}
+\(\begin{equation}
 \tilde{T}_2 = P T_2 P - S T_1 P T_1 P - P T_1 S T_1 P - P T_1 P T_1 S.
-\end{equation}
-$$</p>
+\end{equation}\)</p>
+
 <p>Clearly these terms get complicated quickly, but it is probably not too hard to generate them on a computer.</p>
+
 <p>A similar series expansion can also be done for $P(x)$ directly, which can be used to find an expansion of the eigenvectors.</p>
+
 <h2 id="non-degenerate-eigenvalue-expansion">Non-Degenerate Eigenvalue Expansion</h2>
-<p>Now if the eigenspace of $T$ to eigenvalue $\lambda$ is one dimensional, then $P(x)$ is the projection onto the eigenspace to the perturbed eigenvalue $\lambda(x)$ of $T(x)$ that comes from $\lambda$ (no splitting). Therefore (the trace is the sum of all eigenvalues)
-$$
-\begin{equation}
-\lambda(x) = \lambda +  \sum_{n=1}^\infty \operatorname{trace} \tilde{T}_n x^n
-\end{equation}
-$$</p>
+
+<p>Now if the eigenspace of $T$ to eigenvalue $\lambda$ is one dimensional, then $P(x)$ is the projection onto the eigenspace to the perturbed eigenvalue $\lambda(x)$ of $T(x)$ that comes from $\lambda$ (no splitting). Therefore (the trace is the sum of all eigenvalues) 
+\(\begin{equation}
+\lambda(x) = \lambda +  \sum\_{n=1}^\infty \operatorname{trace} \tilde{T}_n x^n 
+\end{equation}\)</p>
+
 <p>Now assume further that $T$ is self-adjoint and let $e_1, \dots, e_n$ be an orthonormal basis of $\mathcal{H}$  that diagonalizes $T$ to eigenvalues $\lambda_1, \dots, \lambda_n$ (with possible repeats) so that $\lambda_1 = \lambda$.
 Then
-$$
-\begin{equation}
-P(-) = e _1  \langle e_1 , -\rangle, \quad S(-)= -\sum_{i=2}^n (\lambda -\lambda_i  )^{-1}  e _i  \langle e_i , -\rangle .
-\end{equation}
-$$
+\(\begin{equation}
+P(-) = e _1  \langle e_1 , -\rangle, \quad S(-)= -\sum\_{i=2}^n (\lambda -\lambda_i  )^{-1}  e _i  \langle e_i , -\rangle .
+\end{equation}\)
 So $\operatorname{trace} \tilde{T}_1 = \langle e_1, T_1 e_1 \rangle,$
 and (using $PS=SP=0$ and $\operatorname{trace}(AB)= \operatorname{trace}(BA)$ to show that the other 2 terms have 0 trace)
-$$
-\begin{equation}
-\operatorname{trace} \tilde{T}_2 = \langle e_1, T_2 e_1 \rangle - \operatorname{trace} P T_1 S T_1 P = \langle e_1, T_2 e_1 \rangle +
-\sum_{i=2}^n (\lambda - \lambda_i )^{-1}\langle e_1, T_1e _i \rangle   \langle e_i , T_1 e_1 \rangle.
-\end{equation}
-$$</p>
+\(\begin{equation}
+\operatorname{trace} \tilde{T}_2 = \langle e_1, T_2 e_1 \rangle - \operatorname{trace} P T_1 S T_1 P = \langle e_1, T_2 e_1 \rangle + 
+\sum\_{i=2}^n (\lambda - \lambda_i )^{-1}\langle e_1, T_1e _i \rangle   \langle e_i , T_1 e_1 \rangle.
+\end{equation}\)</p>
+
 <p>If the considered eigenspace is not one dimensional, then the weighted (by the algebraic multiplicity) mean of the split eigenvalues of $T(x)$ can be obtained by dividing $\lambda(x)$ by the dimension of the eigenspace and adjusting the formula for $P$ and $S$. Furthermore if there is no splitting then the  eigenvalue is obtained directly.</p>
+
 <h1 id="python-example">Python Example</h1>
+
 <p>The following python code illustrates the derived formula for the eigenvalues:</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">from</span> <span class="n">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 </code></pre></div></div>
 <p>Here a perturbation series of the form $T(x)= Tx + T_1$ with $T$ and $T_1$ self-adjoint on a 3 dimensional Hilbert space is considered.
-Generate the matrix of $T$ with respect to the diagonalizing basis with prescribed eigenvalues <code>l0</code>:</p>
+Generate the matrix of $T$ with respect to the diagonalizing basis with prescribed eigenvalues <code class="language-plaintext highlighter-rouge">l0</code>:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">l0</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.9</span><span class="p">]</span>
-<span class="n">T0</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">diag</span><span class="p">(</span><span class="n">l0</span><span class="p">)</span>
+<span class="n">T0</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">diag</span><span class="p">(</span><span class="n">l0</span><span class="p">)</span>
 <span class="n">T0</span>
 </code></pre></div></div>
-<pre><code>array([[0.3, 0. , 0. ],
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[0.3, 0. , 0. ],
        [0. , 0.6, 0. ],
        [0. , 0. , 0.9]])
-</code></pre>
+</code></pre></div></div>
+
 <p>Generate a random self-adjoint matrix (wrt the same basis) for $T_1$:</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">T1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">T1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
 <span class="n">T1</span> <span class="o">=</span> <span class="n">T1</span><span class="p">.</span><span class="n">T</span><span class="o">+</span><span class="n">T1</span>
 <span class="n">T1</span>
 </code></pre></div></div>
-<pre><code>array([[0.56146242, 1.41348372, 0.84997071],
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[0.56146242, 1.41348372, 0.84997071],
        [1.41348372, 0.18097141, 1.27922704],
        [0.84997071, 1.27922704, 0.26177227]])
-</code></pre>
+</code></pre></div></div>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">T</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">T0</span><span class="o">+</span><span class="n">x</span><span class="o">*</span><span class="n">T1</span>
 </code></pre></div></div>
+
 <p>The above formula for $\lambda(x)$ up to second order:</p>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">lam</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">i</span><span class="p">):</span>
     <span class="n">l</span> <span class="o">=</span> <span class="n">l0</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">T1</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">x</span> 
     <span class="n">c2</span>  <span class="o">=</span><span class="mi">0</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">i</span><span class="o">!=</span><span class="n">j</span><span class="p">:</span>
             <span class="n">c2</span><span class="o">+=</span> <span class="p">(</span><span class="n">l0</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span> <span class="n">l0</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">T1</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span>
     <span class="n">l</span> <span class="o">+=</span> <span class="n">c2</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span>
     <span class="k">return</span> <span class="n">l</span>
 </code></pre></div></div>
+
 <p>Finally plot the approximate $\lambda(x)$ (black) and compare it to the true eigenvalue (blue) (numerically computed) for real $x$:</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span>  <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span>  <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">lams</span> <span class="o">=</span><span class="p">[[],[],[]]</span>
 <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X</span><span class="p">:</span>
-    <span class="n">evals</span><span class="p">,</span> <span class="n">evecs</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">T</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
-        <span class="n">lams</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">evals</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">evals</span><span class="p">,</span> <span class="n">evecs</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="nf">eigh</span><span class="p">(</span><span class="nc">T</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">lams</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="nf">append</span><span class="p">(</span><span class="n">evals</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>  
-    <span class="n">ax</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">lam</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">i</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s">"black"</span><span class="p">)</span>
-    <span class="n">ax</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">lams</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s">"blue"</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>  
+    <span class="n">ax</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="nf">lam</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">i</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="sh">"</span><span class="s">black</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">lams</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="sh">"</span><span class="s">blue</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">)</span>
 <span class="c1">#ax.set_ylim(1,1.3)
-</span><span class="n">ax</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">"$x$"</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s">"$\lambda(x)$"</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</span><span class="n">ax</span><span class="p">.</span><span class="nf">set_xlabel</span><span class="p">(</span><span class="sh">"</span><span class="s">$x$</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="sh">"</span><span class="s">$\lambda(x)$</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
 </code></pre></div></div>
+
 <p><img src="/assets/pert/pertub_5_0.png" alt="png" /></p>
+
 <h2 id="degenerate-eigenvalue-expansion">Degenerate Eigenvalue Expansion</h2>
+
 <p>If the eigenspace to eigenvalue $\lambda$ of $T$ is not one dimensional ($\lambda$ is called a degenerate eigenvalue) and the eigenvalue $\lambda$ splits, then we look at the perturbation series (which defines an analytic function)
-$$
-\begin{equation}
-\tilde{T} (x) = \sum_{n=0}^\infty  \tilde{T}_{n+1} x^n.
-\end{equation}
-$$
-The unperturbed operator here is $\tilde{T}_1$.
+\(\begin{equation}
+\tilde{T} (x) = \sum\_{n=0}^\infty  \tilde{T}\_{n+1} x^n.
+\end{equation}\)
+The unperturbed operator here is $\tilde{T}_1$. 
 Now $ T_r(x) = x \tilde{T} (x) $ and therefore $\tilde{\lambda}(x)$ is an eigenvalue of $\tilde{T} (x) $ if and only if $ x \tilde{\lambda}(x)$ is an eigenvalue of $T_r(x)$.</p>
+
 <p>Since $\tilde{T} (x) $ is given by a perturbation series we can apply perturbation theory to it. Let $\tilde{\lambda}_{1}$ be an eigenvalue of $ \tilde{T}_{1} $ with one dimensional eigenspace. Then we can apply non degenerate perturbation theory.
 Assume further that $T_{1}$ is self-adjoint so $\tilde{T}_{1} = PT_{1}P$ is as well. Let $e_{1}, \dots, e_m$ be the an orthonormal basis of $\operatorname{ran}P$ which consists of eigenvectors to eigenvalue $\tilde{\lambda}_{1}, \dots,  \tilde{\lambda}_m$ of $\tilde{T}_{1}$. Then this basis can be extended to a orthonormal basis $e_{1}, \dots e_m, e_{m+1}, \dots , e_n$ of $\mathcal{H}$ of eigenvectors of $T$ to eigenvalue $\lambda_{1} ,\dots, \lambda_n $, where $\lambda_{1} = \cdots = \lambda_m = \lambda$.</p>
+
 <p>Let $\tilde{P}$ be the projection onto the eigenspace of $\tilde{T}_1$ to eigenvalue $\tilde{\lambda}_{1}$
-then
-$$
-\begin{equation}
-\tilde{P} (-) = e_1 \langle e_1, - \rangle , \quad P(-) = \sum_{i=1}^m e_i \langle e_i , - \rangle, \quad   S(-) = - \sum_{i=m+1}^n (\lambda - \lambda_i)^{-1} e_i \langle e_i, - \rangle.
-\end{equation}
-$$
+then 
+\(\begin{equation}
+\tilde{P} (-) = e_1 \langle e_1, - \rangle , \quad P(-) = \sum\_{i=1}^m e_i \langle e_i , - \rangle, \quad   S(-) = - \sum\_{i=m+1}^n (\lambda - \lambda_i)^{-1} e_i \langle e_i, - \rangle. 
+\end{equation}\)
 And so applying the formula from the previous section (further assuming $T_2=0$ for simplicity)
-$$
-\begin{equation}
-\operatorname{trace} \tilde{P} \tilde{T}_2 \tilde{P} = - \langle e_1  , PT_1 S T_1 P e_1 \rangle =  \sum_{i=m+1}^n (\lambda - \lambda_i )^{-1} |\langle e_1, T_1e _i \rangle |^2 .
-\end{equation}
-$$
+\(\begin{equation}
+\operatorname{trace} \tilde{P} \tilde{T}_2 \tilde{P} = - \langle e_1  , PT_1 S T_1 P e_1 \rangle =  \sum\_{i=m+1}^n (\lambda - \lambda_i )^{-1} |\langle e_1, T_1e _i \rangle |^2 . 
+\end{equation}\)
 And so there will be an eigenvalue $\lambda_1 (x)$ of $T(x)$ with
-$$
-\begin{equation}
-\lambda_1 (x) = \lambda + x \tilde{\lambda}_1 + x^2 \bigg(  \sum_{i=m+1}^n (\lambda - \lambda_i )^{-1} |\langle e_1, T_1e _i \rangle |^2  \bigg) + o(x^2) .
-\end{equation}
-$$
+\(\begin{equation}
+\lambda_1 (x) = \lambda + x \tilde{\lambda}_1 + x^2 \bigg(  \sum\_{i=m+1}^n (\lambda - \lambda_i )^{-1} |\langle e_1, T_1e _i \rangle |^2  \bigg) + o(x^2) .
+\end{equation}\)
 If all the eigenvalues of $\tilde{T}_1$ have one dimensional eigenspace, then all the eigenvalues of $T(x)$ that have split from $\lambda$ are found in this way. If not, then the degenerate expansion can be applied again to the eigenvalues in those higher dimensional eigenspaces.</p>
+
 <h1 id="python-example-1">Python Example</h1>
 <p>The following python jupyter notebook code illustrates the derived formula for the perturbed eigenvalues. Again a linear perturbation $T(x)= T_0 + T_1 x $ with self-adjoint $T_0$ and $T_1$ on a 3 dimensional Hilbert space is considered.</p>
+
 <p>Generate the matrix (wrt to the bespoke orthonormal basis) of $T_0$ with 2-fold degenerate eigenvalue $0.3$:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">deg_Eval</span> <span class="o">=</span> <span class="mf">0.3</span>
 <span class="n">l0</span> <span class="o">=</span> <span class="p">[</span><span class="n">deg_Eval</span><span class="p">,</span><span class="n">deg_Eval</span><span class="p">,</span><span class="mf">0.6</span><span class="p">]</span>
-<span class="n">T0</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">diag</span><span class="p">(</span><span class="n">l0</span><span class="p">)</span>
+<span class="n">T0</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">diag</span><span class="p">(</span><span class="n">l0</span><span class="p">)</span>
 <span class="n">T0</span>
 </code></pre></div></div>
-<pre><code>array([[0.3, 0. , 0. ],
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[0.3, 0. , 0. ],
        [0. , 0.3, 0. ],
        [0. , 0. , 0.6]])
-</code></pre>
+</code></pre></div></div>
+
 <p>The matrix of a random perturbation $T_1$ for which $P T_1 P$ is diagonal (again in the bespoke basis):</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">l1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">random</span><span class="p">(),</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">random</span><span class="p">(),</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">T1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">)])</span>
-<span class="n">T1</span> <span class="o">=</span> <span class="n">T1</span><span class="o">+</span><span class="n">T1</span><span class="p">.</span><span class="n">T</span> <span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="n">diag</span><span class="p">(</span><span class="n">l1</span><span class="p">)</span>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">l1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">random</span><span class="p">(),</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">random</span><span class="p">(),</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">)])</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="n">T1</span><span class="o">+</span><span class="n">T1</span><span class="p">.</span><span class="n">T</span> <span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="nf">diag</span><span class="p">(</span><span class="n">l1</span><span class="p">)</span>
 <span class="n">T1</span>
 </code></pre></div></div>
-<pre><code>array([[-0.31274866,  0.        ,  0.71346278],
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[-0.31274866,  0.        ,  0.71346278],
        [ 0.        ,  0.22835368,  0.98047231],
        [ 0.71346278,  0.98047231,  0.04827524]])
-</code></pre>
+</code></pre></div></div>
+
 <p>Implementation of the formula for $\lambda_i (x)$ up to second order:</p>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">lam_deg</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">i</span><span class="p">):</span>
     <span class="n">l</span> <span class="o">=</span> <span class="n">deg_Eval</span> <span class="o">+</span> <span class="n">l1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">x</span> 
     <span class="n">c2</span>  <span class="o">=</span> <span class="p">(</span><span class="n">deg_Eval</span><span class="o">-</span><span class="n">l0</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">T1</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span>
     <span class="n">l</span> <span class="o">+=</span> <span class="n">c2</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span>
     <span class="k">return</span> <span class="n">l</span>
 </code></pre></div></div>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">T</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">T0</span><span class="o">+</span><span class="n">x</span><span class="o">*</span><span class="n">T1</span>
 </code></pre></div></div>
+
 <p>Plot the second order formula for $\lambda_i (x)$ for $i=1,2$ (black) and compare to the numeric results (blue):</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span>  <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span>  <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">lams</span> <span class="o">=</span><span class="p">[[],[],[]]</span>
 <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X</span><span class="p">:</span>
-    <span class="n">evals</span><span class="p">,</span> <span class="n">evecs</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">T</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
-        <span class="n">lams</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">evals</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> 
+    <span class="n">evals</span><span class="p">,</span> <span class="n">evecs</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="nf">eigh</span><span class="p">(</span><span class="nc">T</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">lams</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="nf">append</span><span class="p">(</span><span class="n">evals</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> 
 
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>  
-    <span class="n">ax</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">lam_deg</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">i</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s">"black"</span><span class="p">)</span>
-    <span class="n">ax</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">lams</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s">"blue"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>  
+    <span class="n">ax</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="nf">lam_deg</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">i</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="sh">"</span><span class="s">black</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">lams</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="sh">"</span><span class="s">blue</span><span class="sh">"</span><span class="p">)</span>
     
-<span class="n">ax</span><span class="p">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">"$x$"</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s">"$\lambda(x)$"</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_xlabel</span><span class="p">(</span><span class="sh">"</span><span class="s">$x$</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="sh">"</span><span class="s">$\lambda(x)$</span><span class="sh">"</span><span class="p">)</span>
 </code></pre></div></div>
+
 <p><img src="/assets/pert/pertub_10_1.png" alt="png" /></p>
+
 
   </div><a class="u-url" href="/2023/10/01/Perturbation.html" hidden></a>
 </article>
@@ -377,7 +369,7 @@ If all the eigenvalues of $\tilde{T}_1$ have one dimensional eigenspace, then al
 </div>
 
       <div class="footer-col footer-col-3">
-        <p>Blog about mathematics, physics and code by Jannik Daun</p>
+        <p>Blog about things Jannik is currently interested in</p>
       </div>
     </div>
 

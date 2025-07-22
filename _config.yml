@@ -21,16 +21,16 @@
 title: Jannik's Blog
 email: jannik.daun@proton.me
 description: >- # this means to ignore newlines until "baseurl:"
-  Blog about mathematics, physics and code by Jannik Daun
+  Blog about things Jannik is currently interested in
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: 
 github_username:  jd11111
 # Build settings
-theme: jekyll-theme-minimal
-markdown: GFM
-plugins:
-  - jekyll-feed
+#theme: jekyll-theme-minimal
+#markdown: GFM
+#plugins:
+  #  - jekyll-feed
  # - jekyll-toc 
 # TOC Settings
 #toc:
