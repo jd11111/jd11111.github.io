@@ -91,5 +91,3 @@ Putting everything together:
 \leq  M_R R 2 \frac{\pi}{2\alpha R} = M_R \frac{\pi}{\alpha}.
 \end{equation}
 Which ends the proof. $\square$
-
-

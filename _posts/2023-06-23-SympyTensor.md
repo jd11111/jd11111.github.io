@@ -732,3 +732,4 @@ symmetrizer(expr,[a,d])
 \begin{equation}
  \left(\frac{1}{2}\right)\left(K{}^{abV_0}J{}_{V_0}{}^{de} + K{}^{dbV_0}J{}_{V_0}{}^{ae}\right)
 \end{equation}
+
