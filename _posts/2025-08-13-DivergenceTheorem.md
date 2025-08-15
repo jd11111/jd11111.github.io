@@ -77,5 +77,5 @@ Let $\varphi, \psi  \in C^2(U)$. Then
     \int_{\Omega} \varphi \Delta \psi - \Delta \varphi \psi  dV = \int_{\partial \Omega}  \bigg\langle \sum_{j=1}^n \varphi  \partial_j \psi \frac{\partial }{\partial x_j} - \psi  \partial_j \varphi \frac{\partial }{\partial x_j}  , N \bigg\rangle dS.
 \end{equation}
 **Proof:**
-This follows immediatily from Greens first identity (twice) and by noticing that the symmetric terms cancel.$\square$
+This follows from applying Green's first identity twice and by noticing that the symmetric terms cancel.$\square$
 
