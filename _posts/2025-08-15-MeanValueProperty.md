@@ -194,7 +194,7 @@ By the maximum principle applied to $-v$:
 Therefore $v(x) \geq 0$.
 And so in total $0 \leq v(x) \leq 0$, which implies that $v(x) = 0$. $\square$
 
-**Proposition 6:**
+**Proposition 6 (estimates for partial derivatives of harmonic functions):**
 Let $u \in C^2(\Omega)$ with $\Delta u =0$.
 Let $j \in \{1,\dots,n \}$.
 Then for all $x \in \Omega$ and $r \in (0, \infty)$ such that $\bar B(x,r)\subset \Omega$:
@@ -239,32 +239,11 @@ Let $v : \mathbb{R}^n \to \mathbb{R}$,
 \begin{equation}
     v(x):=  \int_{\mathbb{R}^n} \Phi(x-y) f(y) dV(y).
 \end{equation}
-Then $v \in C^2 (\mathbb{R}^n)$ and $-\Delta v =f$ by the previous blog post.
-Therefore it is left to show that $v$ is bounded. Because then $\Delta (u-v) =0$ and $u-v$ is bounded, so $u-v$ is constant by Liouvilles theorem.
-Let $R\in (0, \infty)$ such that the support of $f$ is contained in $B(0,R)$.
-Let $\varepsilon \in (0, \infty)$. Let $x \in \mathbb{R}^n$ with $\\|x\\| >2R$.
-Then
-\begin{equation}
-    v(x)
-=    \int_{B(0,R )} \Phi(x-y) f(y) dV(y). 
-\end{equation}
-Inserting the definition of $\Phi$:
-\begin{equation}
-|v(x)|
-\leq  \int_{B(0,R )} |f(y)| \frac{1}{n(n-2) \alpha(n)}\frac{1}{\\|x-y\\|^{n-2}} dV(y)
-\end{equation}
-and so
-\begin{equation}
-  |v(x)|\leq \frac{1}{n(n-2) \alpha(n)}\frac{1}{R^{n-2}}  \int_{B(0,R )} |f| dV,
-\end{equation}
-since by the reverse triangle inequality for all $y \in B(0,R)$: $\\|x-y\\| \geq \\|x\\|- \\|y\\| \geq  2R - R =R$.
-This shows that for all $x \in \mathbb{R}^n$:
-\begin{equation}
-    |v(x) | \leq \sup_{x \in \bar B(0,2R)} |v(x)| +  \frac{1}{n(n-2) \alpha(n)}\frac{1}{R^{n-2}}  \int_{B(0,R )} |f| dV
-\end{equation}
-and therefore $v$ is bounded. $\square$
+Then $v \in C^2 (\mathbb{R}^n)$, $-\Delta v =f$ and $v$ is bounded by the previous blog post.
+Now $\Delta (u-v) =0$ and $u-v$ is bounded, so $u-v$ is constant by Liouvilles theorem.
+$\square$
 
-**Proposition 8 (estimates for the partial derivatives):**
+**Proposition 8 (estimates for the higher order partial derivatives of harmonic functions):**
 Let $u \in C^2(\Omega)$ with $\Delta u =0$ and $\alpha \in \mathbb{N}^n$.
 Then for all $x \in \Omega$ and $r \in (0, \infty)$ such that $\bar B(x,r)\subset \Omega$.
 \begin{equation}

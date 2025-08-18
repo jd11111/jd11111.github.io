@@ -4,7 +4,7 @@ title:  "Solving Poisson's Equation with the Fundamental Solution"
 date:   2025-08-14 10:00:00 +0200
 categories:
 ---
-Let $n \in \mathbb{R}^n$ with $n\geq 3$.
+Let $n \in \mathbb{N}$ with $n\geq 3$.
 Let $\alpha (n)$ be the volume of the unit ball $B(0,1)$.
 Then the surface area of $\partial B(0,1)$ is $n \alpha(n)$.
 Define the **fundamental solution** $\Phi: \mathbb{R}^n \setminus \\{0\\}\to \mathbb{R}$ of $-\Delta$ by
@@ -25,8 +25,8 @@ The fundamental solution has the following easily verified (for 5. integrate in 
 5. $\Phi \in L^1_{\mathrm{loc}} (\mathbb{R}^n)$.
 
 **Proposition 1 (Green's representation formula):**
-Let $\Omega \subset \mathbb{R}^n$ be a bounded domain with $C^2$-boundary.
-Let $V \subset \mathbb{R}^n$ open with $\bar \Omega \subset V$ and $u \in C^2(V)$.
+Let $\Omega \subset \mathbb{R}^n$ be a bounded domain with smooth boundary.
+Let $u \in C^2(\bar \Omega)$.
 Then for all $x \in \Omega$:
 \begin{equation}
     u(x) = -\int\_{\Omega}  \Delta u \Psi dV +
@@ -92,7 +92,7 @@ Let $f \in C^2_c (\mathbb{R}^n)$. Let $u : \mathbb{R}^n \to \mathbb{R}$,
 \begin{equation}
 u(x):= \int\_{\mathbb{R}^n} \Phi(y) f(x-y)d V(y).
 \end{equation}
-Then $u \in C^2(\mathbb{R}^n)$ and $- \Delta u =f$.
+Then $u \in C^2(\mathbb{R}^n)$, $- \Delta u =f$ and $u \in C_0(\mathbb{R}^n)$.
 
 **Proof:**
 Since $\Phi$ is locally integrable $u$ is well defined.
@@ -101,7 +101,23 @@ By the theorem of differentiation under the integral sign $u\in C^2(\mathbb{R}^n
     - \Delta u (x) = \int\_{\mathbb{R}^n}  -\Delta f(x-y) \Phi (y) d V(y) 
 =  \int\_{\mathbb{R}^n}  -\Delta f(y) \underbrace{\Phi (x-y)}\_{= \Phi (y-x)} d V(y)  = f(x),
 \end{equation}
-by the preceding proposition. $\square$
-
-**Remark:**
-
+by the preceding proposition. 
+Let $R\in (0, \infty)$ such that the support of $f$ is contained in $B(0,R)$.
+Let $R^\prime \in (0,\infty)$ with $R^\prime > R$.
+Let $x \in \mathbb{R}^n$ with $\\|x\\| \geq R^\prime$.
+Then
+\begin{equation}
+    u(x)
+=    \int_{B(0,R )} \Phi(x-y) f(y) dV(y). 
+\end{equation}
+Inserting the definition of $\Phi$:
+\begin{equation}
+|u(x)|
+\leq  \int_{B(0,R )} |f(y)| \frac{1}{n(n-2) \alpha(n)}\frac{1}{\\|x-y\\|^{n-2}} dV(y)
+\end{equation}
+and so
+\begin{equation}
+  |u(x)|\leq \frac{1}{n(n-2) \alpha(n)}\frac{1}{(R^\prime -R)^{n-2}}  \int_{B(0,R )} |f| dV,
+\end{equation}
+since by the reverse triangle inequality for all $y \in B(0,R)$: $\\|x-y\\| \geq |\\|x\\|- \\|y\\|| \geq  R^\prime - R$.
+Choosing $R^\prime$ large enough shows that $u \in C^0 (\mathbb{R}^n)$. $\square$
