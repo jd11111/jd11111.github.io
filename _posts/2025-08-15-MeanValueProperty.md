@@ -335,18 +335,18 @@ For every domain $V \subset \Omega$  with $\bar V \subset \Omega$ there exists $
     \sup_{x \in V} u(x) \leq C \inf_{x \in V} u.
 \end{equation}
 **Proof:**
-Let $y \in \Omega$ and $r \in (0,\infty)$ such that $\bar B(y,2r) \subset \Omega$.
+Let $y \in \Omega$ and $r \in (0,\infty)$ such that $B(y,4r) \subset \Omega$.
 Let $x_1, x_2 \in B(y,r)$.
-Then using the mean value property and $u \geq 0$:
+Then using the mean value property, $u \geq 0$ and $B(x_1,r) \subset B(x_2,3r) \subset B(y,4r)$:
 \begin{equation}
 \begin{split}
-    u(x_1) &= \frac{1}{\alpha(n) r^n} \int_{B(y,r)} u dV \leq  \frac{1}{\alpha(n) r^n} \int_{B(y,2r)} u dV \\\\ 
-&=  \frac{2^n}{\alpha(n) (2r)^n} \int_{B(0,2r)} u dV = 2^n u(x_2).
+    u(x_1) &= \frac{1}{\alpha(n) r^n} \int_{B(x_1,r)} u dV \leq  \frac{1}{\alpha(n) r^n} \int_{B(x_2,3r)} u dV \\\\ 
+&=  \frac{3^n}{\alpha(n) (3r)^n} \int_{B(x_2,3r)} u dV = 2^n u(x_2).
 \end{split}
    \end{equation}
 Finally let $a,b \in V$ arbitrary.
 Let $\gamma :[0,1]\to V$ continuous with $\gamma (0) = a, \gamma (1) = b$ (exists by connectedness).
-Let $\rho \in (0, \infty)$ such that $\forall x \in \bar V$: $B(x,3 \rho) \subset \Omega$ (exists since $\bar V \subset \Omega$ is compact).
+Let $\rho \in (0, \infty)$ such that $\forall x \in \bar V$: $B(x,4 \rho) \subset \Omega$ (exists since $\bar V \subset \Omega$ is compact).
 Since $\gamma$ is uniformly continuous there exists $\delta >0$ such that for all $ t ,s \in [0,1]$:
 \begin{equation}
     |t-s |< \delta \Rightarrow \\|\gamma (t) -\gamma (s)\\| < \rho.
@@ -354,7 +354,6 @@ Since $\gamma$ is uniformly continuous there exists $\delta >0$ such that for al
 Let $t_0, \dots, t_N \in [0,1]$ with $0=t_0 < \cdots < t_N =1$ with for all $t \in \\{0, \dots, N-1\\}$: $t_{j+1}- t_j < \delta$. 
 Let $j \in \\{1,\dots, N-1\\}$.
 Then $t_{j+1}  - t_j < \delta$ and $ t_j -t_{j-1} < \delta$. Therefore $\gamma(t_{j+1})$ and $\gamma(t_{j-1})$ are in $B(\gamma(t_j), \rho)$.
-Furthermore $\bar B(\gamma(t_j),2 \rho) \subset B(\gamma (t_j), 3 \rho) \subset \Omega$.
 Therefore the first part of the argument applies to show that
 \begin{equation}
     u(\gamma(t_{j-1})) \leq  2^n u ( \gamma(t_{j+1})).

@@ -71,7 +71,7 @@ Therefore by combining the preceding
 \end{equation}
 
 **Remark:**
-In the situation of the preceding: If $\Delta u=0$ then Green's representation formula shows that the values of $u$ in $\Omega$ are determined only by the values of $u$ on $\partial \Omega$.
+In the situation of the preceding: If $\Delta u=0$ then Green's representation formula shows that the values of $u$ in $\Omega$ are determined only by the values of $u$ and $\nabla u$ on $\partial \Omega$.
 This is similar to Cauchys integral formula in complex analysis.
 
 **Proposition 1 ($\Phi$ is the fundamental solution of $-\Delta$):**
@@ -102,3 +102,6 @@ By the theorem of differentiation under the integral sign $u\in C^2(\mathbb{R}^n
 =  \int\_{\mathbb{R}^n}  -\Delta f(y) \underbrace{\Phi (x-y)}\_{= \Phi (y-x)} d V(y)  = f(x),
 \end{equation}
 by the preceding proposition. $\square$
+
+**Remark:**
+
