@@ -96,41 +96,46 @@ Let $u \in C(\Omega)$ such that for all $x \in \Omega$ there is $r_0 \in (0, \in
 Then $u \in C^\infty (\Omega)$ and $\Delta u =0$.
 
 **Proof:**
-Let $\eta : \mathbb{R}^n \to \mathbb{R}$
+Let $\rho : \mathbb{R} \to \mathbb{R}$
 \begin{equation}
-    \eta (x):= c \begin{cases}
-\exp \bigg ( \frac{1}{\\|x\\|^2 - 1} \bigg), \ \text{if} \ x \in B(0,1), \\\\ 
+    \rho (x):= c \begin{cases}
+\exp \bigg ( \frac{1}{x^2 - 1} \bigg), \ \text{if} \ x \in B(0,1), \\\\ 
         0, \ \text{else}.
     \end{cases}
 \end{equation}
-With $c \in (0, \infty)$ chosen such that $\int_{\mathbb{R}^n} \eta dV = 1$.
-Then $\eta \geq 0, \eta \in C^\infty (\mathbb{R}^n)$ and the support of $\eta$ is contained in $\bar B(0,1)$.
+With $c \in (0, \infty)$ chosen such that $\int_{\mathbb{R}^n} \rho(\\|x\\|) dV(x) = 1$.
+
+Let $\eta : \mathbb{R}^n \to \mathbb{R}$, $\eta (x):= \rho (\\|x\\|)$.
+Then $\eta \geq 0, \eta \in C^\infty (\mathbb{R}^n)$, $\int_{\mathbb{R}^n} \eta dV= 1$ and the support of $\eta$ is contained in $\bar B(0,1)$.
 For $\varepsilon \in (0, \infty)$ define $\eta_\varepsilon : \mathbb{R}^n \to \mathbb{R}$ by
 \begin{equation}
     \eta_\varepsilon (x) := \varepsilon^{-n} \eta ( x/\varepsilon).
 \end{equation}
 Then for all $\varepsilon \in (0, \infty)$: $\eta_\varepsilon \in C^\infty(\mathbb{R}^n)$, $\int_{\mathbb{R}^n} \eta_\varepsilon dV =1$ and the support of $\eta_\varepsilon$ is contained in $\bar B(0,\varepsilon)$.
-For $\varepsilon \in (0, \infty)$ let $\Omega_\varepsilon := \\{ x \in \Omega : d(\partial \Omega, x) > \varepsilon\\}$ and $u_\varepsilon : \mathbb{R}^n \to \mathbb{R}$,
+
+Let $x_0\in \Omega$ and $r_0 \in (0, \infty)$ such that $\bar B(x_0,r_0) \subset \Omega$ and $\forall r \in (0, r_0]$:
 \begin{equation}
-    u_\varepsilon  (x) := \int_{\bar \Omega_\varepsilon} \eta_\varepsilon(x-y) u(y) dV(y),
+    u(x_0) =  \frac{1}{n \alpha(n) r^{n-1}} \int_{\partial B(x_0,r)} u dS.
 \end{equation}
-where $u$ is extended by $0$ to $\mathbb{R}^n$. 
-Let $\varepsilon \in (0, \infty)$:
-Since $u$ is continuous on $\bar \Omega_\varepsilon$ the theorem of differentiation under the integral sign applies.
-Therefore $u_\varepsilon \in C^\infty (\mathbb{R}^n)$.
-Now let $x \in \Omega$ and $\varepsilon \in (0, \infty)$ such that $\varepsilon <r_0$.
-In particular then $ \bar B(x,\varepsilon ) \subset \bar \Omega_\varepsilon$ and the support of $\eta_\varepsilon (x- \bullet)$ is contained in $\bar B(x, \varepsilon)$. Therefore
+For $\varepsilon \in (0, \infty)$ let $u_\varepsilon : \mathbb{R}^n \to \mathbb{R}$,
+\begin{equation}
+    u_\varepsilon  (x) := \int_{\bar B(x_0,r_0)} \eta_\varepsilon(x-y) u(y) dV(y).
+\end{equation}
+For all $\varepsilon \in (0, \infty)$: $u_\varepsilon \in C^\infty (\mathbb{R}^n)$ by a corollary to the theorem of differentiation under the integral sign.
+
+Let $\varepsilon := r_0/2$.
+Let $x \in B(x_0, \varepsilon)$. Then the support of $\eta_{\varepsilon}(x-\bullet)$ is contained in $\bar B(x,\varepsilon )\subset \bar B (x_0, r_0)$ by the triangle inequality. Therefore
 \begin{equation}
     u_\varepsilon (x) = 
  \int_{B(x, \varepsilon)} \eta_\varepsilon(x-y) u(y) dV(y).
 \end{equation}
 Inserting the definition of $\eta_\varepsilon$ and using spherical coordinates:
 \begin{equation}
-u_\varepsilon(x) = c \varepsilon^{-n} \int_0^\varepsilon \exp \bigg(\frac{1}{(r/\varepsilon)^2 -1} \bigg) \int_{\partial B(x,r)}u d S dr.
+u_\varepsilon(x) = \varepsilon^{-n} \int_0^\varepsilon \rho (r/\varepsilon) \int_{\partial B(x,r)}u d S dr.
 \end{equation}
-Therefore (using the assumption on $u$, inserting the definition of $\alpha(n)$ and reverting the spherical coordinates)
+Therefore using the assumption on $u$, inserting the definition of $\alpha(n)$ and using spherical coordinates again
 \begin{equation}
-    u_\varepsilon (x) = u(x) c   n \alpha(n) \int_0^\varepsilon  \exp \bigg(\frac{1}{(r/\varepsilon)^2 -1} \bigg) r^{n-1} dr = u(x)  \int_{\mathbb{R}^n} \eta_\varepsilon dV = u(x).
+    u_\varepsilon (x) = u(x)  n \alpha(n) \varepsilon^{-n} \int_0^\varepsilon \rho ( r/\varepsilon) dr = u(x)  \int_{\mathbb{R}^n} \eta_\varepsilon dV = u(x).
 \end{equation}
 This shows $u \in C^\infty (\Omega)$. Finally $\Delta u =0$ follows at once from item 4 in proposition 1. $\square$
 
@@ -155,8 +160,8 @@ Let
 S:= \\{ x \in \Omega : u(x) = \max_{y \in \bar \Omega} u(y) \\}.
 \end{equation}
 Then $S \neq \varnothing$.
-The idea is to show that $S$ is open and closed.
-$S$ is closed being the preimage of a closed set (a singleton) by a continuous map.
+The idea is to show that $S$ is open and closed (relative to $\Omega$).
+$S$ is closed (in $\Omega)$ being the preimage of a closed set (a singleton) by a continuous map.
 Let $ x \in S$. Let $ r_0\in (0, \infty)$ such that $B(x,r_0) \subset \Omega$.
 Let $r \in (0, r_0)$. Then
 \begin{equation}
@@ -295,7 +300,7 @@ Therefore by the multinomial theorem for all $k \in \mathbb{N}$, $\rho \in (0, r
 \begin{equation}
     |R_k(x) |\leq \frac{\\| x-x_0\\|^{k+1}\_1}{(k+1)!}\max_{\alpha \in \mathbb{N}^n : |\alpha| = k+1} \sup_{x \in B(x_0, \rho)} | D^\alpha u (x)|.
 \end{equation}
-By the estimates for the partial derivatives for all $k \in \mathbb{N}^n$ (together with the triangle inequality):
+By the estimates for the partial derivatives for all $k \in \mathbb{N}$ (together with the triangle inequality):
 \begin{equation}
  \max\_{\alpha \in \mathbb{N}^n : |\alpha| = k} \sup\_{ x \in \bar B(x_0,r/2) } | D^\alpha u (x)| \leq \bigg(\frac{n k}{r/2}\bigg)^{k} \underbrace{\sup\_{y \in B(x_0,r)} |u(y)|}\_{=:C}.
 \end{equation}
