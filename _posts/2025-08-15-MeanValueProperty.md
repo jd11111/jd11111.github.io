@@ -280,6 +280,10 @@ and so in total
      |D^\alpha u(x)| \leq \bigg ( \frac{k }{r}\bigg)^k \sup_{z \in B(x,r)} |u(z)|. \quad \square
 \end{equation}
 
+**Corollary:**
+Let $(u_m)\_{m \in \mathbb{N}}$ be a sequence of harmonic functions that converge locally uniformly to $u$ (which is known to be harmonic too).
+Then for any $\alpha \in \mathbb{N}^n$ the sequence $(D^\alpha u_n)_{m \in \mathbb{N}}$ converges locally uniformly to $D^\alpha u$.
+
 **Proposition 9 (harmonic functions are analytic):**
 Let $u \in C^2(\Omega)$ with $\Delta u =0$.
 Then the Taylor series of $u$ is locally uniformly convergent to $u$.
