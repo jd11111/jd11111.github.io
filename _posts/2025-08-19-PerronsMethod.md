@@ -12,6 +12,9 @@ $u \in C(\Omega)$ is called subharmonic if for every $x \in \Omega$ there exists
     u(x) \leq \frac{1}{n \alpha(n) r^{n-1}} \int_{\partial B(x,r)} u dS
 \end{equation}
 
+**Remark:**
+From proposition 1 of my post on the mean value property it follows that $u \in C^2(\Omega)$ is subharmonic if and only if $\Delta u \geq 0$.
+
 **Proposition 1:**
 Let $S \subset \mathbb{R}^n$ be a non-empty bounded subset, $u \in C(S)$ and $m:= \sup_{x \in S} u(x)$.
 Then either $m$ is attained in $S$ or there exists a sequence $(x_k)\_{k \in \mathbb{N}}$ in $S$ converging to a point in $\partial S$ such that $(u(x_k))\_{k \in \mathbb{N}}$ converges to $m$.
@@ -254,7 +257,7 @@ This implies that
 \end{equation}
 It follows that $v \in P_g$.
 
-**Proposition 8 (Perron's Theorem):**
+**Proposition 8 (Perron's theorem):**
 Let $x_0 \in \partial \Omega$ regular and
 Let $g : \partial \Omega \to \mathbb{R}$ be a bounded function that is continuous in $x_0$.
 Let $P_g$ the Perron family associated to $g$ and let $u_g$ be the Perron solution associated to $P_g$.
@@ -305,7 +308,7 @@ and
 \end{equation}
 Since this is valid for any $\varepsilon \in (0, \infty)$ we have $\lim_{x \to x_0} u_g (x) = g(x_0)$. $\square$
 
-**Proposition 9 (the solution to the existence question in the dirichtlet problem):**
+**Proposition 9 (Dirichtlet problem solvable for all continuous boundary data $\Leftrightarrow$ boundary is regular):**
 \begin{equation}
 \begin{split}
     &\forall g \in C(\partial \Omega) \exists u \in C(\bar \Omega) \cap C^2(\Omega): \Delta u =0 \ \text{in} \ \Omega, \ u = g \ \text{in} \ \partial \Omega \\\\ 
@@ -315,3 +318,22 @@ Since this is valid for any $\varepsilon \in (0, \infty)$ we have $\lim_{x \to x
 
 **Proof:**
 $\Leftarrow$ is Perron's theorem.
+To show $\Rightarrow$ let $x_0 \in \partial \Omega$ and define $g \in C(\partial \Omega)$ by $g(x):=- \\| x-x_0\\|$.
+Let $u$ in $C(\bar \Omega) \cap C^2 (\Omega)$ with $\Delta u = 0$ on $\Omega$ and $u=g$ on $\partial \Omega$.
+Then $u$ is a barrier at $x_0$. $\square$
+
+**Definition (exterior sphere condition):**
+Let $x_0 \in \partial \Omega$. 
+Then the exterior sphere condition is satisfied at $x_0$ $:\Leftrightarrow$ there exists an open ball $B \subset \mathbb{R}^n \setminus \Omega$ such that $ \bar B \cap \bar \Omega = \\{x_0\\}$.
+
+**Proposition 10 (exterior sphere condition implies regularity):**
+Let $x_0 \in \partial \Omega$ such that the exterior sphere condition is satisfied at $x_0$. Then $x_0$ is regular.
+
+**Proof:** Let $y \in \mathbb{R}^n \setminus \Omega$ and $\varepsilon \in (0, \infty)$ such that $\bar B(y,\varepsilon) \cap \bar \Omega = \\{x_0\\}$.
+Then $b \in C(\Omega)$
+\begin{equation}
+  b(x):= \exp ( - \alpha \\| x-y \\|^2) - \exp (- \alpha \varepsilon^2),
+\end{equation}
+with $\alpha \in (0, \infty)$ choosen appropriatly large (so that $\Delta b \geq 0$) is easily seen to be a barrier at $x_0$. $\square$
+
+**Remark:** It is possible to show that if $\partial \Omega$ is $C^2$, then the exterior sphere condition is satisfied for all boundary points.
