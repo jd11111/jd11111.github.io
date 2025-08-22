@@ -77,19 +77,111 @@ because $v \leq \bar v$. $\square$
 
 
 **Definition (Perron family):**
+A subset $P \subset C(\Omega)$ is called a **Perron family** if
+1. $\forall v \in P$: $v$ is subharmonic,
+2. $P \neq \varnothing$,
+3. $\forall v_1, v_2 \in P: \max \\{v_1, v_2 \\} \in P$, 
+4. $\forall v \in P$ the harmonic regularisation of $v$ in any ball that is precompact in $\Omega$ is in $P$.
+
+**Proposition 4 (point-wise $\sup$ of Perron family is $\infty$ or harmonic):**
+Let $P$ be a Perron family. Define $u : \Omega \to (-\infty, \infty]$ by $u(x):= \sup_{v \in P} v(x)$. 
+Then either $u=\infty$ or $ u< \infty$ and $u$ is harmonic.
+
+**Proof:**
+Let $S:= \\{ x \in \Omega : u (x) = \infty \\}$.
+We want to show that $S$ is open and closed (relative to $\Omega$), because then by connectedness of $\Omega$, $S= \varnothing$ or $S= \Omega$. 
+Let $x_0 \in \Omega$ and $r \in (0, \infty)$ such that $\bar B(x_0, r) \subset \Omega$.
+The proof is finished if we can show the following:
+1. If $u(x_0)  = \infty$, then $u=\infty$ on $B(x_0,r)$ (this shows that $S$ is open),
+2. If $u(x_0) <\infty$, then $u$ is equal to a harmonic function on $B(x_0,r)$ (this shows in particular that $S$ is closed relative to $\Omega$).
+
+Let $(w_n)\_{n \in \mathbb{N}}$ be a sequence in $P$ such that $\lim_{n \to \infty} w_n (x_0) = u(x_0)$.
+Define a new sequence $(v_n)\_{n \in \mathbb{N}}$ in $P$ by
+\begin{equation}
+v_n := \max \\{w_1, \dots, w_n\\}.
+\end{equation}
+Then $(v_n)\_{n \in \mathbb{N}}$ is monotone.
+Furthermore for all $n \in \mathbb{N}$:
+\begin{equation}
+    w_n (x_0) \leq  v_n (x_0) \leq u(x_0),
+\end{equation}
+by definition of $w_n$ and $u$.
+Therefore by the Sandwich lemma $\lim_{n \to \infty} v_n (x_0) = u(x_0)$.
+Define the sequence $(\bar v_n)\_{n \in \mathbb{N}}$ in $P$ by $\bar v_n :=$ the harmonic regularisation of $v_n$ in $B(x_0, r)$.
+By the maximums principle for harmonic functions: for $m,n \in \mathbb{N}$ with $m\geq n$ and $x \in B (x_0,r)$:
+\begin{equation}
+     \bar v_n (x) - \bar v_m (x) \leq \sup_{y \in \partial B(x_0,r)} (v_n (y) - v_m(y)) \leq 0.
+\end{equation}
+Showing that $(\bar v_n)\_{n \in \mathbb{N}}$ is also monotone.
+Furthermore by proposition 3 for all $n \in \mathbb{N}$:
+\begin{equation}
+     v_n (x_0) \leq  \bar v_n (x_0) \leq u (x_0),
+\end{equation}
+which 
+implies that $\lim_{n \to \infty} \bar v_n (x_0) = u(x_0)$.
+Let $v$ be the pointwise supremum of $(\bar v_n)\_{n \in \mathbb{N}}$.
+By Harnacks convergence theorem: Either $v= \infty$ in $B(x_0,r)$ or $v<\infty$ in $B(x_0,r)$ and $v$ is harmonic in $B(x_0,r)$.
+
+**Case 1:** If $u(x_0)= \infty$, then $v(x_0) =u(x_0) =  \infty$ and so $v= \infty$ in $B(x_0,r)$.
+Now $v \leq u$ by definition of $u$ and therefore $u = \infty$ in $B(x_0,r)$.
+
+**Case 2:** If $u(x_0) < \infty$, then $v<\infty$ and $v$ is harmonic in $B(x_0,r)$.
+We want to show that $u=v$ in $B(x_0,r)$.
+Let $x \in B(x_0, r)$.
+Let $(h_n)\_{n \in \mathbb{N}}$ be a sequence in $P$ such that $\lim_{n \to \infty} h_n (x) = u(x)$.
+Define a new sequence $(f_n)\_{n \in \mathbb{N}}$ in $P$ by
+\begin{equation}
+f_n := \max \\{h_1, \dots, h_n, \bar v_n\\}.
+\end{equation}
+Then $(f_n)\_{n \in \mathbb{N}}$ is monotone (using that $(\bar v_n)\_{n \in \mathbb{N}}$ is monotone).
+Furthermore for all $n \in \mathbb{N}$:
+\begin{equation}
+    h_n (x) \leq  f_n (x) \leq u(x),
+\end{equation}
+by definition of $f_n$ and $u$.
+Therefore by the Sandwich lemma $\lim_{n \to \infty} f_n (x) = u(x)$.
+Define the sequence $(\bar f_n)\_{n \in \mathbb{N}}$ in $P$ by $\bar f_n :=$ the harmonic regularisation of $f_n$ in $B(x_0, r)$.
+By the maximums principle for harmonic functions: for $m,n \in \mathbb{N}$ with $m\geq n$ and $z \in B (x_0,r)$:
+\begin{equation}
+     \bar f_n (z) - \bar f_m (z) \leq \sup_{y \in \partial B(x_0,r)} (f_n (y) - f_m(y)) \leq 0.
+\end{equation}
+Showing that $(\bar f_n)\_{n \in \mathbb{N}}$ is also monotone.
+Furthermore by proposition 3 and the definition of $u$ for all $n \in \mathbb{N}$:
+\begin{equation}
+     f_n (x) \leq  \bar f_n (x) \leq u (x),
+\end{equation}
+which 
+implies that $\lim_{n \to \infty} \bar f_n (x) = u(x)$.
+Let $f$ be the point-wise supremum ($=$ the point-wise limit) of $(\bar f_n)\_{n \in \mathbb{N}}$.
+By Harnacks convergence theorem $f=\infty$ or $f<\infty$ in $B(x,r)$ and $f$ is harmonic in $B(x,r)$.
+By definition of $f$ we have $v \leq f$ on $B(x_0,r)$.
+Now for all $n \in \mathbb{N}$ by definition of $f_n$, proposition 3 and the definition of $u$
+\begin{equation}
+ \bar v_n (x_0) \leq f_n(x_0) \leq  \bar f_n (x_0) \leq u(x_0).
+\end{equation}
+Therefore $ u(x_0) = \lim_{n \to \infty} \bar v_n (x_0)  =\lim_{n \to \infty} \bar f_n (x_0) = f(x_0)$.
+This shows that $f\neq \infty$. Therefore $f$ is harmonic in $B(x_0,r)$.
+Now $v-f$ is harmonic in $B(x,r)$ and $v-f \leq 0$ in $B(x,r)$.
+Furthermore $(v-f)(x_0) = 0$ and therefore by the maximum principle for harmonic functions $v= f$ on $B(x,r)$.
+In particular $u(x) = f(x) = v(x)$.
+And so $v=u$ on $B(x,r)$ with $v$ harmonic. $\square$
+
+**Definition (Perron family associated to a boundary function):**
 Let $g : \partial \Omega \to \mathbb{R}$ be a bounded function.
 Define the **Perron family** $P_g$ associated to $g$ by
 \begin{equation}
 P_g := \\{ v \in C(\Omega) : \ v \ \text{subbharmonic and } \forall x_0 \in \partial \Omega :  \limsup_{\Omega \ni x \to x_0} v(x_0)  \leq g(x_0)  \\}.
 \end{equation}
 
-**Proposition 4 (basic properties of Perron families):**
+**Proposition 5 (it's a Perron family):**
 Let $g : \partial \Omega \to \mathbb{R}$ be a bounded function and $P_g$ the Perron family associated to $g$.
 Then:
 1. $P_g \neq \varnothing$,
 2. $\forall x \in \Omega:  \sup_{ v \in P_g} v(x) <\infty$,
 3. $\forall v_1, v_2 \in P_g: \max \\{v_1, v_2 \\} \in P_g$, 
 4. $\forall v \in P_g$ the harmonic regularisation of $v$ in any ball that is precompact in $\Omega$ is in $P_g$.
+
+In particular $P_g$ is Perron family.
 
 **Proof:**
 To 1.: $\inf_{x \in \partial \Omega} g(x))>-\infty$, because $g$ is bounded. Let $c \in (-\infty, \inf_{x \in \partial \Omega} g(x)]$, then $c \in P_g$.
@@ -103,15 +195,15 @@ To 4.: Follows from proposition 3 and the fact that the regularisation does not 
 
 **Definition (Perron solution):**
 Let $g : \partial \Omega \to \mathbb{R}$ be a bounded function and $P_g$ the Perron family associated to $g$.
-The **Perron solution** $u: \Omega \to \mathbb{R}$ associated to $P_g$ is defined by 
+The **Perron solution** $u_g: \Omega \to \mathbb{R}$ associated to $P_g$ is defined by 
 \begin{equation}
-    u(x) := \sup_{ v \in P_g} v(x).
+    u_g(x) := \sup_{ v \in P_g} v(x).
 \end{equation}
 
 **Remark:**
-The Perron solution is well defined by item 1 and 2 of the preceding proposition.
+The Perron solution is well defined ($<\infty$) by item 1 and 2 of the preceding proposition and harmonic by proposition 4.
 
-**Proposition 5 (motivation for the Perron solution):**
+**Proposition 6 (motivation for the Perron solution):**
 Let $g \in C(\partial \Omega)$, $P_g$ the Perron family associated to $g$ and $u_g$ the Perron solution associated to $P_g$. Let $u \in C(\bar \Omega) \cap C^2(\Omega)$ with $\Delta u =0$ on $\Omega$ and $u=g$ on $\partial \Omega$.
 Then $u=u_g$ on $\Omega$.
 
@@ -128,80 +220,6 @@ Then $v-u$ is subharmonic and for all $x_0 \in \partial \Omega$:
 \end{equation}
 Therefore by the maximum principle for subharmonic functions $v-u \leq 0$ on $\Omega$.
 Therefore $v \leq u$. This shows that $u_g \leq u$ and therefore $u=u_g$. $\square$
-
-**Proposition 6 (the Perron solution is harmonic):**
-Let $g : \partial \Omega \to \mathbb{R}$ be a bounded function and $P_g$ the Perron family associated to $g$.
-Let $u$ be the Perron solution associated to $P_g$.
-Then $u$ is harmonic.
-
-**Proof:**
-Let $x_0 \in \Omega$ and $r \in (0, \infty)$ such that $\bar B(x_0, r) \subset \Omega$.
-**Step 1:** Find a harmonic function $v$ on $B(x_0, r)$ that agrees with $u$ at $x_0$.
-
-Let $(w_n)\_{n \in \mathbb{N}}$ be a sequence in $P_g$ such that $\lim_{n \to \infty} w_n (x_0) = u(x_0)$.
-Define a new sequence $(v_n)\_{n \in \mathbb{N}}$ in $P_g$ by
-\begin{equation}
-v_n := \max \\{w_1, \dots, w_n\\}.
-\end{equation}
-Then $(v_n)\_{n \in \mathbb{N}}$ is monotone.
-Furthermore for all $n \in \mathbb{N}$:
-\begin{equation}
-    w_n (x_0) \leq  v_n (x_0) \leq u(x_0),
-\end{equation}
-by definition of $w_n$ and $u$.
-Therefore by the Sandwich lemma $\lim_{n \to \infty} v_n (x_0) = u(x_0)$.
-Define the sequence $(\bar v_n)\_{n \in \mathbb{N}}$ in $P_g$ by $\bar v_n :=$ the harmonic regularisation of $v_n$ in $B(x_0, r)$.
-By the maximums principle for harmonic functions: for $m,n \in \mathbb{N}$ with $m\geq n$ and $x \in B (x_0,r)$:
-\begin{equation}
-     \bar v_n (x) - \bar v_m (x) \leq \sup_{y \in \partial B(x_0,r)} (v_n (y) - v_m(y)) \leq 0.
-\end{equation}
-Showing that $(\bar v_n)\_{n \in \mathbb{N}}$ is also monotone.
-Furthermore by proposition 3 for all $n \in \mathbb{N}$:
-\begin{equation}
-     v_n (x_0) \leq  \bar v_n (x_0) \leq u (x_0),
-\end{equation}
-which 
-implies that $\lim_{n \to \infty} \bar v_n (x_0) = u(x_0)$.
-By Harnacks convergence theorem $(\bar v_n)\_{n \in \mathbb{N}}$ converges to a harmonic function $v$ in $B(x_0,r)$.
-We know that $v(x_0) =  u(x_0)$ and we want to argue that $v=u$ in $B(x_0,r)$, which would show that $u$ is harmonic.
-
-**Step 2:** Show that $u=v$ on $B(x_0,r)$ and not just at $x_0$.
-Let $x \in B(x_0, r)$.
-Let $(h_n)\_{n \in \mathbb{N}}$ be a sequence in $P_g$ such that $\lim_{n \to \infty} h_n (x) = u(x)$.
-Define a new sequence $(f_n)\_{n \in \mathbb{N}}$ in $P_g$ by
-\begin{equation}
-f_n := \max \\{h_1, \dots, h_n, \bar v_n\\}.
-\end{equation}
-Then $(f_n)\_{n \in \mathbb{N}}$ is monotone (using that $(\bar v_n)\_{n \in \mathbb{N}}$ is monotone).
-Furthermore for all $n \in \mathbb{N}$:
-\begin{equation}
-    h_n (x) \leq  f_n (x) \leq u(x),
-\end{equation}
-by definition of $f_n$ and $u$.
-Therefore by the Sandwich lemma $\lim_{n \to \infty} f_n (x) = u(x)$.
-Define the sequence $(\bar f_n)\_{n \in \mathbb{N}}$ in $P_g$ by $\bar f_n :=$ the harmonic regularisation of $f_n$ in $B(x_0, r)$.
-By the maximums principle for harmonic functions: for $m,n \in \mathbb{N}$ with $m\geq n$ and $z \in B (x_0,r)$:
-\begin{equation}
-     \bar f_n (z) - \bar f_m (z) \leq \sup_{y \in \partial B(x_0,r)} (f_n (y) - f_m(y)) \leq 0.
-\end{equation}
-Showing that $(\bar f_n)\_{n \in \mathbb{N}}$ is also monotone.
-Furthermore by proposition 3 and the definition of $u$ for all $n \in \mathbb{N}$:
-\begin{equation}
-     f_n (x) \leq  \bar f_n (x) \leq u (x),
-\end{equation}
-which 
-implies that $\lim_{n \to \infty} \bar f_n (x) = u(x)$.
-By Harnacks convergence theorem $(\bar f_n)\_{n \in \mathbb{N}}$ converges to a harmonic function $f$ in $B(x,r)$.
-By definition of $f$ we have $v \leq f$ on $B(x_0,r)$.
-Now for all $n \in \mathbb{N}$ by definition of $f_n$, proposition 3 and the definition of $u$
-\begin{equation}
- \bar v_n (x_0) \leq f_n(x_0) \leq  \bar f_n (x_0) \leq u(x_0).
-\end{equation}
-Therefore $ u(x_0) = \lim_{n \to \infty} \bar v_n (x_0)  =\lim_{n \to \infty} \bar f_n (x_0) = f(x_0)$.
-Now $v-f$ is harmonic in $B(x,r)$ and $v-f \leq 0$ in $B(x,r)$.
-Furthermore $(v-f)(x_0) = 0$ and therefore by the maximum principle for harmonic functions $v= f$ on $B(x,r)$.
-In particular $u(x) = f(x) = v(x)$.
-And so $v=u$ on $B(x,r)$ with $v$ harmonic. $\square$
 
 **Definition (regular boundary point):**
 Let $x_0 \in \partial \Omega$.
