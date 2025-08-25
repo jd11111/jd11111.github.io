@@ -329,27 +329,34 @@ Then using the mean value property, $u \geq 0$ and $B(x_1,r) \subset B(x_2,3r) \
 \begin{equation}
 \begin{split}
     u(x_1) &= \frac{1}{\alpha(n) r^n} \int_{B(x_1,r)} u dV \leq  \frac{1}{\alpha(n) r^n} \int_{B(x_2,3r)} u dV \\\\ 
-&=  \frac{3^n}{\alpha(n) (3r)^n} \int_{B(x_2,3r)} u dV = 2^n u(x_2).
+&=  \frac{3^n}{\alpha(n) (3r)^n} \int_{B(x_2,3r)} u dV = 3^n u(x_2).
 \end{split}
    \end{equation}
-Finally let $a,b \in V$ arbitrary.
-Let $\gamma :[0,1]\to V$ continuous with $\gamma (0) = a, \gamma (1) = b$ (exists by connectedness).
 Let $\rho \in (0, \infty)$ such that $\forall x \in \bar V$: $B(x,4 \rho) \subset \Omega$ (exists since $\bar V \subset \Omega$ is compact).
-Since $\gamma$ is uniformly continuous there exists $\delta >0$ such that for all $ t ,s \in [0,1]$:
+Again by compactness we can find $x_1, \dots x_N  \in \bar V$ such that $ \bar V \subset \bigcup_{j=1}^N B(x_j,\rho)$.
+Finally let $a,b \in V$ arbitrary.
+Let
 \begin{equation}
-    |t-s |< \delta \Rightarrow \\|\gamma (t) -\gamma (s)\\| < \rho.
+\begin{split}
+S&:=\\{ y \in V :\exists M \in  \\{1,\dots, N\\} , \sigma: \\{1, \dots, M\\} \to \\{1, \dots, N \\} \ \text{injective}: \\\\ 
+&a \in B(x_{\sigma(1)},\rho), \ y \in B(x_{\sigma(M)}, \rho)), \ \forall j \in \\{1, \dots, M-1\\}: \\\\ 
+&B(x_{\sigma(j)},\rho) \cap B(x_{\sigma(j+1)},\rho) \neq \varnothing
+\\}.
+\end{split}
 \end{equation}
-Let $t_0, \dots, t_N \in [0,1]$ with $0=t_0 < \cdots < t_N =1$ with for all $t \in \\{0, \dots, N-1\\}$: $t_{j+1}- t_j < \delta$. 
-Let $j \in \\{1,\dots, N-1\\}$.
-Then $t_{j+1}  - t_j < \delta$ and $ t_j -t_{j-1} < \delta$. Therefore $\gamma(t_{j+1})$ and $\gamma(t_{j-1})$ are in $B(\gamma(t_j), \rho)$.
-Therefore the first part of the argument applies to show that
+Then $S\neq \varnothing$, because $a \in S$ and $S$ is open since for any $y \in S$ the final ball in the chain intersected with $V$ is an open neighborhood of $y$ that is contained in $S$.
+Let $y \in V \setminus S$.
+Then there exists some $j \in \\{1,\dots, N\\}$ with $y \in B(x_j, \rho)$.
+Let $z \in V \cap B(x_j, \rho) \cap S$.
+If the chain of balls connecting $a$ to $z$ contains the ball $B(x_j, \rho)$ at any point we can truncate the chain to show that $y \in S$.
+If it does not contain $B(x_j, \rho)$ then we can define a new chain by adding $B(x_j,\rho)$ at the end.
+Therefore $S$ is closed relative to $V$ and so $S=V$ by connectedness.
+
+Therefore
 \begin{equation}
-    u(\gamma(t_{j-1})) \leq  2^n u ( \gamma(t_{j+1})).
+    u(a) \leq 3^{n N} u(b).
 \end{equation}
-Since $j$ was arbitary iterative application yields:
-\begin{equation}
-    u(a) = u(\gamma(t_0)) \leq 2^{nN} u(\gamma (t_N)) = 2^{nN} u(b). \quad \square
-\end{equation}
+
 
 **Proposition 11 (Harnack's convergence theorem)**: 
 Let $(u_m)\_{m \in \mathbb{N}}$ be a point-wise non-decreasing sequence of harmonic functions in $\Omega$. 
