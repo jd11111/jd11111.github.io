@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Math Notes and Slides
+title: Math notes and slides
 permalink: /notes/
 ---
 

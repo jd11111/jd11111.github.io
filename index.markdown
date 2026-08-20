@@ -1,6 +1,11 @@
 ---
-# Feel free to add content and custom Front Matter to this file.
-# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-
 layout: home
+title: About me
 ---
+My name is Jannik Daun. I am a mathematics PhD student at the University of Wuppertal.
+
+# Research Interests
+
+# Preprints
+
+# Workshop and Conference Talks
