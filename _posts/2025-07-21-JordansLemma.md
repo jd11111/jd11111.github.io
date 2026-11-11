@@ -43,7 +43,7 @@ Therefore
 \end{equation}
 The idea now is to show that
 \begin{equation}
-\int_0^\pi \exp (- \alpha R \sin (t) )dt = 2\int_0^\pi \exp (- \alpha R \sin (t) )dt 
+\int_0^\pi \exp (- \alpha R \sin (t) )dt = 2\int_0^{\pi/2} \exp (- \alpha R \sin (t) )dt 
 \end{equation}
 and to then use that $\sin$ is concave on $[0,\pi/2]$ together with the monotonicity of the exponential function to estimate the integral from above.
 Define $\varphi : [0,\pi] \to [0,\pi]$, $\varphi (t):= (\pi -t)$.

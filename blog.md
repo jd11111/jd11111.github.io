@@ -22,5 +22,4 @@ permalink: /blog
       {%- endfor -%}
     </ul>
   {%- endif -%}
-
 </div>

@@ -5,8 +5,6 @@ title: About me
 My name is Jannik Daun. I am a mathematics PhD student (since 2026) in the functional analysis research group at the University of Wuppertal.
 Before that i did my masters in mathematics and a bachelor in physics at the same university.
 
-Outside of math and physics i am interested in the gym, gaming, bjj, cycling, coding and tinkering with my nixOS or nvim configuration. I also post (mostly mathematics) [to my blog](/blog).
-
 # Research Interests
 
 Currently my research is in the area of control and observation for strongly continuous operator semigroups.
@@ -20,7 +18,9 @@ If you want to collaborate with me on some research (or want to contact me for s
 - [J. Daun, and B. Jacob, "On the Hautus test for exact observability of normal semigroups," 2026, arXiv:2608.09407.](https://arxiv.org/abs/2608.09407)
 - [J. Daun, D.J. Happ, B. Jacob, and C. Totzeck, "Erratum and original of Port-Hamiltonian structure of interacting particle systems and its mean-field limit," 2026, arXiv:2301.06121.](https://arxiv.org/abs/2301.06121)
 
-# Workshop and Conference Talks
+# Workshop and Conference Talks/Posters
+- [Scindis 2026 in Bayreuth](https://num.math.uni-bayreuth.de/de/news/2026/workshop-scindis/index.html)
+Presented a [Poster](/assets/scindis-poster-Jannik-Daun.pdf) on the Hautus test for exact observability of normal semigroups
 - [ISem28 talk on the maximal equicontinuous factor (with Matti Bleckmann, Pablo Lummerzheim and coordinated by Lino Haupt)](/assets/ISem28talk.pdf)
 - [PHSymposium24 talk on linear quadratic optimal control for discrete time systems (was part of a larger talk)](/assets/PHSymposium24talk.pdf)
 
